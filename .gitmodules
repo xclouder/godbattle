@@ -1,3 +1,6 @@
 [submodule "Assets/3rd/uFrame"]
 	path = Assets/3rd/uFrame
 	url = /Users/xclouder/Desktop/godbattle/Assets/3rd/uFrame
+[submodule "Assets/3rd/uFrameKernel"]
+	path = Assets/3rd/uFrameKernel
+	url = https://github.com/InvertGames/uFrameKernel.git
