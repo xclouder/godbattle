@@ -1,6 +1,3 @@
 [submodule "Assets/3rd/uFrame"]
 	path = Assets/3rd/uFrame
 	url = /Users/xclouder/Desktop/godbattle/Assets/3rd/uFrame
-[submodule "Assets/3rd/UniRx"]
-	path = Assets/3rd/UniRx
-	url = https://github.com/InvertGames/UniRx.git
