@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CloudBehaviour : MonoBehaviour {
 
 
 
-	public TaskManager  TaskManager{
+	public TaskMgr  TaskManager{
 		get {
 			return null;
 		}

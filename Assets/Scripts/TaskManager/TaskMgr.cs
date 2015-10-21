@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TaskManager : MonoBehaviour {
+public class TaskMgr : MonoBehaviour {
 
 	public static void Init(GameObject gameObjectToAttach)
 	{
-		gameObjectToAttach.AddComponent<TaskManager>();
+		gameObjectToAttach.AddComponent<TaskMgr>();
 	}
 
-	private static TaskManager ins;
-	public static TaskManager Instance
+	private static TaskMgr ins;
+	public static TaskMgr Instance
 	{
 		get {
 
