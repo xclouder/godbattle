@@ -5,7 +5,7 @@ public class TaskMgr : MonoBehaviour {
 
 	public static void Init(GameObject gameObjectToAttach)
 	{
-		gameObjectToAttach.AddComponent<TaskMgr>();
+		ins = gameObjectToAttach.AddComponent<TaskMgr>();
 	}
 
 	private static TaskMgr ins;
@@ -15,15 +15,15 @@ public class TaskMgr : MonoBehaviour {
 
 			if (ins == null)
 			{
-				throw new System.InvalidOperationException("You should call Init(obj) first before get singleton");
+				throw new System.InvalidOperationException("You should call Init(obj) first before get singleton.");
 			}
 
 			return ins;
 		}
 	}
 
-	public static Coroutine StartCoroutine(IEnumerator routine)
+	public static Coroutine StartCoroutineTask(IEnumerator routine)
 	{
-		return StartCoroutine(routine);
+		return ins.StartCoroutine(routine);
 	}
 }

@@ -1,168 +1,246 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+
+public delegate void EventHandler();
+public delegate void EventHandler<T>(T p1);
+public delegate void EventHandler<T, U>(T p1, U p2);
+public delegate void EventHandler<T, U, V>(T p1, U p2, V p3);
+
+public class DispatchEventException : Exception {
+	public DispatchEventException(string msg)
+	: base(msg) {
+	}
+}
 
 public class EventDispatcher {
 
-	public delegate void EventHandler();
-	public delegate void EventHandler<T>(T p1);
-	public delegate void EventHandler<T, U>(T p1, U p2);
-	public delegate void EventHandler<T, U, V>(T p1, U p2, V p3);
+	static private IDictionary<string, Delegate> eventTable = new Dictionary<string, Delegate>();
 
-	public void Fire(string eventName)
+
+	#region Helper Methods
+	static private bool CheckEventName(string eventName)
 	{
-
-	}
-
-	public void AddListener(string eventName, EventHandler handler, object listener = null)
-	{
-
-	}
-
-	public void RemoveListener(object listener)
-	{
-
-	}
-
-}
-
-
-//C# Unity event manager that uses strings in a hashtable over delegates and events in order to
-//allow use of events without knowing where and when they're declared/defined.
-//by Billy Fletcher of Rubix Studios
-
-public interface IEventListener
-{
-	bool HandleEvent(IEvent evt);
-}
-
-public interface IEvent
-{
-	string GetName();
-	object GetData();
-}
-
-public class EventManager : MonoBehaviour
-{
-	public bool LimitQueueProcesing = false;
-	public float QueueProcessTime = 0.0f;
-	
-	private static EventManager s_Instance = null;
-	public static EventManager instance 
-	{
-		get 
+		if (!eventTable.ContainsKey(eventName))
 		{
-			if (s_Instance == null) 
-			{
-				GameObject go = new GameObject("EventManager");
-				s_Instance = (EventManager)go.AddComponent(typeof(EventManager));
+			UnityEngine.Debug.LogError("event name:" + eventName + " not exist");
+			return false;
+		}
+
+		return true;
+	}
+
+	static public void PrintEventTable()
+	{
+		UnityEngine.Debug.Log("\t\t\t=== EventDispatcher PrintEventTable ===");
+		
+		foreach (KeyValuePair<string, Delegate> pair in eventTable) {
+			UnityEngine.Debug.Log("\t\t\t" + pair.Key + "\t\t" + pair.Value);
+		}
+		
+		UnityEngine.Debug.Log("\n");
+	}
+
+	static private DispatchEventException CreateDispatchSignatureException(string eventName)
+	{
+		return new DispatchEventException(string.Format("Dispatch event \"{0}\" but listeners have a different signature than the event.", eventName));
+	}
+
+	static public void OnListenerAdding(string eventType, Delegate listenerBeingAdded) {
+
+		if (!eventTable.ContainsKey(eventType)) {
+			eventTable.Add(eventType, null );
+		}
+		
+		Delegate d = eventTable[eventType];
+		if (d != null && d.GetType() != listenerBeingAdded.GetType()) {
+			throw new InvalidOperationException(string.Format("Attempting to add listener with inconsistent signature for event type {0}. Current listeners have type {1} and listener being added has type {2}", eventType, d.GetType().Name, listenerBeingAdded.GetType().Name));
+		}
+	}
+
+	static public void OnListenerRemoving(string eventType, Delegate listenerBeingRemoved) {
+		#if LOG_ALL_MESSAGES
+		Debug.Log("MESSENGER OnListenerRemoving \t\"" + eventType + "\"\t{" + listenerBeingRemoved.Target + " -> " + listenerBeingRemoved.Method + "}");
+		#endif
+		
+		if (eventTable.ContainsKey(eventType)) {
+			Delegate d = eventTable[eventType];
+			
+			if (d == null) {
+				throw new InvalidOperationException(string.Format("Attempting to remove listener with for event type \"{0}\" but current listener is null.", eventType));
+			} else if (d.GetType() != listenerBeingRemoved.GetType()) {
+				throw new InvalidOperationException(string.Format("Attempting to remove listener with inconsistent signature for event type {0}. Current listeners have type {1} and listener being removed has type {2}", eventType, d.GetType().Name, listenerBeingRemoved.GetType().Name));
 			}
-			
-			return s_Instance;
+		} else {
+			throw new InvalidOperationException(string.Format("Attempting to remove listener for type \"{0}\" but Messenger doesn't know about this event type.", eventType));
 		}
 	}
 	
-	private Hashtable m_listenerTable = new Hashtable();
-	private Queue m_eventQueue = new Queue();
-	
-	
-	//Add a listener to the event manager that will receive any events of the supplied event name.
-	public bool AddListener(IEventListener listener, string eventName)
-	{
-		if (listener == null || eventName == null)
-		{
-			Debug.Log("Event Manager: AddListener failed due to no listener or event name specified.");
-			return false;
+	static public void OnListenerRemoved(string eventType) {
+		if (eventTable[eventType] == null) {
+			eventTable.Remove(eventType);
 		}
-		
-		if (!m_listenerTable.ContainsKey(eventName))
-			m_listenerTable.Add(eventName, new ArrayList());
-		
-		ArrayList listenerList = m_listenerTable[eventName] as ArrayList;
-		if (listenerList.Contains(listener))
-		{
-			Debug.Log("Event Manager: Listener: " + listener.GetType().ToString() + " is already in list for event: " + eventName);
-			return false; //listener already in list
-		}
-		
-		listenerList.Add(listener);
-		return true;
 	}
-	
-	//Remove a listener from the subscribed to event.
-	public bool DetachListener(IEventListener listener, string eventName)
+
+	#endregion
+
+	#region Fire Event
+	static public void Fire(string eventName)
 	{
-		if (!m_listenerTable.ContainsKey(eventName))
-			return false;
-		
-		ArrayList listenerList = m_listenerTable[eventName] as ArrayList;
-		if (!listenerList.Contains(listener))
-			return false;
-		
-		listenerList.Remove(listener);
-		return true;
-	}
-	
-	//Trigger the event instantly, this should only be used in specific circumstances,
-	//the QueueEvent function is usually fast enough for the vast majority of uses.
-	public bool TriggerEvent(IEvent evt)
-	{
-		string eventName = evt.GetName();
-		if (!m_listenerTable.ContainsKey(eventName))
+		if (!CheckEventName(eventName))
+			return;
+
+		Delegate del = null;
+		if (eventTable.TryGetValue(eventName, out del))
 		{
-			Debug.Log("Event Manager: Event \"" + eventName + "\" triggered has no listeners!");
-			return false; //No listeners for event so ignore it
-		}
-		
-		ArrayList listenerList = m_listenerTable[eventName] as ArrayList;
-		foreach (IEventListener listener in listenerList)
-		{
-			if (listener.HandleEvent(evt))
-				return true; //Event consumed.
-		}
-		
-		return true;
-	}
-	
-	//Inserts the event into the current queue.
-	public bool QueueEvent(IEvent evt)
-	{
-		if (!m_listenerTable.ContainsKey(evt.GetName()))
-		{
-			Debug.Log("EventManager: QueueEvent failed due to no listeners for event: " + evt.GetName());
-			return false;
-		}
-		
-		m_eventQueue.Enqueue(evt);
-		return true;
-	}
-	
-	//Every update cycle the queue is processed, if the queue processing is limited,
-	//a maximum processing time per update can be set after which the events will have
-	//to be processed next update loop.
-	void Update()
-	{
-		float timer = 0.0f;
-		while (m_eventQueue.Count > 0)
-		{
-			if (LimitQueueProcesing)
+			var h = del as EventHandler;
+			if (h != null)
 			{
-				if (timer > QueueProcessTime)
-					return;
+				h();
 			}
-			
-			IEvent evt = m_eventQueue.Dequeue() as IEvent;
-			if (!TriggerEvent(evt))
-				Debug.Log("Error when processing event: " + evt.GetName());
-			
-			if (LimitQueueProcesing)
-				timer += Time.deltaTime;
+			else
+			{
+				throw CreateDispatchSignatureException(eventName);
+			}
 		}
 	}
-	
-	public void OnApplicationQuit()
+
+	static public void Fire<T>(string eventName, T p1)
 	{
-		m_listenerTable.Clear();
-		m_eventQueue.Clear();
-		s_Instance = null;
+		if (!CheckEventName(eventName))
+			return;
+		
+		Delegate del = null;
+		if (eventTable.TryGetValue(eventName, out del))
+		{
+			var h = del as EventHandler<T>;
+			if (h != null)
+			{
+				h(p1);
+			}
+			else
+			{
+				throw CreateDispatchSignatureException(eventName);
+			}
+		}
 	}
+
+	static public void Fire<T, U>(string eventName, T p1, U p2)
+	{
+		if (!CheckEventName(eventName))
+			return;
+		
+		Delegate del = null;
+		if (eventTable.TryGetValue(eventName, out del))
+		{
+			var h = del as EventHandler<T, U>;
+			if (h != null)
+			{
+				h(p1, p2);
+			}
+			else
+			{
+				throw CreateDispatchSignatureException(eventName);
+			}
+		}
+	}
+
+	static public void Fire<T, U, V>(string eventName, T p1, U p2, V p3)
+	{
+		if (!eventTable.ContainsKey(eventName))
+		{
+			UnityEngine.Debug.LogError("event name:" + eventName + " not exist");
+			return;
+		}
+		
+		Delegate del = null;
+		if (eventTable.TryGetValue(eventName, out del))
+		{
+			var h = del as EventHandler<T, U, V>;
+			if (h != null)
+			{
+				h(p1, p2, p3);
+			}
+			else
+			{
+				throw CreateDispatchSignatureException(eventName);
+			}
+		}
+	}
+
+
+	#endregion
+
+	#region Add Listener
+	static public void AddListener(string eventName, EventHandler handler)
+	{
+		OnListenerAdding(eventName, handler);
+		eventTable[eventName] = (EventHandler)eventTable[eventName] + handler;
+	}
+
+	static public void AddListener<T>(string eventName, EventHandler<T> handler)
+	{
+		OnListenerAdding(eventName, handler);
+		eventTable[eventName] = (EventHandler<T>)eventTable[eventName] + handler;
+	}
+
+	static public void AddListener<T, U>(string eventName, EventHandler<T, U> handler)
+	{
+		OnListenerAdding(eventName, handler);
+		eventTable[eventName] = (EventHandler<T, U>)eventTable[eventName] + handler;
+	}
+
+	static public void AddListener<T, U, V>(string eventName, EventHandler<T, U, V> handler)
+	{
+		OnListenerAdding(eventName, handler);
+		eventTable[eventName] = (EventHandler<T, U, V>)eventTable[eventName] + handler;
+	}
+
+	#endregion
+
+	#region Remove Listener
+
+	static public void RemoveListener(string eventType, EventHandler handler) {
+		OnListenerRemoving(eventType, handler);   
+		eventTable[eventType] = (EventHandler)eventTable[eventType] - handler;
+		OnListenerRemoved(eventType);
+	}
+
+	static public void RemoveListener<T>(string eventType, EventHandler<T> handler) {
+		OnListenerRemoving(eventType, handler);   
+		eventTable[eventType] = (EventHandler<T>)eventTable[eventType] - handler;
+		OnListenerRemoved(eventType);
+	}
+	static public void RemoveListener<T, U>(string eventType, EventHandler<T, U> handler) {
+		OnListenerRemoving(eventType, handler);   
+		eventTable[eventType] = (EventHandler<T, U>)eventTable[eventType] - handler;
+		OnListenerRemoved(eventType);
+	}
+	static public void RemoveListener<T, U, V>(string eventType, EventHandler<T, U, V> handler) {
+		OnListenerRemoving(eventType, handler);   
+		eventTable[eventType] = (EventHandler<T, U, V>)eventTable[eventType] - handler;
+		OnListenerRemoved(eventType);
+	}
+
+	#endregion
+
+	#region CleanUp
+	static public void Cleanup()
+	{
+		/*
+		List<string> messagesToRemove = new List<string>();
+		
+		foreach (KeyValuePair<string, Delegate> pair in eventTable) {
+			messagesToRemove.Add( pair.Key );
+		}
+		
+		foreach (string message in messagesToRemove) {
+			eventTable.Remove( message );
+		}
+		*/
+
+		eventTable.Clear();
+	}
+
+	#endregion
 }
