@@ -13,6 +13,18 @@ public class DispatchEventException : Exception {
 	}
 }
 
+public struct EventHandlePair
+{
+	public string eventName;
+	public Delegate handler;
+
+	public EventHandlePair(string evtName, Delegate h)
+	{
+		eventName = evtName;
+		handler = h;
+	}
+}
+
 public class EventDispatcher {
 
 	static private IDictionary<string, Delegate> eventTable = new Dictionary<string, Delegate>();
@@ -30,7 +42,7 @@ public class EventDispatcher {
 		return true;
 	}
 
-	static public void PrintEventTable()
+	static private void PrintEventTable()
 	{
 		UnityEngine.Debug.Log("\t\t\t=== EventDispatcher PrintEventTable ===");
 		
@@ -46,7 +58,7 @@ public class EventDispatcher {
 		return new DispatchEventException(string.Format("Dispatch event \"{0}\" but listeners have a different signature than the event.", eventName));
 	}
 
-	static public void OnListenerAdding(string eventType, Delegate listenerBeingAdded) {
+	static private void OnListenerAdding(string eventType, Delegate listenerBeingAdded) {
 
 		if (!eventTable.ContainsKey(eventType)) {
 			eventTable.Add(eventType, null );
@@ -58,11 +70,7 @@ public class EventDispatcher {
 		}
 	}
 
-	static public void OnListenerRemoving(string eventType, Delegate listenerBeingRemoved) {
-		#if LOG_ALL_MESSAGES
-		Debug.Log("MESSENGER OnListenerRemoving \t\"" + eventType + "\"\t{" + listenerBeingRemoved.Target + " -> " + listenerBeingRemoved.Method + "}");
-		#endif
-		
+	static private void OnListenerRemoving(string eventType, Delegate listenerBeingRemoved) {
 		if (eventTable.ContainsKey(eventType)) {
 			Delegate d = eventTable[eventType];
 			
@@ -76,7 +84,7 @@ public class EventDispatcher {
 		}
 	}
 	
-	static public void OnListenerRemoved(string eventType) {
+	static private void OnListenerRemoved(string eventType) {
 		if (eventTable[eventType] == null) {
 			eventTable.Remove(eventType);
 		}
@@ -172,28 +180,36 @@ public class EventDispatcher {
 	#endregion
 
 	#region Add Listener
-	static public void AddListener(string eventName, EventHandler handler)
+	static public EventHandlePair AddListener(string eventName, EventHandler handler)
 	{
 		OnListenerAdding(eventName, handler);
 		eventTable[eventName] = (EventHandler)eventTable[eventName] + handler;
+
+		return new EventHandlePair(eventName, handler);
 	}
 
-	static public void AddListener<T>(string eventName, EventHandler<T> handler)
+	static public EventHandlePair AddListener<T>(string eventName, EventHandler<T> handler)
 	{
 		OnListenerAdding(eventName, handler);
 		eventTable[eventName] = (EventHandler<T>)eventTable[eventName] + handler;
+
+		return new EventHandlePair(eventName, handler);
 	}
 
-	static public void AddListener<T, U>(string eventName, EventHandler<T, U> handler)
+	static public EventHandlePair AddListener<T, U>(string eventName, EventHandler<T, U> handler)
 	{
 		OnListenerAdding(eventName, handler);
 		eventTable[eventName] = (EventHandler<T, U>)eventTable[eventName] + handler;
+
+		return new EventHandlePair(eventName, handler);
 	}
 
-	static public void AddListener<T, U, V>(string eventName, EventHandler<T, U, V> handler)
+	static public EventHandlePair AddListener<T, U, V>(string eventName, EventHandler<T, U, V> handler)
 	{
 		OnListenerAdding(eventName, handler);
 		eventTable[eventName] = (EventHandler<T, U, V>)eventTable[eventName] + handler;
+
+		return new EventHandlePair(eventName, handler);
 	}
 
 	#endregion
@@ -220,6 +236,17 @@ public class EventDispatcher {
 		OnListenerRemoving(eventType, handler);   
 		eventTable[eventType] = (EventHandler<T, U, V>)eventTable[eventType] - handler;
 		OnListenerRemoved(eventType);
+	}
+
+
+	static public void RemoveListener(EventHandlePair pair) {
+		OnListenerRemoving(pair.eventName, pair.handler);
+
+		var del = eventTable[pair.eventName];
+		del = Delegate.Remove(del, pair.handler);
+		eventTable[pair.eventName] = del;
+
+		OnListenerRemoved(pair.eventName);
 	}
 
 	#endregion
