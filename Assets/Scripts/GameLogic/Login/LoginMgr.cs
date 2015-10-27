@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-public class LoginManager {
+public class LoginMgr {
 
 	public void Login(string uid, string pwd, Action<bool, string> callback)
 	{

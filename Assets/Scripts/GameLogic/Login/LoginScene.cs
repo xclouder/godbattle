@@ -11,7 +11,7 @@ public class LoginScene : MonoBehaviour {
 	public GameObject loginBtn;
 	public Text loginMsg;
 
-	private LoginManager loginMgr = new LoginManager();
+	private LoginMgr loginMgr = new LoginMgr();
 
 	void Awake()
 	{
