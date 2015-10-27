@@ -3,11 +3,17 @@ using System.Collections;
 
 public class InitGame : MonoBehaviour {
 
-	// Use this for initialization
-	void Awake () {
+	public bool isAutoCreatedInEditorRuntime = false;
 
-
-
+	void Awake()
+	{
+		Init();
+	}
+	
+	public void Init() {
+		
+		CloudApplication.Initialize(gameObject);
+//		Destroy(this);
 	}
 
 }

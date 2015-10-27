@@ -4,14 +4,16 @@ using System.Collections.Generic;
 
 public class CloudApplication {
 
-	private GameObject globalAppObject;
+	public static string GLOBAL_OBJECT_NAME = "Application";
+	public static GameObject globalAppObject;
 	static private CloudApplication ins;
 
-	public static void Initialize()
+	public static void Initialize(GameObject globalObj)
 	{
 		ins = new CloudApplication();
 
-		globalAppObject = new GameObject("Application");
+		globalAppObject = globalObj;
+		GameObject.DontDestroyOnLoad(globalAppObject);
 	}
 
 	public static CloudApplication Instance{
