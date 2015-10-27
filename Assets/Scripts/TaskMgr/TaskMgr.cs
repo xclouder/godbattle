@@ -22,7 +22,7 @@ public class TaskMgr : MonoBehaviour {
 		}
 	}
 
-	public static Coroutine StartCoroutineTask(IEnumerator routine)
+	public static Coroutine StartCoroutineOnGlobalObject(IEnumerator routine)
 	{
 		return ins.StartCoroutine(routine);
 	}

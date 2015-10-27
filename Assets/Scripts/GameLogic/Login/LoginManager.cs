@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 
 public class LoginManager {
 
 	public void Login(string uid, string pwd, Action<bool, string> callback)
 	{
-		TaskMgr.StartCoroutineTask(DoLogin(uid, pwd, callback));
+		TaskMgr.StartCoroutineOnGlobalObject(DoLogin(uid, pwd, callback));
 	}
 
 	private IEnumerator DoLogin(string uid, string pwd, Action<bool, string> callback)

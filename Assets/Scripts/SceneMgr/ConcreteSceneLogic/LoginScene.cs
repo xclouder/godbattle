@@ -4,13 +4,18 @@ using UnityEngine.UI;
 
 public class LoginScene : MonoBehaviour {
 
+	public GameObject loginingIndicator;
+
 	public InputField username;
 	public InputField password;
+	public GameObject loginBtn;
+	public Text loginMsg;
 
+	private LoginManager loginMgr = new LoginManager();
 
-	void Start()
+	void Awake()
 	{
-		EventDispatcher.AddListener<bool, string>("Login", HandleLogin);
+		HideLogining();
 	}
 
 	public void Login()
@@ -18,9 +23,31 @@ public class LoginScene : MonoBehaviour {
 		var uid = username.text;
 		var pwd = password.text;
 
-		Debug.Log("uid:" + uid + ", pwd:" + pwd);
+		ShowLogining();
+		loginMgr.Login(uid, pwd, HandleLogin);
+
 	}
 
+	private void ShowLogining()
+	{
+		loginingIndicator.SetActive(true);
+		loginBtn.SetActive(false);
+
+	}
+	private void HideLogining()
+	{
+		loginingIndicator.SetActive(false);
+		loginBtn.SetActive(true);
+	}
+
+	private void ShowLoginResult(string msg)
+	{
+		loginingIndicator.SetActive(false);
+		loginMsg.gameObject.SetActive(true);
+		loginMsg.text = msg;
+	}
+
+	//handle login result
 	private void HandleLogin(bool succ, string msg)
 	{
 		if (succ)
@@ -31,6 +58,8 @@ public class LoginScene : MonoBehaviour {
 		{
 			Debug.LogError("login failed:" + msg);
 		}
+
+		ShowLoginResult(msg);
 	}
 
 }

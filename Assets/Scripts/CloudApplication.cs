@@ -14,6 +14,10 @@ public class CloudApplication {
 
 		globalAppObject = globalObj;
 		GameObject.DontDestroyOnLoad(globalAppObject);
+
+		//init Managers
+		TaskMgr.Init(globalAppObject);
+
 	}
 
 	public static CloudApplication Instance{
