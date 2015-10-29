@@ -14,10 +14,11 @@ public class InitScene : MonoBehaviour {
 		taskQueue = new InitTaskQueue();
 		taskQueue.onComplete += OnInitCompleted;
 		taskQueue.onProgress += UpdateProgress;
+		taskQueue.onError += OnError;
 
 		taskQueue.Add(new CoroutineTaskPhase(0f, 10f, "Init Game Resource Manager...", DoInitGameResourceMgr));
-		taskQueue.Add(new CoroutineTaskPhase(10f, 30f, "Checking Update...", DoCheckUpdate));
-
+		taskQueue.Add(new CoroutineTaskPhase(10f, 15f, "Checking Update...", DoCheckUpdate));
+		taskQueue.Add(new LoadResourceTaskPhase(15f, 100f, "Loading..."));
 		taskQueue.Start();
 
 	}
@@ -45,7 +46,9 @@ public class InitScene : MonoBehaviour {
 
 	private IEnumerator DoCheckUpdate()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.5f);
+
+		//throw new UnityException("Connection failed.");
 	}
 
 	#endregion
@@ -54,6 +57,11 @@ public class InitScene : MonoBehaviour {
 	private void OnInitCompleted()
 	{
 		UpdateProgress(100f, "Update Completed.");
+	}
+
+	private void OnError(TaskPhase t, System.Exception e)
+	{
+		Debug.LogError(t.Message + " failed");
 	}
 
 	#endregion

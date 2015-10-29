@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class InitTaskQueue {
 
+	public bool HasError { get; protected set; }
+	public Exception exception { get; protected set; }
+
 	public delegate void OnProgressHandler(float progress, string msg);
-	public delegate void OnErrorHandler(string msg, Exception exp);
+	public delegate void OnErrorHandler(TaskPhase t, Exception e);
 	public delegate void OnCompleteHandler();
 
 	public event OnCompleteHandler onComplete;
@@ -26,6 +29,9 @@ public class InitTaskQueue {
 
 	private void RunNextTask()
 	{
+		if (HasError)
+			return;
+
 		if (taskPhases.Count > 0)
 		{
 			var t = taskPhases.Dequeue();
@@ -41,7 +47,10 @@ public class InitTaskQueue {
 			t.onFailed += (Exception e)=> {
 				if (onError != null)
 				{
-					onError(t.Message, e);
+					HasError = true;
+					exception = e;
+
+					onError(t, e);
 				}
 			};
 
