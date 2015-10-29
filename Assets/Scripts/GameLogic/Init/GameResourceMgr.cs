@@ -34,7 +34,7 @@ public class GameResourceMgr {
 
 	private IEnumerator DoInit(Action callback)
 	{
-		yield return new UnityEngine.WaitForSeconds(1f);
+		yield return new UnityEngine.WaitForSeconds(0.5f);
 
 		if (callback != null)
 		{

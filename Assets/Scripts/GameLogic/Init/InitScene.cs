@@ -57,6 +57,7 @@ public class InitScene : MonoBehaviour {
 	private void OnInitCompleted()
 	{
 		UpdateProgress(100f, "Update Completed.");
+		SceneMgr.LoadScene("Login");
 	}
 
 	private void OnError(TaskPhase t, System.Exception e)

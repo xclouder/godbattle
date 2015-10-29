@@ -4,7 +4,6 @@ using System.Collections;
 public class CoroutineTaskPhase : TaskPhase {
 
 	private IEnumerator taskTodo;
-	private Exception e;
 
 	public CoroutineTaskPhase() {}
 	public CoroutineTaskPhase (float startPercent, float toPercent, string msg, Func<IEnumerator> taskBodyFunc)
@@ -23,10 +22,10 @@ public class CoroutineTaskPhase : TaskPhase {
 				}
 			}
 			catch(Exception e){
-				this.e = e;
+				this.Exceptions = e;
 				Status = State.Failed;
 
-				FireOnFail(this.e);
+				FireOnFail(e);
 				yield break;
 
 			}

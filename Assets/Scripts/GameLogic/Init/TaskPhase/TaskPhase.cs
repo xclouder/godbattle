@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 public abstract class TaskPhase {
 
@@ -14,6 +15,7 @@ public abstract class TaskPhase {
 	public float InitProgressTo { get;set;}
 	public string Message { get;set; }
 	public State Status { get; protected set;}
+	public Exception Exceptions { get; protected set;}
 
 	public delegate void OnComplete();
 	public delegate void OnFailed(System.Exception e);

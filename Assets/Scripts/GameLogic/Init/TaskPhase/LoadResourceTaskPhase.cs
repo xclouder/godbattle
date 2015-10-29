@@ -17,7 +17,7 @@ public class LoadResourceTaskPhase : CoroutineTaskPhase {
 
 	private IEnumerator DoLoadAsset()
 	{
-		int assetCount = 200;
+		int assetCount = 50;
 		for (int i = 0; i < assetCount; i++)
 		{
 			yield return new WaitForEndOfFrame();
