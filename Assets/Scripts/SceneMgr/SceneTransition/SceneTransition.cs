@@ -5,6 +5,7 @@ public class SceneTransition : MonoBehaviour {
 
 	[HideInInspector]
 	public string targetSceneName;
+	public IEnumerator coroutineWhileLoading;
 
 	void Start()
 	{
@@ -25,10 +26,9 @@ public class SceneTransition : MonoBehaviour {
 		yield return req;
 
 		//do preload actions
-		var preloadCoroutine = DoPreloadActions();
-		if (preloadCoroutine != null)
+		if (coroutineWhileLoading != null)
 		{
-			yield return StartCoroutine(preloadCoroutine);
+			yield return StartCoroutine(coroutineWhileLoading);
 		}
 
 		//show next scene
@@ -52,11 +52,6 @@ public class SceneTransition : MonoBehaviour {
 	}
 
 	protected virtual IEnumerator EnterTransition()
-	{
-		return null;
-	}
-
-	protected virtual IEnumerator DoPreloadActions()
 	{
 		return null;
 	}

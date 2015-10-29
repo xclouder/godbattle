@@ -48,7 +48,7 @@ public class InitScene : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0.5f);
 
-		//throw new UnityException("Connection failed.");
+//		throw new UnityException("Connection failed.");
 	}
 
 	#endregion

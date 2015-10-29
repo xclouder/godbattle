@@ -52,7 +52,6 @@ public class TestEventDispatcher {
 		Assert.AreEqual(1, callCount);
 
 
-
 		bool f1Called = false;
 		bool f2Called = false;
 		EventDispatcher.AddListener("A", ()=>{
@@ -67,6 +66,7 @@ public class TestEventDispatcher {
 
 		Assert.IsTrue(f1Called);
 		Assert.IsFalse(f2Called);
+
 	}
 	
 }
