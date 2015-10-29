@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Threading;
 
 public class TaskMgr : MonoBehaviour {
 
@@ -22,8 +23,17 @@ public class TaskMgr : MonoBehaviour {
 		}
 	}
 
+	#region Helper Methods
 	public static Coroutine StartCoroutineOnGlobalObject(IEnumerator routine)
 	{
 		return ins.StartCoroutine(routine);
 	}
+	#endregion
+
+	public Task CreateTask()
+	{
+		ThreadPool.QueueUserWorkItem(null);
+		return new Task();
+	}
+
 }

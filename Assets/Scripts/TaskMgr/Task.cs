@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameResourceMgr : MonoBehaviour {
+public class Task : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
