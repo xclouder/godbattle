@@ -6,7 +6,10 @@ public class TaskMgr : MonoBehaviour {
 
 	public static void Init(GameObject gameObjectToAttach)
 	{
-		ins = gameObjectToAttach.AddComponent<TaskMgr>();
+		if (ins == null)
+			ins = gameObjectToAttach.AddComponent<TaskMgr>();
+		else
+			throw new System.InvalidOperationException("TaskMgr has been initialized before.");
 	}
 
 	private static TaskMgr ins;
