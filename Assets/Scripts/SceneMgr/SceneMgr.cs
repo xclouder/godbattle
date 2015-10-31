@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneMgr : MonoBehaviour {
+public class SceneMgr {
 
 	private static string TRANSITION_DIR = "Transitions/";
 

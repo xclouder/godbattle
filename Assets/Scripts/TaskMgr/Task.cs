@@ -1,15 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Task : MonoBehaviour {
+public class Task {
 
-	// Use this for initialization
-	void Start () {
-	
+	public enum Status
+	{
+		WaitForStart,
+		Started,
+		Fault,
+		Completed
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+
+	public Status State { get; protected set; }
+	public Task()
+	{
+		State = Status.WaitForStart;
 	}
+
+	public virtual void Start()
+	{
+		State = Status.Started;
+	}
+
 }

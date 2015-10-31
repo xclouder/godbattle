@@ -1,15 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
 
-public class TaskQueue : MonoBehaviour {
+public abstract class TaskQueue {
 
-	// Use this for initialization
-	void Start () {
-	
+	public enum State
+	{
+		WaitForStart,
+		Started,
+		Paused,
+		Completed
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public abstract Task AddTask(Action act);
+
+	public abstract void Start();
+
+	public static TaskQueue GetMainThreadTaskQueue()
+	{
+		return MainThreadTaskQueue.Instance;
 	}
+
 }

@@ -1,8 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 public class TaskMgr : MonoBehaviour {
+
+	void Awake()
+	{
+		MainThreadWatchdog.Init();
+
+		GetMainThreadTaskQueue().Start();
+	}
+
+	public MainThreadTaskQueue GetMainThreadTaskQueue()
+	{
+		return MainThreadTaskQueue.Instance;
+	}
 
 	public static void Init(GameObject gameObjectToAttach)
 	{
@@ -38,5 +51,24 @@ public class TaskMgr : MonoBehaviour {
 		ThreadPool.QueueUserWorkItem(null);
 		return new Task();
 	}
+
+	#region Help Methods
+	public static bool IsInMainThread
+	{
+		get {
+			return MainThreadWatchdog.CheckIfMainThread();
+		}
+	}
+	#endregion
+	
+	#region task related API
+	public static Task DispatchOnMainThread(System.Action action)
+	{
+		return MainThreadTaskQueue.Instance.AddTask(action);
+	}
+	
+	
+	#endregion
+
 
 }
