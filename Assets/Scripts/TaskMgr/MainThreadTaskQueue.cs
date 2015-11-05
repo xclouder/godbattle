@@ -16,7 +16,7 @@ public class MainThreadTaskQueue : TaskQueue {
 	}
 
 
-	public override Task AddTask (System.Action act)
+	public override Task AddTask (CallbackBlock act)
 	{
 		var task = new ActionTask(act);
 		if (TaskMgr.IsInMainThread)
@@ -31,7 +31,7 @@ public class MainThreadTaskQueue : TaskQueue {
 		return task;
 	}
 
-	public override void Start ()
+	public void Start ()
 	{
 		TaskMgr.StartCoroutineOnGlobalObject(UpdateQueue());
 	}
@@ -40,7 +40,6 @@ public class MainThreadTaskQueue : TaskQueue {
 	{
 		while (true)
 		{
-			Debug.Log("Update queue");
 			if (taskQueue.Count > 0)
 			{
 				foreach (var t in taskQueue)

@@ -11,9 +11,7 @@ public abstract class TaskQueue {
 		Completed
 	}
 
-	public abstract Task AddTask(Action act);
-
-	public abstract void Start();
+	public abstract Task AddTask(CallbackBlock act);
 
 	public static TaskQueue GetMainThreadTaskQueue()
 	{

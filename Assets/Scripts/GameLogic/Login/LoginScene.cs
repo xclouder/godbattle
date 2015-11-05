@@ -45,6 +45,14 @@ public class LoginScene : MonoBehaviour {
 		loginingIndicator.SetActive(false);
 		loginMsg.gameObject.SetActive(true);
 		loginMsg.text = msg;
+
+		StartCoroutine(DoShowBattleScene());
+	}
+
+	private IEnumerator DoShowBattleScene()
+	{
+		yield return new WaitForSeconds(1f);
+		SceneMgr.LoadScene("Battle");
 	}
 
 	//handle login result

@@ -3,14 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 
+public delegate void CallbackBlock();
+
 public class TaskMgr : MonoBehaviour {
-
-	void Awake()
-	{
-		MainThreadWatchdog.Init();
-
-		GetMainThreadTaskQueue().Start();
-	}
 
 	public MainThreadTaskQueue GetMainThreadTaskQueue()
 	{
@@ -20,7 +15,12 @@ public class TaskMgr : MonoBehaviour {
 	public static void Init(GameObject gameObjectToAttach)
 	{
 		if (ins == null)
+		{
 			ins = gameObjectToAttach.AddComponent<TaskMgr>();
+
+			MainThreadWatchdog.Init();
+			ins.GetMainThreadTaskQueue().Start();
+		}
 		else
 			throw new System.InvalidOperationException("TaskMgr has been initialized before.");
 	}
@@ -62,12 +62,34 @@ public class TaskMgr : MonoBehaviour {
 	#endregion
 	
 	#region task related API
-	public static Task DispatchOnMainThread(System.Action action)
+	public static Task DispatchOnMainThread(CallbackBlock cb)
 	{
-		return MainThreadTaskQueue.Instance.AddTask(action);
+		return MainThreadTaskQueue.Instance.AddTask(cb);
 	}
 	
-	
+	public static void Dispatch(CallbackBlock action, CallbackBlock onCompletion, bool callOnCompletionOnMainThread = false)
+	{
+		ThreadPool.QueueUserWorkItem((object state) => {
+
+			if (action != null)
+			{
+				action();
+			}
+
+			if (onCompletion != null)
+			{
+				if (callOnCompletionOnMainThread)
+				{
+					DispatchOnMainThread(onCompletion);	
+				}
+				else
+				{
+					onCompletion();
+				}
+			}
+
+		});
+	}
 	#endregion
 
 

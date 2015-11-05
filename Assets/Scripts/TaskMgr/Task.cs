@@ -12,6 +12,8 @@ public class Task {
 	}
 
 
+	public TaskQueue OwningQueue { get; set; }
+
 	public Status State { get; protected set; }
 	public Task()
 	{
@@ -21,6 +23,11 @@ public class Task {
 	public virtual void Start()
 	{
 		State = Status.Started;
+	}
+
+	public virtual void Cancel()
+	{
+
 	}
 
 }
