@@ -17,7 +17,6 @@ public class CloudApplication {
 
 		//init Managers
 		TaskMgr.Init(globalAppObject);
-
 	}
 
 	public static CloudApplication Instance{
