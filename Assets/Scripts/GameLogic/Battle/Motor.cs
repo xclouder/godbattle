@@ -52,9 +52,10 @@ public class Motor : MonoBehaviour {
 		{
 			var mousePos = Input.mousePosition;
 			var ray = Camera.main.ScreenPointToRay(mousePos);
-			
+			_ray = ray;
+
 			RaycastHit hit;
-			var hitted = Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask(new string[]{"Terrain"}));
+			var hitted = Physics.Raycast(ray, out hit, 1000f);//, LayerMask.GetMask(new string[]{"Terrain"}));
 			if (!hitted)
 			{
 				Debug.LogError("not hit terrain");
@@ -103,5 +104,15 @@ public class Motor : MonoBehaviour {
 			}
 		}
 	}
+
+
+	#region Debug
+	private Ray _ray;
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawRay(_ray.origin, _ray.origin + _ray.direction * 1000f);
+	}
+	#endregion
 
 }
