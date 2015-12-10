@@ -29,10 +29,8 @@ public class BattleCamera : MonoBehaviour {
 		var scrWidth = Screen.width;
 		var scrHeight = Screen.height;
 		
-		Debug.Log("screen width:" + scrWidth + ", screen height:" + scrHeight);
-		
-
-		Debug.Log("mousePos:" + mousePos);
+//		Debug.Log("screen width:" + scrWidth + ", screen height:" + scrHeight);
+//		Debug.Log("mousePos:" + mousePos);
 		
 		float moveDeltaX = 0f;
 		float moveDeltaY = 0f;
