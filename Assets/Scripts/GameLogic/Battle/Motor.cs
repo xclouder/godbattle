@@ -92,7 +92,7 @@ public class Motor : MonoBehaviour {
 			}
 			else
 			{
-				var lookAt = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+				//var lookAt = new Vector3(targetPos.x, transform.position.y, targetPos.z);
 
 //				Debug.Log("lookAt2: " + lookAt);
 //				transform.LookAt(lookAt);

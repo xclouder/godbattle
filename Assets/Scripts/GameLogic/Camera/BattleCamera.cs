@@ -10,44 +10,72 @@ public class BattleCamera : MonoBehaviour {
 
 	public float moveSpeed = 3f;
 	public float sensitiveSize = 20f;
-	private Camera camera;
 
-//	public Vector3 cameraLeftBottomLimit = new Vector3();
-//	public Vector3 cameraRightTopLimit = new Vector3();
+	public float viewResizeSpeed = 1f;
+	private Vector3 currentViewLeftBottomPos;
+	private Vector3 currentViewRightTopPos;
+	private Transform tr;
 
 	// Use this for initialization
 	void Start () {
-		camera = GetComponent<Camera>();
+		tr = transform;
+		DoInit();
+	}
+
+	private void DoInit()
+	{
+		currentViewLeftBottomPos = farViewLeftBottomPos;
+		currentViewRightTopPos = farViewRightTopPos;
 	}
 	
 	// Update is called once per frame
+
 	void LateUpdate () {
+
+		var scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+		float newY = tr.position.y;
+		if (scrollWheel != 0)
+		{
+			newY = tr.position.y + scrollWheel * viewResizeSpeed * Time.deltaTime;
+			newY = Mathf.Clamp(newY, nearViewLeftBottomPos.y, farViewLeftBottomPos.y);
+
+			GetViewCornorPosition(newY, out currentViewLeftBottomPos, out currentViewRightTopPos);
+		}
+
 
 		var mousePos = Input.mousePosition;
 		var cameraMove = CalculateCameraMovement(mousePos);
 
 		var newPos = transform.position + cameraMove;
-		if (newPos.x < farViewLeftBottomPos.x)
+		if (newPos.x < currentViewLeftBottomPos.x)
 		{
-			newPos.x = farViewLeftBottomPos.x;
+			newPos.x = currentViewLeftBottomPos.x;
 		}
 
-		if (newPos.x > farViewRightTopPos.x)
+		if (newPos.x > currentViewRightTopPos.x)
 		{
-			newPos.x = farViewRightTopPos.x;
+			newPos.x = currentViewRightTopPos.x;
 		}
 
-		if (newPos.z < farViewLeftBottomPos.z)
+		if (newPos.z < currentViewLeftBottomPos.z)
 		{
-			newPos.z = farViewLeftBottomPos.z;
+			newPos.z = currentViewLeftBottomPos.z;
 		}
 
-		if (newPos.z > farViewRightTopPos.z)
+		if (newPos.z > currentViewRightTopPos.z)
 		{
-			newPos.z = farViewRightTopPos.z;
+			newPos.z = currentViewRightTopPos.z;
 		}
 
+		newPos.y = newY;
 		transform.position = newPos;
+	}
+
+	private void GetViewCornorPosition(float y, out Vector3 leftBottomPos, out Vector3 rightTopPos)
+	{
+		var percent = Mathf.InverseLerp(nearViewLeftBottomPos.y, farViewLeftBottomPos.y, y);
+		leftBottomPos = Vector3.Lerp(nearViewLeftBottomPos, farViewLeftBottomPos, percent);
+		rightTopPos = Vector3.Lerp(nearViewRightTopPos, farViewRightTopPos, percent);
 	}
 
 	private Vector3 CalculateCameraMovement(Vector2 mousePos )
