@@ -51,6 +51,11 @@ public class StateMachine<TState, TEvent>
 	{
 		isRuning = true;
 	}
+	
+	public bool IsStarted
+	{
+		get { return isRuning; }
+	}
 
 	public virtual void Execute()
 	{

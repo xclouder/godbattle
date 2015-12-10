@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CharacterController))]
 public class Motor : MonoBehaviour {
-
+	
 	public float speed = 1f;
 	private CharacterController characterCtrl;
 
@@ -12,60 +12,18 @@ public class Motor : MonoBehaviour {
 	private Vector3 targetPos;
 
 	public float gravity = 20f;
-
-	//TODO characterState lay here for convinient, refactor it later.
-	public enum CharacterState
-	{
-		Idle,
-		Run,
-		Attack,
-		Dead
-	}
-
-	public enum CharacterEvent
-	{
-		MoveTo,
-		Arrive,
-		DoAttack
-	}
-
+	
 	private StateMachine<CharacterState, CharacterEvent> characterFSM;
 
 	// Use this for initialization
 	void Start () {
 		characterCtrl = GetComponent<CharacterController>();
 		EventDispatcher.AddListener<Vector3>(BattleConst.kEvent_MoveTo, MoveTo);
-
-		//setup fsm
-		characterFSM = new StateMachine<CharacterState, CharacterEvent>();
-		characterFSM.Initialize(CharacterState.Idle);
-		characterFSM.In(CharacterState.Idle).On(CharacterEvent.MoveTo).GoTo(CharacterState.Run);
-		characterFSM.In(CharacterState.Run).On(CharacterEvent.Arrive).GoTo(CharacterState.Idle);
-
-		characterFSM.Start();
-		characterFSM.Execute();
 	}
-
-	void Update()
+	
+	public void Init(StateMachine<CharacterState, CharacterEvent> fsm)
 	{
-		if (Input.GetMouseButton(1))
-		{
-			var mousePos = Input.mousePosition;
-			var ray = Camera.main.ScreenPointToRay(mousePos);
-			_ray = ray;
-
-			RaycastHit hit;
-			var hitted = Physics.Raycast(ray, out hit, 1000f);//, LayerMask.GetMask(new string[]{"Terrain"}));
-			if (!hitted)
-			{
-				Debug.LogError("not hit terrain");
-				return;
-			}
-			
-			var targetPos = hit.point;
-			EventDispatcher.Fire<Vector3>(BattleConst.kEvent_MoveTo, targetPos);
-
-		}
+		characterFSM = fsm;
 	}
 
 	public void MoveTo(Vector3 pos)
@@ -83,7 +41,7 @@ public class Motor : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (characterFSM != null && characterFSM.CurrentStateId == CharacterState.Run)
+		if (characterFSM != null && characterFSM.IsStarted && characterFSM.CurrentStateId == CharacterState.Run)
 		{
 			if (Vector3.Distance(transform.position, targetPos) < pickNextWaypointDist)
 			{
@@ -100,19 +58,9 @@ public class Motor : MonoBehaviour {
 				//TODO:time.deltaTime should be replaced using a more powerful TimeSystem
 				var dir = (targetPos - transform.position);
 				characterCtrl.Move(dir.normalized * Time.deltaTime * speed - new Vector3(0f, gravity * Time.deltaTime, 0f));
-
+				
 			}
 		}
 	}
-
-
-	#region Debug
-	private Ray _ray;
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawRay(_ray.origin, _ray.origin + _ray.direction * 1000f);
-	}
-	#endregion
 
 }
