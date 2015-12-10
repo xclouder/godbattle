@@ -19,21 +19,30 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 	
 	public void PlayIdle()
 	{
-		anim.Play("idle");
+		anim.SetBool("IsRunning", false);
 	}
 	
 	public void PlayRun()
 	{
-		anim.Play("run");
+		anim.SetBool("IsRunning", true);
+		//anim.Play("run");
 	}
 	
 	public void PlayRecall()
 	{
-		anim.Play("Recall");
+		anim.SetBool("IsRecalling", true);
+		//anim.Play("Recall");
+	}
+	
+	public void CancelRecall()
+	{
+		anim.SetBool("IsRecalling", false);
 	}
 	
 	void OnRecallCompleted()
 	{
+		anim.SetBool("IsRecalling", false);
 		characterFSM.Fire(CharacterEvent.ToIdle);
+		
 	}
 }

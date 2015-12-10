@@ -54,11 +54,13 @@ public class CharacterCtrl : MonoBehaviour {
 			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall);
 			
 		characterFSM.In(CharacterState.Run).ExecuteOnEnter(()=>{animCtrl.PlayRun();})
-			.On(CharacterEvent.Arrive).GoTo(CharacterState.Idle);
+			.On(CharacterEvent.Arrive).GoTo(CharacterState.Idle)
+			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall);
 		
-		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> {animCtrl.PlayRecall();})
-			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle);
-		
+		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> { animCtrl.PlayRecall(); }).ExecuteOnExit(()=>{animCtrl.CancelRecall();})
+			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle)
+			.On(CharacterEvent.MoveTo).GoTo(CharacterState.Run);
+			
 		
 	}
 	
