@@ -28,7 +28,11 @@ public class Motor : MonoBehaviour {
 
 	public void MoveTo(Vector3 pos)
 	{
-
+		if (Vector3.Distance(transform.position, pos) < 0.1f)
+		{
+			return;
+		}
+		
 		//use fsm fully later.
 		characterFSM.Fire(CharacterEvent.MoveTo);
 
