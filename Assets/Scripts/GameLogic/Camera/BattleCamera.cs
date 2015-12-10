@@ -26,7 +26,28 @@ public class BattleCamera : MonoBehaviour {
 		var mousePos = Input.mousePosition;
 		var cameraMove = CalculateCameraMovement(mousePos);
 
-		transform.position += cameraMove;
+		var newPos = transform.position + cameraMove;
+		if (newPos.x < farViewLeftBottomPos.x)
+		{
+			newPos.x = farViewLeftBottomPos.x;
+		}
+
+		if (newPos.x > farViewRightTopPos.x)
+		{
+			newPos.x = farViewRightTopPos.x;
+		}
+
+		if (newPos.z < farViewLeftBottomPos.z)
+		{
+			newPos.z = farViewLeftBottomPos.z;
+		}
+
+		if (newPos.z > farViewRightTopPos.z)
+		{
+			newPos.z = farViewRightTopPos.z;
+		}
+
+		transform.position = newPos;
 	}
 
 	private Vector3 CalculateCameraMovement(Vector2 mousePos )

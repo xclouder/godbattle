@@ -19,6 +19,7 @@ public class BattleCameraEditor : Editor {
 
 		var deltaTime = 0.02f;
 
+		GUILayout.Space(10f);
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Camera Control:");
 		GUILayout.EndHorizontal();
@@ -83,5 +84,31 @@ public class BattleCameraEditor : Editor {
 		}
 		GUILayout.EndHorizontal();
 
+		//roll back to position
+		GUILayout.Space(10f);
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Set Camera Position To:");
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("Near LB Point"))
+		{
+			go.transform.position = battleCamera.nearViewLeftBottomPos;
+		}
+		if (GUILayout.Button("Near TR Point"))
+		{
+			go.transform.position = battleCamera.nearViewRightTopPos;
+		}
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("Far LB Point"))
+		{
+			go.transform.position = battleCamera.farViewLeftBottomPos;
+		}
+		if (GUILayout.Button("Far TR Point"))
+		{
+			go.transform.position = battleCamera.farViewRightTopPos;
+		}
+		GUILayout.EndHorizontal();
 	}
 }
