@@ -13,7 +13,7 @@ public class Motor : MonoBehaviour {
 
 	public float gravity = 20f;
 
-	//characterState lay here for convinient, refactor it later.
+	//TODO characterState lay here for convinient, refactor it later.
 	public enum CharacterState
 	{
 		Idle,
