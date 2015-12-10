@@ -3,6 +3,11 @@ using System.Collections;
 
 public class BattleCamera : MonoBehaviour {
 
+	public Vector3 nearViewLeftBottomPos;
+	public Vector3 nearViewRightTopPos;
+	public Vector3 farViewLeftBottomPos;
+	public Vector3 farViewRightTopPos;
+
 	public float moveSpeed = 3f;
 	public float sensitiveSize = 20f;
 	private Camera camera;
