@@ -4,3 +4,6 @@
 [submodule "Assets/3rd/uFrameKernel"]
 	path = Assets/3rd/uFrameKernel
 	url = https://github.com/InvertGames/uFrameKernel.git
+[submodule "Assets/Scripts/3rd/kbengine_unity3d_plugins"]
+	path = Assets/Scripts/3rd/kbengine_unity3d_plugins
+	url = https://github.com/kbengine/kbengine_unity3d_plugins.git

@@ -71,7 +71,7 @@ public class CharacterCtrl : MonoBehaviour {
 			animCtrl.PlayRecall();
 		}
 		
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.Q))
 		{
 			Recall();
 		}
