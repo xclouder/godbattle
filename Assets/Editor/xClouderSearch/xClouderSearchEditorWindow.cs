@@ -20,6 +20,23 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	void OnGUI () {
 
+		if (EditorWindow.focusedWindow == this)
+		{
+			Event e = Event.current;
+			switch (e.type)
+			{
+			case EventType.KeyUp:
+				{
+					if (Event.current.keyCode == (KeyCode.Escape))
+					{
+						this.Close();
+					}
+					break;
+				}
+			}
+
+		}
+
 		//search text
 		GUI.SetNextControlName("SearchTextField");
 		searchTxt = GUILayout.TextField(searchTxt, new GUILayoutOption[] { GUILayout.ExpandWidth(true) });
@@ -28,6 +45,11 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		{
 			GUI.FocusControl("SearchTextField");
 			isFirstShow = false;
+		}
+
+		if (string.IsNullOrEmpty(searchTxt))
+		{
+			return;
 		}
 
 		var resultList = AssetDatabase.FindAssets(searchTxt);
