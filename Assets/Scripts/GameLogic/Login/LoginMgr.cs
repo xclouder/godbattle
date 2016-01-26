@@ -4,15 +4,21 @@ using KBEngine;
 
 public class LoginMgr {
 
+	private System.Action<bool, string> cb;
+
 	public LoginMgr()
 	{
 		KBEngine.Event.registerOut("onLoginFailed", this, "onLoginFailed");
 		KBEngine.Event.registerOut("onLoginSuccessfully", this, "onLoginSuccessfully");
+		KBEngine.Event.registerOut("onConnectStatus", this, "onLoginSuccessfully");
+		
 	}
 
 	public void Login(string uid, string pwd, Action<bool, string> callback)
 	{
-		TaskMgr.StartCoroutineOnGlobalObject(DoLogin(uid, pwd, callback));
+		cb = callback;
+		// TaskMgr.StartCoroutineOnGlobalObject(DoLogin(uid, pwd, callback));
+		KBEngine.Event.fireIn("login", uid, pwd, System.Text.Encoding.UTF8.GetBytes("kbengine_godbattle"));
 	}
 
 	private IEnumerator DoLogin(string uid, string pwd, Action<bool, string> callback)
@@ -27,17 +33,30 @@ public class LoginMgr {
 	
 	public void onLoginFailed(UInt16 failedcode)
 	{
-		UnityEngine.Debug.Log("登陆服务器失败, 错误:" + KBEngineApp.app.serverErr(failedcode) + "!");
+		var msg = "登陆服务器失败, 错误:" + KBEngineApp.app.serverErr(failedcode) + "!";
+		UnityEngine.Debug.LogError(msg);
+		
+		if (cb != null)
+		{
+			cb(false, msg);
+		}
+		cb = null;
+		
 	}
 	
-	public void onLoginSuccessfully(UInt64 rndUUID, Int32 eid, Account accountEntity)
+	public void onLoginSuccessfully(bool succ)
 	{
-		// log_label.obj.color = UnityEngine.Color.green;
-		// log_label.obj.text = "登陆成功!";
 		
-		// loader.inst.enterScene("selavatar");
-		
-		UnityEngine.Debug.Log("create account succ");
+		if (cb != null)
+		{
+			cb(true, "登陆成功");
+		}
+		cb = null;
+	}
+	
+	public void onConnectStatus(bool succ)
+	{
+		UnityEngine.Debug.Log("onnect statua:" + succ);
 	}
 
 }
