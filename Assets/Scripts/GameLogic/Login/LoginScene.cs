@@ -10,11 +10,13 @@ public class LoginScene : MonoBehaviour {
 	public InputField password;
 	public GameObject loginBtn;
 	public Text loginMsg;
+	public Text errorMsg;
 
 	private LoginMgr loginMgr = new LoginMgr();
 
 	void Awake()
 	{
+		errorMsg.gameObject.SetActive(false);
 		HideLogining();
 	}
 
@@ -30,6 +32,7 @@ public class LoginScene : MonoBehaviour {
 
 	private void ShowLogining()
 	{
+		errorMsg.gameObject.SetActive(false);
 		loginingIndicator.SetActive(true);
 		loginBtn.SetActive(false);
 
@@ -45,29 +48,34 @@ public class LoginScene : MonoBehaviour {
 		loginingIndicator.SetActive(false);
 		loginMsg.gameObject.SetActive(true);
 		loginMsg.text = msg;
-
-		StartCoroutine(DoShowBattleScene());
+		
 	}
 
 	private IEnumerator DoShowBattleScene()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.2f);
 		SceneMgr.LoadScene("Battle");
 	}
 
 	//handle login result
 	private void HandleLogin(bool succ, string msg)
 	{
+		ShowLoginResult(msg);
+
 		if (succ)
 		{
 			Debug.Log("succ:" + msg);
+			StartCoroutine(DoShowBattleScene());
 		}
 		else
 		{
 			Debug.LogError("login failed:" + msg);
+			HideLogining();
+			loginMsg.gameObject.SetActive(false);
+			errorMsg.gameObject.SetActive(true);
+			errorMsg.text = msg;
 		}
-
-		ShowLoginResult(msg);
+		
 	}
 
 }
