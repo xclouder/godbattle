@@ -78,8 +78,17 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	}
 
 	private string previousText = string.Empty;
+	private string[] resultListCache = null;
 	void OnGUI () {
-//		Debug.Log("start position:" + this.position.ToString());
+
+		//search text
+		GUI.SetNextControlName("SearchTextField");
+		searchTxt = GUILayout.TextField(searchTxt, new GUILayoutOption[] { GUILayout.ExpandWidth(true) });
+
+		GUI.SetNextControlName("HiddenField");
+		GUI.TextField(new Rect(-100f, -100f, 1f,1f), "");
+
+
 		if (EditorWindow.focusedWindow == this)
 		{
 			Event e = Event.current;
@@ -91,15 +100,20 @@ public class XClouderSearchEditorWindow : EditorWindow {
 					{
 						this.Close();
 					}
+					else if (Event.current.keyCode == (KeyCode.UpArrow) || Event.current.keyCode == (KeyCode.DownArrow))
+					{
+						
+					}
+					else
+					{
+						EditorGUI.FocusTextInControl("SearchTextField");
+					}
 					break;
 				}
 			}
 
 		}
 
-		//search text
-		GUI.SetNextControlName("SearchTextField");
-		searchTxt = GUILayout.TextField(searchTxt, new GUILayoutOption[] { GUILayout.ExpandWidth(true) });
 
 		if (isFirstShow)
 		{
@@ -110,37 +124,31 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		if (string.IsNullOrEmpty(searchTxt))
 		{
 			previousText = searchTxt;
+			resultListCache = null;
 			SetHeight(ITEM_SEARCHBOX_HEIGHT);
 			return;
 		}
 
+		string[] resultList = null;
 		if (previousText != searchTxt)
 		{
 			previousText = searchTxt;
 
 			selectedIndex = -1;
-//			ShowSearchRestult(searchTxt);
 
-			var resultList = AssetDatabase.FindAssets(searchTxt);
-
-			scrollPos = GUILayout.BeginScrollView(scrollPos, GUIStyle.none,  new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
-
-			if (resultList.Length > 0)
-			{
-				AdjustWindowSize(resultList.Length);
-
-				selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
-			}
-
-			GUILayout.EndScrollView();
+			resultList = AssetDatabase.FindAssets(searchTxt);
+			resultListCache = resultList;
 		}
+		else
+		{
+			resultList = resultListCache;
+		}
+		ShowSearchRestult(resultList);
 
-//		Debug.Log("end position:" + this.position.ToString());
 	}
 
-	private void ShowSearchRestult(string text)
+	private void ShowSearchRestult(string[] resultList)
 	{
-		var resultList = AssetDatabase.FindAssets(text);
 
 		scrollPos = GUILayout.BeginScrollView(scrollPos, GUIStyle.none,  new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
 
@@ -148,38 +156,43 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		{
 			AdjustWindowSize(resultList.Length);
 
+			GUI.SetNextControlName("SelectionGrid");
 			selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+			Event e = Event.current;
 
-//			Event e = Event.current;
-//			switch (e.type)
-//			{
-//			case EventType.KeyUp:
-//				{
-//					switch(Event.current.keyCode)
-//					{
-//					case KeyCode.UpArrow:
-//						{
-//							if (selectedIndex > 0)
-//							{
-//								selectedIndex--;
-//							}
-//							break;
-//						}
-//					case KeyCode.DownArrow:
-//						{
-//							if (selectedIndex < (resultList.Length - 1))
-//							{
-//								selectedIndex++;
-//							}
-//							break;
-//						}
-//					}
-//
-//					break;
-//				}
-//			}
+			switch (e.type)
+			{
+			case EventType.KeyUp:
+				{
+					switch(Event.current.keyCode)
+					{
+					case KeyCode.UpArrow:
+						{
+							if (selectedIndex > 0)
+							{
+								selectedIndex--;
+							}
+
+							break;
+						}
+					case KeyCode.DownArrow:
+						{
+							if (selectedIndex < (resultList.Length - 1))
+							{
+								selectedIndex++;
+							}
+
+							break;
+						}
+					}
+
+					break;
+				}
+			}
 		}
 		GUILayout.EndScrollView();
+
+		this.Repaint();
 	}
 
 	private Vector2 _origin;
