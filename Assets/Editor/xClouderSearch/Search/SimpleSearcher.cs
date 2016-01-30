@@ -26,7 +26,9 @@ public class SimpleSearcher : BaseSearcher {
 			searchText = key;
 		}
 
-		var list = AssetDatabase.FindAssets(key);
+		Debug.Log("searchText:" + searchText + ", type:" + typeText);
+
+		var list = AssetDatabase.FindAssets(searchText);
 		var pathList = new string[list.Length];
 
 		for (int i = 0; i < list.Length; i++)
@@ -36,9 +38,11 @@ public class SimpleSearcher : BaseSearcher {
 			pathList[i] = p;
 		}
 
+		Debug.LogWarning("len:"+pathList.Length);
 		if (!string.IsNullOrEmpty(typeText))
 		{
-			pathList = pathList.Where(p => p.EndsWith(typeText)).ToArray();
+			Debug.Log("aaa");
+			pathList = pathList.Where(p => {Debug.Log("p:"+p);return p.EndsWith(typeText);}).ToArray();
 		}
 
 		return pathList;
