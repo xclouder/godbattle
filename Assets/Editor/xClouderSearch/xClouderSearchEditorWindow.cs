@@ -199,7 +199,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 				}
 			}
 
-			if (Input.GetKey(KeyCode.LeftCommand) && Input.GetKey(KeyCode.Return))
+			if (Event.current.command && Event.current.keyCode == KeyCode.Return)
 			{
 				Debug.LogWarning("Cmd+Return");
 				if (selectedIndex >= 0 && selectedIndex < resultList.Length)
@@ -237,16 +237,6 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 		Selection.activeObject = obj;
 
-		if (path.EndsWith(".unity"))
-		{
-			EditorApplication.OpenScene(path);
-		}
-
-		if (path.EndsWith(".cs"))
-		{
-			UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(path, 1);
-		}
-
 	}
 
 	private void OpenAsset(string guid)
@@ -255,6 +245,11 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		if (path.EndsWith(".unity"))
 		{
 			EditorApplication.OpenScene(path);
+		}
+
+		if (path.EndsWith(".cs"))
+		{
+			UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(path, 1);
 		}
 	}
 
