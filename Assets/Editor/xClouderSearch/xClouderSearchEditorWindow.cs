@@ -184,11 +184,36 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 							break;
 						}
+					
+					case KeyCode.Return:
+						{
+							if (selectedIndex >= 0 && selectedIndex < resultList.Length)
+							{
+								var guid = resultList[selectedIndex];
+								LocateAsset(guid);
+							}
+							break;
+						}
 					}
-
 					break;
 				}
 			}
+
+			if (Input.GetKey(KeyCode.LeftCommand) && Input.GetKey(KeyCode.Return))
+			{
+				Debug.LogWarning("Cmd+Return");
+				if (selectedIndex >= 0 && selectedIndex < resultList.Length)
+				{
+					var guid = resultList[selectedIndex];
+					LocateAsset(guid);
+
+					OpenAsset(guid);
+				}
+			}
+		}
+		else
+		{
+			SetHeight(ITEM_SEARCHBOX_HEIGHT);
 		}
 		GUILayout.EndScrollView();
 
@@ -198,15 +223,39 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private Vector2 _origin;
 	private void AdjustWindowSize(int resultLen)
 	{
-//		Debug.Log("_origin:" + _origin.ToString());
-//		Debug.Log("x,y,w,h:" + this.position.ToString());
 		var pos = this.position;
 		pos.height = Mathf.Min(500f, resultLen * ITEM_LINE_HEIGHT);
 		pos.x = _origin.x;
 		pos.y = _origin.y;
 		this.position = pos;
+	}
 
-//		Debug.Log("AFTER x,y,w,h:" + this.position.ToString());
+	private void LocateAsset(string guid)
+	{
+		var path = AssetDatabase.GUIDToAssetPath(guid);
+		Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(Object));
+
+		Selection.activeObject = obj;
+
+		if (path.EndsWith(".unity"))
+		{
+			EditorApplication.OpenScene(path);
+		}
+
+		if (path.EndsWith(".cs"))
+		{
+			UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(path, 1);
+		}
+
+	}
+
+	private void OpenAsset(string guid)
+	{
+		var path = AssetDatabase.GUIDToAssetPath(guid);
+		if (path.EndsWith(".unity"))
+		{
+			EditorApplication.OpenScene(path);
+		}
 	}
 
 	private GUIContent[] CreateResultListContent(string[] resultListGUIDs)
@@ -225,13 +274,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	private GUIContent CreateCell(string resGUID)
 	{
-//		GUILayout.BeginHorizontal();
-
 		var path = AssetDatabase.GUIDToAssetPath(resGUID);
-//		GUILayout.Label(path);
-
-//		GUILayout.EndHorizontal();
-
 
 		return new GUIContent(path);
 	}
