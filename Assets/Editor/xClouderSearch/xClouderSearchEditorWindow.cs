@@ -136,13 +136,14 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 			selectedIndex = -1;
 
-			resultList = AssetDatabase.FindAssets(searchTxt);
+			resultList = GetResult(searchTxt);
 			resultListCache = resultList;
 		}
 		else
 		{
 			resultList = resultListCache;
 		}
+
 		ShowSearchRestult(resultList);
 
 	}
@@ -189,8 +190,8 @@ public class XClouderSearchEditorWindow : EditorWindow {
 						{
 							if (selectedIndex >= 0 && selectedIndex < resultList.Length)
 							{
-								var guid = resultList[selectedIndex];
-								LocateAsset(guid);
+								var path = resultList[selectedIndex];
+								LocateAsset(path);
 							}
 							break;
 						}
@@ -201,13 +202,11 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 			if (Event.current.command && Event.current.keyCode == KeyCode.Return)
 			{
-				Debug.LogWarning("Cmd+Return");
 				if (selectedIndex >= 0 && selectedIndex < resultList.Length)
 				{
-					var guid = resultList[selectedIndex];
-					LocateAsset(guid);
+					var path = resultList[selectedIndex];
 
-					OpenAsset(guid);
+					OpenAsset(path);
 				}
 			}
 		}
@@ -220,6 +219,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		this.Repaint();
 	}
 
+
 	private Vector2 _origin;
 	private void AdjustWindowSize(int resultLen)
 	{
@@ -230,18 +230,14 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		this.position = pos;
 	}
 
-	private void LocateAsset(string guid)
+	private void LocateAsset(string path)
 	{
-		var path = AssetDatabase.GUIDToAssetPath(guid);
 		Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(Object));
-
 		Selection.activeObject = obj;
-
 	}
 
-	private void OpenAsset(string guid)
+	private void OpenAsset(string path)
 	{
-		var path = AssetDatabase.GUIDToAssetPath(guid);
 		if (path.EndsWith(".unity"))
 		{
 			EditorApplication.OpenScene(path);
@@ -253,13 +249,22 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		}
 	}
 
-	private GUIContent[] CreateResultListContent(string[] resultListGUIDs)
+	private BaseSearcher searcher;
+	private string[] GetResult(string searchKey)
 	{
-		var listContent = new GUIContent[resultListGUIDs.Length];
+//		return AssetDatabase.FindAssets(searchKey);
+		searcher = searcher ?? new SimpleSearcher();
+		return searcher.Search(searchKey);
+	}
+
+	private GUIContent[] CreateResultListContent(string[] resultList)
+	{
+		var listContent = new GUIContent[resultList.Length];
 
 		int i = 0;
-		foreach (var guid in resultListGUIDs)
+		foreach (var p in resultList)
 		{
+			var guid = AssetDatabase.AssetPathToGUID(p);
 			listContent[i] = CreateCell(guid);
 			i++;
 		}
@@ -269,6 +274,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	private GUIContent CreateCell(string resGUID)
 	{
+		
 		var path = AssetDatabase.GUIDToAssetPath(resGUID);
 
 		return new GUIContent(path);
