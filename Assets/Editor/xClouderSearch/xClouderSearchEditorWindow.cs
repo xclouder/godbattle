@@ -37,6 +37,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	}
 
+	private SearchHistoryMgr historyMgr = new SearchHistoryMgr();
 	public void Init()
 	{
 		SetHeight(0f);
@@ -121,15 +122,25 @@ public class XClouderSearchEditorWindow : EditorWindow {
 			isFirstShow = false;
 		}
 
+		string[] resultList = null;
 		if (string.IsNullOrEmpty(searchTxt))
 		{
+			if (!string.IsNullOrEmpty(previousText))
+			{
+				selectedIndex = -1;
+			}
+
 			previousText = searchTxt;
 			resultListCache = null;
-			SetHeight(ITEM_SEARCHBOX_HEIGHT);
+
+			//show history
+			resultList = historyMgr.GetHistory();
+//			SetHeight(ITEM_SEARCHBOX_HEIGHT);
+
+			ShowSearchRestult(resultList);
 			return;
 		}
 
-		string[] resultList = null;
 		if (previousText != searchTxt)
 		{
 			previousText = searchTxt;
@@ -153,6 +164,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 		scrollPos = GUILayout.BeginScrollView(scrollPos, GUIStyle.none,  new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
 
+//		Debug.Log( "result:"+ resultList);
 		if (resultList.Length > 0)
 		{
 			AdjustWindowSize(resultList.Length);
@@ -230,14 +242,23 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		this.position = pos;
 	}
 
+	private void SaveToHistory(string path)
+	{
+		historyMgr.AddToOrUpdateHistory(path);
+	}
+
 	private void LocateAsset(string path)
 	{
+		SaveToHistory(path);
+
 		Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(Object));
 		Selection.activeObject = obj;
 	}
 
 	private void OpenAsset(string path)
 	{
+		SaveToHistory(path);
+
 		if (path.EndsWith(".unity"))
 		{
 			EditorApplication.OpenScene(path);
