@@ -14,7 +14,7 @@ public class BattleCameraEditor : Editor {
 		go = battleCamera.gameObject;
 	}
 
-	public override void OnInspectorGUI () { 
+	public override void OnInspectorGUI () {
 		base.OnInspectorGUI();
 
 		var deltaTime = 0.02f;

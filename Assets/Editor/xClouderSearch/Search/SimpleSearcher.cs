@@ -38,10 +38,9 @@ public class SimpleSearcher : BaseSearcher {
 			pathList[i] = p;
 		}
 
-		Debug.LogWarning("len:"+pathList.Length);
+//		Debug.LogWarning("len:"+pathList.Length);
 		if (!string.IsNullOrEmpty(typeText))
 		{
-			Debug.Log("aaa");
 			pathList = pathList.Where(p => p.Substring(p.LastIndexOf('.') + 1).StartsWith(typeText)).ToArray();
 		}
 
