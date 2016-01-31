@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SimpleSearcher : BaseSearcher {
 
-	private const string TYPE_INDICATOR = "@";
+	private const string TYPE_INDICATOR = ":";
 
 	public override string[] Search(string key)
 	{
@@ -26,7 +26,7 @@ public class SimpleSearcher : BaseSearcher {
 			searchText = key;
 		}
 
-		Debug.Log("searchText:" + searchText + ", type:" + typeText);
+//		Debug.Log("searchText:" + searchText + ", type:" + typeText);
 
 		var list = AssetDatabase.FindAssets(searchText);
 		var pathList = new string[list.Length];
@@ -42,7 +42,7 @@ public class SimpleSearcher : BaseSearcher {
 		if (!string.IsNullOrEmpty(typeText))
 		{
 			Debug.Log("aaa");
-			pathList = pathList.Where(p => {Debug.Log("p:"+p);return p.EndsWith(typeText);}).ToArray();
+			pathList = pathList.Where(p => p.Substring(p.LastIndexOf('.') + 1).StartsWith(typeText)).ToArray();
 		}
 
 		return pathList;
