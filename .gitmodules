@@ -7,3 +7,6 @@
 [submodule "Assets/Scripts/3rd/kbengine_unity3d_plugins"]
 	path = Assets/Scripts/3rd/kbengine_unity3d_plugins
 	url = https://github.com/kbengine/kbengine_unity3d_plugins.git
+[submodule "Assets/SdkManager"]
+	path = Assets/SdkManager
+	url = https://github.com/xclouder/SdkManager.git
