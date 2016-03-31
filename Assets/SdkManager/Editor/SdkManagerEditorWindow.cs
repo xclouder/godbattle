@@ -35,7 +35,7 @@ public class SdkManagerEditorWindow : EditorWindow {
 	private GUIStyle cellStyle = new GUIStyle();
 	void OnGUI()
 	{
-		bool didListHaveChanged = false;
+		bool shouldReloadSdkInfos = false;
 
 		GUILayout.BeginVertical();
 
@@ -55,7 +55,11 @@ public class SdkManagerEditorWindow : EditorWindow {
 			foreach (var sdk in _sdkList)
 			{
 				GUILayout.BeginHorizontal();
-				RenderSDKCell(sdk, out didListHaveChanged);
+
+				bool hasListChanged = false;
+				RenderSDKCell(sdk, out hasListChanged);
+				shouldReloadSdkInfos = shouldReloadSdkInfos || hasListChanged;
+
 				GUILayout.EndHorizontal();
 			}
 		}
@@ -64,6 +68,17 @@ public class SdkManagerEditorWindow : EditorWindow {
 		GUILayout.BeginHorizontal();
 
 		GUILayout.FlexibleSpace();
+
+		if (GUILayout.Button("Help", new GUILayoutOption[] { GUILayout.Width(80)}))
+		{
+			Application.OpenURL("http://www.baidu.com");
+		}
+			
+		if (GUILayout.Button("SDKs Store...", new GUILayoutOption[] { GUILayout.Width(80)}))
+		{
+			OpenInFileBrowser.Open(SdkManager.Instance.GetSdkStoreDir());
+		}
+
 		if (GUILayout.Button("Install", new GUILayoutOption[] { GUILayout.Width(80)}))
 		{
 			//open sdk folder
@@ -74,7 +89,7 @@ public class SdkManagerEditorWindow : EditorWindow {
 				SDKInfo installedSDK = null;
 				try{
 					installedSDK = SdkManager.Instance.InstallSDK(path);
-					ReloadSdkList();
+					shouldReloadSdkInfos = true;
 				}
 				catch (System.IO.IOException ioe)
 				{
@@ -102,7 +117,7 @@ public class SdkManagerEditorWindow : EditorWindow {
 		GUILayout.Space(10f);
 		GUILayout.EndVertical();
 
-		if (didListHaveChanged)
+		if (shouldReloadSdkInfos)
 		{
 			ReloadSdkList();
 		}

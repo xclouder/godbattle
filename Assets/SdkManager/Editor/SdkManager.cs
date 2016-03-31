@@ -29,6 +29,11 @@ public class SdkManager {
 	private string managedSDKsDir;
 	private string sdkStoreDir;
 
+	public string GetSdkStoreDir()
+	{
+		return sdkStoreDir;
+	}
+
 	private void Init()
 	{
 		//init dir related
@@ -75,7 +80,8 @@ public class SdkManager {
 				var sdk = ParseSdkInfoFromDirectory(dir);
 				if (IsSdkExists(sdk))
 				{
-					
+					var realSdkInfo = GetSDKInfo(sdk.Id);
+					realSdkInfo.Enabled = true;
 				}
 			}
 			catch (System.Exception e)
@@ -88,12 +94,17 @@ public class SdkManager {
 		hasLoadedSdkInfos = true;
 	}
 
-	public SDKInfo GetSDKInfo(string info)
+	public SDKInfo GetSDKInfo(string infoId)
 	{
-//		if (sdkInfoDict == null)
-//
-		return null;
+		if (sdkInfoDict == null)
+			return null;
 
+		if (sdkInfoDict.ContainsKey(infoId))
+		{
+			return sdkInfoDict[infoId];
+		}
+
+		return null;
 	}
 
 	public SDKInfo InstallSDK(string sdkDirectory)
