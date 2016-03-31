@@ -15,9 +15,6 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private int selectedIndex = -1;
 	private Vector2 scrollPos = Vector2.zero;
 
-	private GUIStyle mCellStyle = null;
-	private GUIStyle mCellStyle_odd = null;
-
 	[MenuItem ("Window/xClouder Search Window %.")]
 	static void CreateWindow () {
 		// Get existing open window or if none, make a new one:
@@ -58,24 +55,24 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		this.position = pos;
 	}
 
+	private GUIStyle selectedCellStyle = null;
+	private GUIStyle evenCellStyle = null;
+	private GUIStyle oddCellStyle = null;
 	private void CreateCellStyleIfNeeds()
 	{
-		if (mCellStyle != null)
+		if (selectedCellStyle != null)
+		{
 			return;
+		}
 
-		mCellStyle = new GUIStyle();//style for cells
-		mCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
-		mCellStyle.onNormal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
-//		mCellStyle.focused.background = Resources.Load<Texture2D>("Textures/table_bg_highlight");
-//		mCellStyle.fontSize = GUIUtils.GetKegel() - GUIUtils.GetKegel() / 5;
-		mCellStyle.border = new RectOffset(7, 7, 7, 7);
-		mCellStyle.padding = new RectOffset(5, 5, 5, 5);
-		mCellStyle.alignment = TextAnchor.MiddleCenter;
-		mCellStyle.wordWrap = true;
+		selectedCellStyle = new GUIStyle();
+		selectedCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_highlight");
 
-		mCellStyle_odd = new GUIStyle(mCellStyle);//style for cells
-		mCellStyle_odd.normal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
-		mCellStyle_odd.onNormal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
+		evenCellStyle = new GUIStyle();
+		evenCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
+
+		oddCellStyle = new GUIStyle();
+		oddCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
 	}
 
 	private string previousText = string.Empty;
@@ -135,7 +132,6 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 			//show history
 			resultList = historyMgr.GetHistory();
-//			SetHeight(ITEM_SEARCHBOX_HEIGHT);
 
 			ShowSearchRestult(resultList);
 			return;
@@ -170,7 +166,21 @@ public class XClouderSearchEditorWindow : EditorWindow {
 			AdjustWindowSize(resultList.Length);
 
 			GUI.SetNextControlName("SelectionGrid");
-			selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+
+			//TODO
+			int i = 0;
+			bool isSelected = false;
+			foreach (var p in resultList)
+			{
+				var guid = AssetDatabase.AssetPathToGUID(p);
+				isSelected = (i == selectedIndex);
+				CreateCell(guid, isSelected, i);
+
+				i++;
+			}
+				
+//			selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+
 			Event e = Event.current;
 
 			switch (e.type)
@@ -273,32 +283,26 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private BaseSearcher searcher;
 	private string[] GetResult(string searchKey)
 	{
-//		return AssetDatabase.FindAssets(searchKey);
 		searcher = searcher ?? new SimpleSearcher();
 		return searcher.Search(searchKey);
 	}
 
-	private GUIContent[] CreateResultListContent(string[] resultList)
+	private void CreateCell(string resGUID, bool isSelected, int index)
 	{
-		var listContent = new GUIContent[resultList.Length];
-
-		int i = 0;
-		foreach (var p in resultList)
-		{
-			var guid = AssetDatabase.AssetPathToGUID(p);
-			listContent[i] = CreateCell(guid);
-			i++;
-		}
-
-		return listContent;
-	}
-
-	private GUIContent CreateCell(string resGUID)
-	{
-		
 		var path = AssetDatabase.GUIDToAssetPath(resGUID);
 
-		return new GUIContent(path);
+		GUIStyle style = null;
+		if (isSelected)
+		{
+			style = selectedCellStyle;
+		}
+		else
+		{
+			bool isEven = (index % 2 == 0);
+			style = isEven ? evenCellStyle : oddCellStyle;
+		}
+
+		GUILayout.Label(path, style);
 	}
 
 	private Rect GetEditorMainWindowPos()
