@@ -6,12 +6,8 @@ using System.Linq;
 
 public class XClouderSearchEditorWindow : EditorWindow {
 
-	private const float ITEM_LINE_HEIGHT = 40f;
+	private const float ITEM_LINE_HEIGHT = 30f;
 	private const float ITEM_SEARCHBOX_HEIGHT = 22f;
-
-	private const float WIN_WIDTH = 500F;
-	private const float WIN_HEIGHT = 100F;
-	private const float WIN_MAX_HEIGHT = 500F;
 
 	private string searchTxt = string.Empty;
 	private bool isFirstShow = true;
@@ -19,15 +15,18 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private int selectedIndex = -1;
 	private Vector2 scrollPos = Vector2.zero;
 
+	private GUIStyle mCellStyle = null;
+	private GUIStyle mCellStyle_odd = null;
+
 	[MenuItem ("Window/xClouder Search Window %.")]
 	static void CreateWindow () {
 		// Get existing open window or if none, make a new one:
 		XClouderSearchEditorWindow window = (XClouderSearchEditorWindow)EditorWindow.GetWindow (typeof (XClouderSearchEditorWindow));
 
 		//window size
-		var w = WIN_WIDTH;
-		var h = WIN_HEIGHT;
-		var maxH = WIN_WIDTH;
+		var w = 500f;
+		var h = 100f;
+		var maxH = 500f;
 
 		window.maxSize = new Vector2(w, maxH);
 		window.minSize = new Vector2(w, h);
@@ -59,47 +58,25 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		this.position = pos;
 	}
 
-	private GUIStyle selectedCellStyle = null;
-	private GUIStyle evenCellStyle = null;
-	private GUIStyle oddCellStyle = null;
-	private GUIStyle desLabelStyle = null;
-	private GUIStyle titleLabelStyle = null;
-
 	private void CreateCellStyleIfNeeds()
 	{
-		if (selectedCellStyle != null)
-		{
+		if (mCellStyle != null)
 			return;
-		}
 
-		selectedCellStyle = new GUIStyle();
-		selectedCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_highlight");
-		selectedCellStyle.padding = new RectOffset(5, 5, 5, 5);
-		selectedCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
-		selectedCellStyle.fixedWidth = WIN_WIDTH - 14f;
+		mCellStyle = new GUIStyle();//style for cells
+		mCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
+		mCellStyle.onNormal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
+		//		mCellStyle.focused.background = Resources.Load<Texture2D>("Textures/table_bg_highlight");
+		//		mCellStyle.fontSize = GUIUtils.GetKegel() - GUIUtils.GetKegel() / 5;
+		mCellStyle.border = new RectOffset(7, 7, 7, 7);
+		mCellStyle.padding = new RectOffset(5, 5, 5, 5);
+		mCellStyle.alignment = TextAnchor.MiddleCenter;
+		mCellStyle.wordWrap = true;
 
-		evenCellStyle = new GUIStyle();
-		evenCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
-		evenCellStyle.padding = selectedCellStyle.padding;
-		evenCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
-		evenCellStyle.fixedWidth = WIN_WIDTH - 14f;
-
-		oddCellStyle = new GUIStyle();
-		oddCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
-		oddCellStyle.padding = selectedCellStyle.padding;
-		oddCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
-		oddCellStyle.fixedWidth = WIN_WIDTH - 14f;
-
-		titleLabelStyle = new GUIStyle();
-		titleLabelStyle.normal.textColor = Color.black;
-		titleLabelStyle.fontSize = 13;
-//		titleLabelStyle.fixedWidth = 240f;
-
-		desLabelStyle = new GUIStyle();
-		desLabelStyle.normal.textColor = Color.gray;
-//		desLabelStyle.alignment = TextAnchor.LowerRight;
-//		desLabelStyle.fixedWidth = 240f;
-
+		mCellStyle_odd = new GUIStyle(mCellStyle);//style for cells
+		mCellStyle_odd.fixedHeight = ITEM_LINE_HEIGHT;
+		mCellStyle_odd.normal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
+		mCellStyle_odd.onNormal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
 	}
 
 	private string previousText = string.Empty;
@@ -127,7 +104,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 					}
 					else if (Event.current.keyCode == (KeyCode.UpArrow) || Event.current.keyCode == (KeyCode.DownArrow))
 					{
-						
+
 					}
 					else
 					{
@@ -159,6 +136,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 			//show history
 			resultList = historyMgr.GetHistory();
+			//			SetHeight(ITEM_SEARCHBOX_HEIGHT);
 
 			ShowSearchRestult(resultList);
 			return;
@@ -184,28 +162,16 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	private void ShowSearchRestult(string[] resultList)
 	{
-		scrollPos = GUILayout.BeginScrollView(scrollPos, false, false, new GUILayoutOption[] { GUILayout.ExpandWidth(false), GUILayout.ExpandHeight(true) });
 
-//		Debug.Log( "result:"+ resultList);
+		scrollPos = GUILayout.BeginScrollView(scrollPos, GUIStyle.none,  new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+
+		//		Debug.Log( "result:"+ resultList);
 		if (resultList.Length > 0)
 		{
 			AdjustWindowSize(resultList.Length);
 
 			GUI.SetNextControlName("SelectionGrid");
-
-			int i = 0;
-			bool isSelected = false;
-			foreach (var p in resultList)
-			{
-				var guid = AssetDatabase.AssetPathToGUID(p);
-				isSelected = (i == selectedIndex);
-				CreateCell(guid, isSelected, i);
-
-				i++;
-			}
-				
-//			selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
-
+			selectedIndex = GUILayout.SelectionGrid(selectedIndex, CreateResultListContent(resultList), 1, mCellStyle_odd, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 			Event e = Event.current;
 
 			switch (e.type)
@@ -232,7 +198,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 							break;
 						}
-					
+
 					case KeyCode.Return:
 						{
 							if (selectedIndex >= 0 && selectedIndex < resultList.Length)
@@ -271,10 +237,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private void AdjustWindowSize(int resultLen)
 	{
 		var pos = this.position;
-		pos.height = Mathf.Min(WIN_MAX_HEIGHT, resultLen * ITEM_LINE_HEIGHT + ITEM_SEARCHBOX_HEIGHT);
-
-		Debug.Log("set height:" + pos.height);
-
+		pos.height = Mathf.Min(500f, resultLen * ITEM_LINE_HEIGHT + ITEM_SEARCHBOX_HEIGHT);
 		pos.x = _origin.x;
 		pos.y = _origin.y;
 		this.position = pos;
@@ -311,43 +274,32 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private BaseSearcher searcher;
 	private string[] GetResult(string searchKey)
 	{
+		//		return AssetDatabase.FindAssets(searchKey);
 		searcher = searcher ?? new SimpleSearcher();
 		return searcher.Search(searchKey);
 	}
 
-	private void CreateCell(string resGUID, bool isSelected, int index)
+	private GUIContent[] CreateResultListContent(string[] resultList)
 	{
+		var listContent = new GUIContent[resultList.Length];
+
+		int i = 0;
+		foreach (var p in resultList)
+		{
+			var guid = AssetDatabase.AssetPathToGUID(p);
+			listContent[i] = CreateCell(guid);
+			i++;
+		}
+
+		return listContent;
+	}
+
+	private GUIContent CreateCell(string resGUID)
+	{
+
 		var path = AssetDatabase.GUIDToAssetPath(resGUID);
 
-		GUIStyle style = null;
-		if (isSelected)
-		{
-			style = selectedCellStyle;
-		}
-		else
-		{
-			bool isEven = (index % 2 == 0);
-			style = isEven ? evenCellStyle : oddCellStyle;
-		}
-
-		GUILayout.BeginHorizontal(style);
-
-		//icon
-		//...
-
-		GUILayout.BeginVertical();
-		//title
-		string fileName = new System.IO.FileInfo(path).Name;
-		GUILayout.Label(fileName, titleLabelStyle);
-
-		GUILayout.FlexibleSpace();
-
-		//path
-		GUILayout.Label(path, desLabelStyle, GUILayout.Width(240f));
-		GUILayout.EndVertical();
-
-		GUILayout.EndHorizontal();
-
+		return new GUIContent(path);
 	}
 
 	private Rect GetEditorMainWindowPos()
