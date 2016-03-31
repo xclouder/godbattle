@@ -6,8 +6,12 @@ using System.Linq;
 
 public class XClouderSearchEditorWindow : EditorWindow {
 
-	private const float ITEM_LINE_HEIGHT = 50f;
+	private const float ITEM_LINE_HEIGHT = 40f;
 	private const float ITEM_SEARCHBOX_HEIGHT = 22f;
+
+	private const float WIN_WIDTH = 500F;
+	private const float WIN_HEIGHT = 100F;
+	private const float WIN_MAX_HEIGHT = 500F;
 
 	private string searchTxt = string.Empty;
 	private bool isFirstShow = true;
@@ -21,9 +25,9 @@ public class XClouderSearchEditorWindow : EditorWindow {
 		XClouderSearchEditorWindow window = (XClouderSearchEditorWindow)EditorWindow.GetWindow (typeof (XClouderSearchEditorWindow));
 
 		//window size
-		var w = 500f;
-		var h = 100f;
-		var maxH = 500f;
+		var w = WIN_WIDTH;
+		var h = WIN_HEIGHT;
+		var maxH = WIN_WIDTH;
 
 		window.maxSize = new Vector2(w, maxH);
 		window.minSize = new Vector2(w, h);
@@ -58,6 +62,9 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private GUIStyle selectedCellStyle = null;
 	private GUIStyle evenCellStyle = null;
 	private GUIStyle oddCellStyle = null;
+	private GUIStyle desLabelStyle = null;
+	private GUIStyle titleLabelStyle = null;
+
 	private void CreateCellStyleIfNeeds()
 	{
 		if (selectedCellStyle != null)
@@ -67,12 +74,32 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 		selectedCellStyle = new GUIStyle();
 		selectedCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_highlight");
+		selectedCellStyle.padding = new RectOffset(5, 5, 5, 5);
+		selectedCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
+		selectedCellStyle.fixedWidth = WIN_WIDTH - 14f;
 
 		evenCellStyle = new GUIStyle();
 		evenCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_even");
+		evenCellStyle.padding = selectedCellStyle.padding;
+		evenCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
+		evenCellStyle.fixedWidth = WIN_WIDTH - 14f;
 
 		oddCellStyle = new GUIStyle();
 		oddCellStyle.normal.background = Resources.Load<Texture2D>("Textures/table_bg_odd");
+		oddCellStyle.padding = selectedCellStyle.padding;
+		oddCellStyle.fixedHeight = ITEM_LINE_HEIGHT;
+		oddCellStyle.fixedWidth = WIN_WIDTH - 14f;
+
+		titleLabelStyle = new GUIStyle();
+		titleLabelStyle.normal.textColor = Color.black;
+		titleLabelStyle.fontSize = 13;
+//		titleLabelStyle.fixedWidth = 240f;
+
+		desLabelStyle = new GUIStyle();
+		desLabelStyle.normal.textColor = Color.gray;
+//		desLabelStyle.alignment = TextAnchor.LowerRight;
+//		desLabelStyle.fixedWidth = 240f;
+
 	}
 
 	private string previousText = string.Empty;
@@ -157,8 +184,7 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 	private void ShowSearchRestult(string[] resultList)
 	{
-
-		scrollPos = GUILayout.BeginScrollView(scrollPos, GUIStyle.none,  new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+		scrollPos = GUILayout.BeginScrollView(scrollPos, false, false, new GUILayoutOption[] { GUILayout.ExpandWidth(false), GUILayout.ExpandHeight(true) });
 
 //		Debug.Log( "result:"+ resultList);
 		if (resultList.Length > 0)
@@ -167,7 +193,6 @@ public class XClouderSearchEditorWindow : EditorWindow {
 
 			GUI.SetNextControlName("SelectionGrid");
 
-			//TODO
 			int i = 0;
 			bool isSelected = false;
 			foreach (var p in resultList)
@@ -246,7 +271,10 @@ public class XClouderSearchEditorWindow : EditorWindow {
 	private void AdjustWindowSize(int resultLen)
 	{
 		var pos = this.position;
-		pos.height = Mathf.Min(500f, resultLen * ITEM_LINE_HEIGHT);
+		pos.height = Mathf.Min(WIN_MAX_HEIGHT, resultLen * ITEM_LINE_HEIGHT + ITEM_SEARCHBOX_HEIGHT);
+
+		Debug.Log("set height:" + pos.height);
+
 		pos.x = _origin.x;
 		pos.y = _origin.y;
 		this.position = pos;
@@ -302,7 +330,24 @@ public class XClouderSearchEditorWindow : EditorWindow {
 			style = isEven ? evenCellStyle : oddCellStyle;
 		}
 
-		GUILayout.Label(path, style);
+		GUILayout.BeginHorizontal(style);
+
+		//icon
+		//...
+
+		GUILayout.BeginVertical();
+		//title
+		string fileName = new System.IO.FileInfo(path).Name;
+		GUILayout.Label(fileName, titleLabelStyle);
+
+		GUILayout.FlexibleSpace();
+
+		//path
+		GUILayout.Label(path, desLabelStyle, GUILayout.Width(240f));
+		GUILayout.EndVertical();
+
+		GUILayout.EndHorizontal();
+
 	}
 
 	private Rect GetEditorMainWindowPos()
