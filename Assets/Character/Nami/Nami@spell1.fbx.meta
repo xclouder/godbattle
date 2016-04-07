@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: a0be37140ec656c48b5b7b4af10afa2a
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: B_Cloth
     100002: Buffbone_Cstm_Weapon_1
@@ -214,8 +214,9 @@ ModelImporter:
     400206: transformNami
     400208: Weapon
     4300000: transformNami
-    7400000: Take 001
+    7400000: Spell1
     9500000: //RootNode
+    11100000: //RootNode
     13700000: transformNami
   materials:
     importMaterials: 1
@@ -224,6 +225,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -231,16 +233,254 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Spell1
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Buffbone_Water_Large_1
+        weight: 1
+      - path: Buffbone_Water_Large_2
+        weight: 1
+      - path: Buffbone_Water_Large_3
+        weight: 1
+      - path: Buffbone_Water_Large_4
+        weight: 1
+      - path: Buffbone_Water_Meduim_1
+        weight: 1
+      - path: Buffbone_Water_Meduim_2
+        weight: 1
+      - path: Buffbone_Water_Meduim_3
+        weight: 1
+      - path: Buffbone_Water_Meduim_4
+        weight: 1
+      - path: Buffbone_Water_Meduim_5
+        weight: 1
+      - path: Buffbone_Water_Meduim_6
+        weight: 1
+      - path: Buffbone_Water_Meduim_7
+        weight: 1
+      - path: Buffbone_Water_Meduim_8
+        weight: 1
+      - path: Buffbone_Water_Small_1
+        weight: 1
+      - path: Buffbone_Water_Small_2
+        weight: 1
+      - path: Buffbone_Water_Small_3
+        weight: 1
+      - path: Buffbone_Water_Small_4
+        weight: 1
+      - path: Buffbone_Water_Small_5
+        weight: 1
+      - path: Buffbone_Water_Small_6
+        weight: 1
+      - path: Buffbone_Water_Small_7
+        weight: 1
+      - path: Buffbone_Water_Small_8
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Buffbone_Glb_Channel_Loc
+        weight: 1
+      - path: Root/Buffbone_Glb_Ground_Loc
+        weight: 1
+      - path: Root/C_Buffbone_Glb_Center_Loc
+        weight: 1
+      - path: Root/C_Buffbone_Glb_Layout_Loc
+        weight: 1
+      - path: Root/C_Buffbone_Glb_Overhead_Loc
+        weight: 1
+      - path: Root/Pelvis
+        weight: 1
+      - path: Root/Pelvis/B_Cloth
+        weight: 1
+      - path: Root/Pelvis/L_Cloth1
+        weight: 1
+      - path: Root/Pelvis/L_Fin1
+        weight: 1
+      - path: Root/Pelvis/L_Fin1/L_Fin2
+        weight: 1
+      - path: Root/Pelvis/L_Fin1/L_Fin2/L_Fin3
+        weight: 1
+      - path: Root/Pelvis/R_Cloth1
+        weight: 1
+      - path: Root/Pelvis/R_Fin1
+        weight: 1
+      - path: Root/Pelvis/R_Fin1/R_Fin2
+        weight: 1
+      - path: Root/Pelvis/R_Fin1/R_Fin2/R_Fin3
+        weight: 1
+      - path: Root/Pelvis/Spine1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/C_Buffbone_Glb_Chest_Loc
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Buffbone_Glb_Hand_Loc
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Index1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Index1/L_Index2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Middle1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Middle1/L_Middle2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Pinky1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Pinky1/L_Pinky2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Ring1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Ring1/L_Ring2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Thumb1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/L_Clavicle/L_Shoulder/L_Elbow/L_Hand/L_Thumb1/L_Thumb2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/C_Buffbone_Glb_Head_Loc
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/Hair2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/Hair2/Hair3
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/L_Hair1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/L_Hair1/L_Hair2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/L_Hair1/L_Hair2/L_Hair3
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/R_Hair1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/R_Hair1/R_Hair2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair1/R_Hair1/R_Hair2/R_Hair3
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair_up1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair_up1/Hair_up2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Hair_up1/Hair_up2/Hair_up3
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/Jaw
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/L_Eyelid
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/L_LipCorner
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/R_Eyelid
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/Neck/Head/R_LipCorner
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Buffbone_Glb_Hand_Loc
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Index1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Index1/R_Index2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Middle1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Middle1/R_Middle2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Pinky1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Pinky1/R_Pinky2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Ring1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Ring1/R_Ring2
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Thumb1
+        weight: 1
+      - path: Root/Pelvis/Spine1/Spine2/Spine3/R_Clavicle/R_Shoulder/R_Elbow/R_Hand/R_Thumb1/R_Thumb2
+        weight: 1
+      - path: Root/Pelvis/Tail1
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5/Tail6
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5/Tail6/L_TaiFin1
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5/Tail6/L_TaiFin1/L_TaiFin2
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5/Tail6/R_TaiFin1
+        weight: 1
+      - path: Root/Pelvis/Tail1/Tail2/Tail3/Tail4/Tail5/Tail6/R_TaiFin1/R_TaiFin2
+        weight: 1
+      - path: Root/Weapon
+        weight: 1
+      - path: Root/Weapon/Buffbone_Cstm_Weapon_1
+        weight: 1
+      - path: Root/Weapon/Buffbone_Glb_Weapon_1
+        weight: 1
+      - path: transformNami
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -257,24 +497,25 @@ ModelImporter:
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

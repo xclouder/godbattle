@@ -60,8 +60,7 @@ public class CharacterCtrl : MonoBehaviour {
 		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> { animCtrl.PlayRecall(); }).ExecuteOnExit(()=>{animCtrl.CancelRecall();})
 			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle)
 			.On(CharacterEvent.MoveTo).GoTo(CharacterState.Run);
-			
-		
+
 	}
 	
 	void FixedUpdate()
