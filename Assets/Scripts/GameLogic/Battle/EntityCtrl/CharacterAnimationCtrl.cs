@@ -30,17 +30,30 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 	public void PlayRecall()
 	{
 		anim.CrossFade("Recall");
+		//TODO:how to get complete callback? Legacy Animation System's ugly design
+		StartCoroutine(WaitAnimationComplete("Recall"));
 	}
 	
 	public void CancelRecall()
 	{
-		
+		anim.CrossFade("Idle");
 	}
 	
 	void OnRecallCompleted()
 	{
-		
 		characterFSM.Fire(CharacterEvent.ToIdle);
 		
 	}
+
+	#region Private
+	private IEnumerator WaitAnimationComplete(string animationName)
+	{
+		//get the animation len from animationName
+		float len = anim.clip.length / 3f;
+		yield return new WaitForSeconds(len);
+
+		OnRecallCompleted();
+	}
+	#endregion
+
 }

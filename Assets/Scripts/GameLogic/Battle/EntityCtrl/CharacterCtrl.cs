@@ -26,6 +26,8 @@ public class CharacterCtrl : MonoBehaviour {
 	private StateMachine<CharacterState, CharacterEvent> characterFSM;
 	
 	private Motor motor;
+
+	private bool canAcceptUserInput = true;
 	
 	void Start()
 	{
@@ -57,7 +59,15 @@ public class CharacterCtrl : MonoBehaviour {
 			.On(CharacterEvent.Arrive).GoTo(CharacterState.Idle)
 			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall);
 		
-		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> { animCtrl.PlayRecall(); }).ExecuteOnExit(()=>{animCtrl.CancelRecall();})
+		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> { 
+
+			animCtrl.PlayRecall(); 
+			InputMgr.Instance.CanAcceptUserInput = false;
+		
+		}).ExecuteOnExit(()=>{
+			animCtrl.CancelRecall();
+			InputMgr.Instance.CanAcceptUserInput = true;
+		})
 			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle)
 			.On(CharacterEvent.MoveTo).GoTo(CharacterState.Run);
 
@@ -65,14 +75,15 @@ public class CharacterCtrl : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
-		if (Input.GetKey(KeyCode.H))
+		if (!InputMgr.Instance.CanAcceptUserInput)
 		{
-			animCtrl.PlayRecall();
+			return;
 		}
 		
 		if (Input.GetKey(KeyCode.Q))
 		{
 			Recall();
+			return;
 		}
 		
 		if (Input.GetMouseButton(1))
@@ -84,7 +95,7 @@ public class CharacterCtrl : MonoBehaviour {
 			var hitted = Physics.Raycast(ray, out hit, 1000f);//, LayerMask.GetMask(new string[]{"Terrain"}));
 			if (!hitted)
 			{
-				Debug.LogError("not hit terrain");
+				Debug.LogWarning("not hit terrain");
 				return;
 			}
 			
@@ -96,7 +107,6 @@ public class CharacterCtrl : MonoBehaviour {
 	public void Recall()
 	{
 		characterFSM.Fire(CharacterEvent.Recall);
-		// animCtrl.PlayRecall();
 	}
 	
 	public void RunTo(Vector3 toPos)
