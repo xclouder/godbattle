@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 76bbcf531ece24dd7ae8660cd8748be3
+labels:
+- Tween
+- Movement
+- Behavior
+- Node
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
