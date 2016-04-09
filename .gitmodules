@@ -13,3 +13,6 @@
 [submodule "Assets/Editor/xClouderSearch"]
 	path = Assets/Editor/xClouderSearch
 	url = https://github.com/xclouder/xcloudersearch.git
+[submodule "Assets/Editor/STTool"]
+	path = Assets/Editor/STTool
+	url = https://github.com/xclouder/STTool.git
