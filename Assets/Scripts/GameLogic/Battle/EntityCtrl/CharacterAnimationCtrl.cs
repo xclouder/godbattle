@@ -5,16 +5,9 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 	
 	private Animation anim;
 	
-	private StateMachine<CharacterState, CharacterEvent> characterFSM;
-	
 	void Start()
 	{
 		anim = GetComponent<Animation>();
-	}
-	
-	public void Init(StateMachine<CharacterState, CharacterEvent> fsm)
-	{
-		characterFSM = fsm;
 	}
 	
 	public void PlayIdle()
@@ -32,6 +25,7 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 		anim.CrossFade("Recall");
 		//TODO:how to get complete callback? Legacy Animation System's ugly design
 		StartCoroutine(WaitAnimationComplete("Recall"));
+
 	}
 
 	public void PlaySpell1()
@@ -59,11 +53,15 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 
 		StartCoroutine(WaitAnimationComplete("Spell4"));
 	}
-	
-	void OnRecallCompleted()
+
+	public delegate void AnimationCompletedCallback();
+	public event AnimationCompletedCallback onAnimationCompleted;
+	void OnAnimationCompleted()
 	{
-		characterFSM.Fire(CharacterEvent.ToIdle);
-		
+		if (onAnimationCompleted != null)
+		{
+			onAnimationCompleted();
+		}
 	}
 
 	#region Private
@@ -73,7 +71,7 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 		float len = anim.clip.length / 3f;
 		yield return new WaitForSeconds(len);
 
-		OnRecallCompleted();
+		OnAnimationCompleted();
 	}
 	#endregion
 
