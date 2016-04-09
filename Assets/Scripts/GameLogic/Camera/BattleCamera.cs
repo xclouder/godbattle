@@ -36,9 +36,10 @@ public class BattleCamera : MonoBehaviour {
 		screenCenterToCameraDir = -ray.direction;
 	}
 	
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.G))
+	// Update is called once per frame
+	void LateUpdate () {
+
+		if (Input.GetKey(KeyCode.Space))
 		{
 			var entity = GameObject.Find("Entity");
 			if (entity == null)
@@ -47,18 +48,15 @@ public class BattleCamera : MonoBehaviour {
 				return;
 			}
 			var to = entity.transform.position;
-			
+
 			Vector3 camPos = Vector3.zero;
 			if (LocateToPosition(to, out camPos))
 			{
 				tr.position = camPos;
 			}
+
+			return;
 		}
-		
-	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
 
 		var scrollWheel = Input.GetAxis("Mouse ScrollWheel");
 		float originY = tr.position.y;
