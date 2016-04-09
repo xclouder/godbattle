@@ -7,6 +7,7 @@ public enum CharacterState
 	Run,
 	Attack,
 	Recall,
+	Spell,
 	Dead
 }
 
@@ -16,7 +17,8 @@ public enum CharacterEvent
 	Arrive,
 	DoAttack,
 	ToIdle,
-	Recall
+	Recall,
+	Spell
 }
 	
 public class CharacterCtrl : MonoBehaviour {
@@ -53,19 +55,37 @@ public class CharacterCtrl : MonoBehaviour {
 		characterFSM.Initialize(CharacterState.Idle);
 		characterFSM.In(CharacterState.Idle).ExecuteOnEnter(()=>{animCtrl.PlayIdle();})
 			.On(CharacterEvent.MoveTo).GoTo(CharacterState.Run)
-			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall);
+			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall)
+			.On(CharacterEvent.Spell).GoTo(CharacterState.Spell);
 			
 		characterFSM.In(CharacterState.Run).ExecuteOnEnter(()=>{animCtrl.PlayRun();})
 			.On(CharacterEvent.Arrive).GoTo(CharacterState.Idle)
-			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall);
-		
+			.On(CharacterEvent.Recall).GoTo(CharacterState.Recall)
+			.On(CharacterEvent.Spell).GoTo(CharacterState.Spell);
+
+
+
+		//Recall state transitions
 		characterFSM.In(CharacterState.Recall).ExecuteOnEnter(()=> { 
 
 			animCtrl.PlayRecall(); 
 			InputMgr.Instance.CanAcceptUserInput = false;
 		
 		}).ExecuteOnExit(()=>{
-			animCtrl.CancelRecall();
+			InputMgr.Instance.CanAcceptUserInput = true;
+		})
+			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle)
+			.On(CharacterEvent.MoveTo).GoTo(CharacterState.Run);
+
+
+
+		//Spell state transitions
+		characterFSM.In(CharacterState.Spell).ExecuteOnEnter(()=> { 
+
+			animCtrl.PlaySpell1();
+			InputMgr.Instance.CanAcceptUserInput = false;
+
+		}).ExecuteOnExit(()=>{
 			InputMgr.Instance.CanAcceptUserInput = true;
 		})
 			.On(CharacterEvent.ToIdle).GoTo(CharacterState.Idle)
@@ -82,9 +102,29 @@ public class CharacterCtrl : MonoBehaviour {
 		
 		if (Input.GetKey(KeyCode.Q))
 		{
-			Recall();
-			return;
+			if (Spell1())
+				return;
 		}
+
+
+		if (Input.GetKeyDown(KeyCode.W))
+		{
+			if (Spell2())
+				return;
+		}
+
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			if (Spell3())
+				return;
+		}
+
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			if (Spell4())
+				return;
+		}
+
 		
 		if (Input.GetMouseButton(1))
 		{
@@ -104,11 +144,41 @@ public class CharacterCtrl : MonoBehaviour {
 		
 	}
 	
-	public void Recall()
+	public bool Recall()
 	{
 		characterFSM.Fire(CharacterEvent.Recall);
+
+		return true;
 	}
-	
+
+	public bool Spell1()
+	{
+		characterFSM.Fire(CharacterEvent.Spell);
+
+		return true;
+	}
+
+	public bool Spell2()
+	{
+		characterFSM.Fire(CharacterEvent.Spell);
+
+		return true;
+	}
+
+	public bool Spell3()
+	{
+		characterFSM.Fire(CharacterEvent.Spell);
+
+		return true;
+	}
+
+	public bool Spell4()
+	{
+		characterFSM.Fire(CharacterEvent.Spell);
+
+		return true;
+	}
+
 	public void RunTo(Vector3 toPos)
 	{
 		motor.MoveTo(toPos);

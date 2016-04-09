@@ -33,10 +33,31 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 		//TODO:how to get complete callback? Legacy Animation System's ugly design
 		StartCoroutine(WaitAnimationComplete("Recall"));
 	}
-	
-	public void CancelRecall()
+
+	public void PlaySpell1()
 	{
-		anim.CrossFade("Idle");
+		anim.CrossFade("Spell1");
+		StartCoroutine(WaitAnimationComplete("Spell1"));
+	}
+
+	public void PlaySpell2()
+	{
+		anim.CrossFade("Spell2");
+		StartCoroutine(WaitAnimationComplete("Spell2"));
+	}
+
+	public void PlaySpell3()
+	{
+		anim.CrossFade("Spell3");
+
+		StartCoroutine(WaitAnimationComplete("Spell3"));
+	}
+
+	public void PlaySpell4()
+	{
+		anim.CrossFade("Spell4");
+
+		StartCoroutine(WaitAnimationComplete("Spell4"));
 	}
 	
 	void OnRecallCompleted()
