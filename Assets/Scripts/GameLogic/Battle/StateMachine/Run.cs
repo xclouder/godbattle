@@ -41,7 +41,7 @@ public class Run : BaseStateBehaviour
 		transform.LookAt(targetPos);
 	}
 
-	void Update () {
+	void FixedUpdate () {
 
 		Debug.Log("current pos:" + transform.position);
 		Debug.Log("target pos:" + targetPos);
