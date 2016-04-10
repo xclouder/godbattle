@@ -32,5 +32,12 @@ public class Utils {
 		}
 		
 	}
+
+	public static float GetDistanceIn2D(Vector3 p1, Vector3 p2)
+	{
+		var delta = p2 - p1;
+		return Mathf.Sqrt(delta.x * delta.x + delta.z * delta.z);
+	}
+
 	#endregion
 }

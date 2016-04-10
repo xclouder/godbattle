@@ -102,7 +102,7 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public void RunTo(Vector3 toPos)
 	{
-		if (Vector3.Distance(transform.position, toPos) < 0.1f)
+		if (Utils.GetDistanceIn2D(transform.position, toPos) < 0.1f)
 		{
 			return;
 		}

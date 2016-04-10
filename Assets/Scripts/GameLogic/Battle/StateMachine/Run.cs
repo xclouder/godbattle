@@ -41,10 +41,16 @@ public class Run : BaseStateBehaviour
 		transform.LookAt(targetPos);
 	}
 
-	void FixedUpdate () {
+	void Update () {
 
-		if (Vector3.Distance(transform.position, targetPos) < pickNextWaypointDist)
+		Debug.Log("current pos:" + transform.position);
+		Debug.Log("target pos:" + targetPos);
+
+		var distance = Utils.GetDistanceIn2D(transform.position, targetPos);
+		Debug.Log("distance" + distance);
+		if (distance < pickNextWaypointDist)
 		{
+			Debug.Log("Arrived");
 			//arrived
 			SendEvent("Finish");
 		}
@@ -52,7 +58,18 @@ public class Run : BaseStateBehaviour
 		{
 			//TODO:time.deltaTime should be replaced using a more powerful TimeSystem
 			var dir = (targetPos - transform.position);
-			characterCtrl.Move(dir.normalized * Time.deltaTime * speed - new Vector3(0f, gravity * Time.deltaTime, 0f));
+			dir.y = 0;
+			var shouldMove = Time.deltaTime * speed;
+
+
+			if (distance <= shouldMove)
+			{
+				characterCtrl.Move(dir);
+			}
+			else
+			{
+				characterCtrl.Move(dir.normalized * shouldMove - new Vector3(0f, gravity * Time.deltaTime, 0f));
+			}
 		}
 
 	}
@@ -63,7 +80,6 @@ public class Run : BaseStateBehaviour
 	public override bool ProcessEvent(int eventId)
 	{
 		var moveEvt = blackboard.GetFsmEvent("MoveTo");
-		Debug.Log("evt:" + moveEvt.name);
 		if (moveEvt.id == eventId)
 		{
 			RefreshTargetPos();
