@@ -63,6 +63,7 @@ public class Run : BaseStateBehaviour
 	public override bool ProcessEvent(int eventId)
 	{
 		var moveEvt = blackboard.GetFsmEvent("MoveTo");
+		Debug.Log("evt:" + moveEvt.name);
 		if (moveEvt.id == eventId)
 		{
 			RefreshTargetPos();
