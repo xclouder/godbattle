@@ -8,12 +8,22 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterSkillsInfo
 {
 	public int CharacterId {get;set;}
-	public SkillInfo Skill1Info {get;set;}
-	public SkillInfo Skill2Info {get;set;}
-	public SkillInfo Skill3Info {get;set;}
-	public SkillInfo Skill4Info {get;set;}
+
+	public void Add(string name, SkillInfo skill)
+	{
+		skillDict.Add(name, skill);
+	}
+
+	public Dictionary<string, SkillInfo> GetSkillDict()
+	{
+		return skillDict;
+	}
+
+	private Dictionary<string, SkillInfo> skillDict = new Dictionary<string, SkillInfo>();
+
 }

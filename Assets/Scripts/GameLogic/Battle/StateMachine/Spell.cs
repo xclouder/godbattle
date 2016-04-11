@@ -15,10 +15,10 @@ public class Spell : BaseStateBehaviour
 
 	void OnEnable()
 	{
-		var skillId = blackboard.GetIntVar("SkillId").Value;
-		var skillInfo = SkillMgr.Instance.GetSkill(skillId);
-
-		CharAnimCtrl.Play(skillInfo.AnimationClipName, 1f, ()=>{
+		var userSkillName = blackboard.GetStringVar("SkillName").Value;
+		var userSkill = UserSkillMgr.Instance.GetSkill(userSkillName);
+		var skillInfo = userSkill.Skill;
+		CharAnimCtrl.Play(skillInfo.AnimationClipName, userSkill.Duration, ()=>{
 			SendEvent("Finish");
 		});
 	}

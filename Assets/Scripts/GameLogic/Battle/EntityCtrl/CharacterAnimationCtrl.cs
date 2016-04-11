@@ -37,7 +37,7 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 	public void Play(string animName, float duration = 0.7f, System.Action cb = null)
 	{
 		anim.CrossFade(animName);
-		StartCoroutine(WaitAnimationComplete(animName, cb));
+		StartCoroutine(WaitAnimationComplete(animName, duration, cb));
 	}
 
 	public void PlaySpell2()
@@ -71,11 +71,10 @@ public class CharacterAnimationCtrl : MonoBehaviour {
 	}
 
 	#region Private
-	private IEnumerator WaitAnimationComplete(string animationName, System.Action cb = null)
+	private IEnumerator WaitAnimationComplete(string animationName, float duration = 0.7f, System.Action cb = null)
 	{
 		//get the animation len from animationName
-		float len = anim.clip.length / 3f;
-		yield return new WaitForSeconds(len);
+		yield return new WaitForSeconds(duration);
 
 		if (cb != null)
 		{

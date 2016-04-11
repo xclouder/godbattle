@@ -8,13 +8,14 @@ public class CharacterCtrl : MonoBehaviour {
 	private BehaviourMachine.StateMachine stateMachine;
 
 	public int characterId = 1;
-	CharacterSkillsInfo skillsInfo;
 //	private bool canAcceptUserInput = true;
 
 	void Start()
 	{
 		stateMachine = GetComponent<BehaviourMachine.StateMachine>();
-		skillsInfo = SkillMgr.Instance.GetCharacterSkills(characterId);
+		var skillsInfo = SkillInfoMgr.Instance.GetCharacterSkills(characterId);
+
+		UserSkillMgr.Instance.Init(skillsInfo);
 	}
 
 	void FixedUpdate()
@@ -49,6 +50,12 @@ public class CharacterCtrl : MonoBehaviour {
 				return;
 		}
 
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			if (GoHome())
+				return;
+		}
+
 		
 		if (Input.GetMouseButton(1))
 		{
@@ -68,17 +75,19 @@ public class CharacterCtrl : MonoBehaviour {
 		
 	}
 	
-	public bool Recall()
+	public bool GoHome()
 	{
-		stateMachine.SendEvent("Recall");
+		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
+		floatVar.Value = BattleConst.SkillGoHome;
+		stateMachine.SendEvent("Spell");
 
 		return true;
 	}
 
 	public bool Spell1()
 	{
-		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
-		floatVar.Value = skillsInfo.Skill1Info.Id;
+		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
+		floatVar.Value = BattleConst.Skill1Name;
 
 		stateMachine.SendEvent("Spell");
 
@@ -87,8 +96,8 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell2()
 	{
-		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
-		floatVar.Value = skillsInfo.Skill2Info.Id;
+		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
+		floatVar.Value = BattleConst.Skill2Name;
 		stateMachine.SendEvent("Spell");
 	
 		return true;
@@ -96,8 +105,8 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell3()
 	{
-		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
-		floatVar.Value = skillsInfo.Skill3Info.Id;
+		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
+		floatVar.Value = BattleConst.Skill3Name;
 		stateMachine.SendEvent("Spell");
 
 		return true;
@@ -106,8 +115,8 @@ public class CharacterCtrl : MonoBehaviour {
 	public bool Spell4()
 	{
 		
-		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
-		floatVar.Value = skillsInfo.Skill4Info.Id;
+		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
+		floatVar.Value = BattleConst.Skill4Name;
 
 		stateMachine.SendEvent("Spell");
 
