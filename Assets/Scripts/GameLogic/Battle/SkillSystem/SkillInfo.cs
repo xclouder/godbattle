@@ -16,4 +16,6 @@ public class SkillInfo
 	public string Icon { get;set; }
 	public float CD { get;set; }
 
+	public string AnimationClipName { get;set;}
+
 }

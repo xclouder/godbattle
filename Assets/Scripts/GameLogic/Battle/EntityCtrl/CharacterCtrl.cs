@@ -7,11 +7,14 @@ public class CharacterCtrl : MonoBehaviour {
 	public CharacterAnimationCtrl animCtrl;
 	private BehaviourMachine.StateMachine stateMachine;
 
+	public int characterId = 1;
+	CharacterSkillsInfo skillsInfo;
 //	private bool canAcceptUserInput = true;
 
 	void Start()
 	{
 		stateMachine = GetComponent<BehaviourMachine.StateMachine>();
+		skillsInfo = SkillMgr.Instance.GetCharacterSkills(characterId);
 	}
 
 	void FixedUpdate()
@@ -74,6 +77,9 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell1()
 	{
+		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
+		floatVar.Value = skillsInfo.Skill1Info.Id;
+
 		stateMachine.SendEvent("Spell");
 
 		return true;
@@ -81,6 +87,8 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell2()
 	{
+		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
+		floatVar.Value = skillsInfo.Skill2Info.Id;
 		stateMachine.SendEvent("Spell");
 	
 		return true;
@@ -88,6 +96,8 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell3()
 	{
+		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
+		floatVar.Value = skillsInfo.Skill3Info.Id;
 		stateMachine.SendEvent("Spell");
 
 		return true;
@@ -95,6 +105,10 @@ public class CharacterCtrl : MonoBehaviour {
 
 	public bool Spell4()
 	{
+		
+		var floatVar = stateMachine.blackboard.GetIntVar("SkillId");
+		floatVar.Value = skillsInfo.Skill4Info.Id;
+
 		stateMachine.SendEvent("Spell");
 
 		return true;

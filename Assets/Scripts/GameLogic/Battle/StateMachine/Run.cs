@@ -43,14 +43,10 @@ public class Run : BaseStateBehaviour
 
 	void FixedUpdate () {
 
-		Debug.Log("current pos:" + transform.position);
-		Debug.Log("target pos:" + targetPos);
-
 		var distance = Utils.GetDistanceIn2D(transform.position, targetPos);
 		Debug.Log("distance" + distance);
 		if (distance < pickNextWaypointDist)
 		{
-			Debug.Log("Arrived");
 			//arrived
 			SendEvent("Finish");
 		}
