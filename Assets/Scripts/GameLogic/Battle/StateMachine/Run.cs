@@ -44,7 +44,7 @@ public class Run : BaseStateBehaviour
 	void FixedUpdate () {
 
 		var distance = Utils.GetDistanceIn2D(transform.position, targetPos);
-		Debug.Log("distance" + distance);
+//		Debug.Log("distance" + distance);
 		if (distance < pickNextWaypointDist)
 		{
 			//arrived

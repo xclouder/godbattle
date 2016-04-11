@@ -24,7 +24,7 @@ public class CharacterCtrl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKey(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.Q))
 		{
 			if (Spell1())
 				return;

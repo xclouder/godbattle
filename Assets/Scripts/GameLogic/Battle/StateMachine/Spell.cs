@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using System.Collections;
+using BehaviourMachine;
 
 public class Spell : BaseStateBehaviour
 {
@@ -18,11 +19,23 @@ public class Spell : BaseStateBehaviour
 		var skillInfo = SkillMgr.Instance.GetSkill(skillId);
 
 		CharAnimCtrl.Play(skillInfo.AnimationClipName, 1f, ()=>{
-
 			SendEvent("Finish");
 		});
-
-
 	}
+
+	#region Public Method
+
+	public override bool ProcessEvent(int eventId)
+	{
+		var moveEvt = blackboard.GetFsmEvent("Spell");
+		if (moveEvt.id == eventId)
+		{
+			Debug.Log("Skill not finished");
+			return false;
+		}
+
+		return base.ProcessEvent(eventId);
+	}
+	#endregion
 
 }
