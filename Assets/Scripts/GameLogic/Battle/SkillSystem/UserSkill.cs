@@ -22,6 +22,16 @@ public class UserSkill
 		}
 	}
 
+	public float ExitTime
+	{
+		get {
+			if (Skill.Name == BattleConst.SkillGoHome)
+				return 0f;
+
+			return 1f;
+		}
+	}
+
 	public float Duration
 	{
 		get {
