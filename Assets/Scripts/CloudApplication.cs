@@ -35,7 +35,7 @@ public class CloudApplication {
 	private CloudApplication() {}
 	
 	private static void SetupKBEngine(GameObject go){
-		var kbengine = go.AddComponent<KBEMain>();
-		kbengine.ip = "103.192.178.32";
+//		var kbengine = go.AddComponent<KBEMain>();
+//		kbengine.ip = "103.192.178.32";
 	}
 }

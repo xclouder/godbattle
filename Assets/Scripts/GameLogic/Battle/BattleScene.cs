@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BattleScene : Scene {
+public class BattleScene : MyScene {
 
   // ReSharper disable once ArrangeTypeMemberModifiers
 	void Update()
