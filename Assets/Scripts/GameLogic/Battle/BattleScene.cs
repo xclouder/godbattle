@@ -10,7 +10,7 @@ public class BattleScene : MyScene {
 	  var pos = Input.mousePosition;
 	  pos.y = 0;
 
-	  EventDispatcher.Fire<Vector3>(BattleConst.kEvent_MoveTo, pos);
+	  EventDispatch.EventDispatcher.Fire<Vector3>(BattleConst.kEvent_MoveTo, pos);
 	}
 
 }
