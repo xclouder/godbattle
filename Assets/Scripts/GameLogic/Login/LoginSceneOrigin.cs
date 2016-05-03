@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class LoginScene : MonoBehaviour {
+public class LoginSceneOrigin : MonoBehaviour {
 
 	public GameObject loginingIndicator;
 
