@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers
+END
+ObservablePointerUpTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerUpTrigger.cs
+END
+ObservableDropTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDropTrigger.cs.meta
+END
+ObservableTrigger2DTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTrigger2DTrigger.cs
+END
+ObservableTriggerBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerBase.cs.meta
+END
+ObservableTriggerExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerExtensions.cs
+END
+ObservableDragTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDragTrigger.cs.meta
+END
+ObservableTriggerTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerTrigger.cs
+END
+ObservableCollision2DTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCollision2DTrigger.cs.meta
+END
+ObservablePointerDownTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerDownTrigger.cs
+END
+ObservableTriggerBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerBase.cs
+END
+ObservablePointerClickTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerClickTrigger.cs.meta
+END
+ObservableVisibleTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableVisibleTrigger.cs.meta
+END
+ObservableTriggerExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerExtensions.cs.meta
+END
+ObservableCancelTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCancelTrigger.cs
+END
+ObservableTriggerExtensions.Component.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerExtensions.Component.cs.meta
+END
+ObservablePointerClickTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerClickTrigger.cs
+END
+ObservableTriggerTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerTrigger.cs.meta
+END
+ObservableLateUpdateTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableLateUpdateTrigger.cs
+END
+ObservableEndDragTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEndDragTrigger.cs.meta
+END
+ObservableRectTransformTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableRectTransformTrigger.cs
+END
+ObservableStateMachineTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableStateMachineTrigger.cs.meta
+END
+ObservableBeginDragTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableBeginDragTrigger.cs.meta
+END
+ObservableTransformChangedTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTransformChangedTrigger.cs.meta
+END
+ObservableDragTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDragTrigger.cs
+END
+ObservableDestroyTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDestroyTrigger.cs.meta
+END
+ObservableSelectTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableSelectTrigger.cs
+END
+ObservableCollision2DTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCollision2DTrigger.cs
+END
+ObservableBeginDragTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableBeginDragTrigger.cs
+END
+ObservableCanvasGroupChangedTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCanvasGroupChangedTrigger.cs.meta
+END
+ObservableMouseTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableMouseTrigger.cs
+END
+ObservableDeselectTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDeselectTrigger.cs
+END
+ObservableCollisionTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCollisionTrigger.cs
+END
+ObservableMoveTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableMoveTrigger.cs.meta
+END
+ObservableVisibleTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableVisibleTrigger.cs
+END
+ObservablePointerDownTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerDownTrigger.cs.meta
+END
+ObservableAnimatorTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableAnimatorTrigger.cs.meta
+END
+ObservableCanvasGroupChangedTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCanvasGroupChangedTrigger.cs
+END
+ObservableSubmitTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableSubmitTrigger.cs
+END
+ObservableSelectTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableSelectTrigger.cs.meta
+END
+ObservableDropTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDropTrigger.cs
+END
+ObservableStateMachineTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableStateMachineTrigger.cs
+END
+ObservableMoveTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableMoveTrigger.cs
+END
+ObservableEventTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEventTrigger.cs.meta
+END
+ObservableUpdateTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableUpdateTrigger.cs.meta
+END
+ObservableAnimatorTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableAnimatorTrigger.cs
+END
+ObservablePointerUpTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerUpTrigger.cs.meta
+END
+ObservableEnableTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEnableTrigger.cs.meta
+END
+ObservableLateUpdateTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableLateUpdateTrigger.cs.meta
+END
+ObservableTrigger2DTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTrigger2DTrigger.cs.meta
+END
+ObservableInitializePotentialDragTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableInitializePotentialDragTrigger.cs
+END
+ObservableCollisionTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCollisionTrigger.cs.meta
+END
+ObservableUpdateTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableUpdateTrigger.cs
+END
+ObservableScrollTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableScrollTrigger.cs.meta
+END
+ObservableTransformChangedTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTransformChangedTrigger.cs
+END
+ObservableEnableTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEnableTrigger.cs
+END
+ObservableFixedUpdateTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableFixedUpdateTrigger.cs.meta
+END
+ObservableSubmitTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableSubmitTrigger.cs.meta
+END
+ObservableDestroyTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDestroyTrigger.cs
+END
+ObservableUpdateSelectedTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableUpdateSelectedTrigger.cs
+END
+ObservableScrollTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableScrollTrigger.cs
+END
+ObservablePointerExitTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerExitTrigger.cs.meta
+END
+ObservableTriggerExtensions.Component.cs
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableTriggerExtensions.Component.cs
+END
+ObservableFixedUpdateTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableFixedUpdateTrigger.cs
+END
+ObservablePointerEnterTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerEnterTrigger.cs.meta
+END
+ObservableEndDragTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEndDragTrigger.cs
+END
+ObservableInitializePotentialDragTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableInitializePotentialDragTrigger.cs.meta
+END
+ObservablePointerExitTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerExitTrigger.cs
+END
+ObservableCancelTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableCancelTrigger.cs.meta
+END
+ObservableDeselectTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableDeselectTrigger.cs.meta
+END
+ObservableMouseTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableMouseTrigger.cs.meta
+END
+ObservablePointerEnterTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservablePointerEnterTrigger.cs
+END
+ObservableRectTransformTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableRectTransformTrigger.cs.meta
+END
+ObservableUpdateSelectedTrigger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableUpdateSelectedTrigger.cs.meta
+END
+ObservableEventTrigger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Triggers/ObservableEventTrigger.cs
+END

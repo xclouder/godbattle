@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/galaxy/!svn/ver/453/client/trunk/Galaxy/Assets/Plugins/uFrame
+END
+Kernel.meta
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel.meta
+END
+MVVM.meta
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM.meta
+END
+Editor.meta
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/galaxy/!svn/ver/162/client/trunk/Galaxy/Assets/Plugins/uFrame/Editor.meta
+END
+MenuSystem.meta
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/galaxy/!svn/ver/187/client/trunk/Galaxy/Assets/Plugins/uFrame/MenuSystem.meta
+END

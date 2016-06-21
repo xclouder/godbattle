@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views
+END
+Bindings.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/Bindings.meta
+END
+ViewExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewExtensions.cs.meta
+END
+ViewResolver.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewResolver.cs.meta
+END
+ViewComponent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewComponent.cs.meta
+END
+IView.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/IView.cs
+END
+ViewExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewExtensions.cs
+END
+ViewBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewBase.cs.meta
+END
+IViewResolver.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/IViewResolver.cs.meta
+END
+ViewResolver.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewResolver.cs
+END
+ViewComponent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewComponent.cs
+END
+View.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/View.cs.meta
+END
+ViewBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/ViewBase.cs
+END
+IViewResolver.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/IViewResolver.cs
+END
+IView.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/IView.cs.meta
+END
+View.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views/View.cs
+END

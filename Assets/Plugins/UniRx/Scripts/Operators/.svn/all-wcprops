@@ -1,0 +1,905 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators
+END
+Synchronize.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Synchronize.cs
+END
+WithLatestFrom.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/WithLatestFrom.cs
+END
+ToList.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToList.cs
+END
+SkipWhile.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SkipWhile.cs.meta
+END
+Defer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Defer.cs
+END
+Do.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Do.cs.meta
+END
+SkipWhile.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SkipWhile.cs
+END
+WithLatestFrom.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/WithLatestFrom.cs.meta
+END
+ObserveOn.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ObserveOn.cs
+END
+SubscribeOn.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SubscribeOn.cs.meta
+END
+Last.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Last.cs
+END
+Return.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Return.cs.meta
+END
+SelectMany.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SelectMany.cs
+END
+Timer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timer.cs.meta
+END
+Skip.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Skip.cs
+END
+Single.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Single.cs.meta
+END
+AsUnitObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsUnitObservable.cs
+END
+TakeLast.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeLast.cs
+END
+Buffer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Buffer.cs
+END
+Timeout.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timeout.cs.meta
+END
+First.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/First.cs.meta
+END
+TakeWhile.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeWhile.cs
+END
+Return.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Return.cs
+END
+Cast.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Cast.cs.meta
+END
+ContinueWith.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ContinueWith.cs
+END
+IgnoreElements.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/IgnoreElements.cs
+END
+Catch.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Catch.cs
+END
+PairWise.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/PairWise.cs
+END
+First.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/First.cs
+END
+Timestamp.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timestamp.cs.meta
+END
+StartWith.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/StartWith.cs
+END
+SelectMany.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SelectMany.cs.meta
+END
+Switch.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Switch.cs
+END
+Do.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Do.cs
+END
+Create.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Create.cs
+END
+WhenAll.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/WhenAll.cs.meta
+END
+Distinct.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Distinct.cs
+END
+Scan.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Scan.cs
+END
+Throw.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Throw.cs.meta
+END
+DelaySubscription.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DelaySubscription.cs.meta
+END
+Cast.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Cast.cs
+END
+FromEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/FromEvent.cs.meta
+END
+OfType.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OfType.cs.meta
+END
+Finally.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Finally.cs
+END
+OperatorObserverBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OperatorObserverBase.cs
+END
+Buffer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Buffer.cs.meta
+END
+TimeInterval.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TimeInterval.cs
+END
+ToList.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToList.cs.meta
+END
+Dematerialize.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Dematerialize.cs.meta
+END
+Wait.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Wait.cs
+END
+Repeat.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Repeat.cs.meta
+END
+Materialize.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Materialize.cs
+END
+DefaultIfEmpty.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DefaultIfEmpty.cs.meta
+END
+Scan.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Scan.cs.meta
+END
+RefCount.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/RefCount.cs.meta
+END
+StartWith.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/StartWith.cs.meta
+END
+Dematerialize.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Dematerialize.cs
+END
+Start.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Start.cs.meta
+END
+Take.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Take.cs
+END
+Switch.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Switch.cs.meta
+END
+Wait.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Wait.cs.meta
+END
+Throttle.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Throttle.cs.meta
+END
+WhenAll.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/WhenAll.cs
+END
+ForEachAsync.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ForEachAsync.cs.meta
+END
+OperatorObservableBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OperatorObservableBase.cs
+END
+Skip.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Skip.cs.meta
+END
+Range.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Range.cs
+END
+Delay.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Delay.cs
+END
+Empty.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Empty.cs
+END
+AsSingleUnitObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsSingleUnitObservable.cs.meta
+END
+Synchronize.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Synchronize.cs.meta
+END
+ThrottleFirst.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ThrottleFirst.cs.meta
+END
+ZipLatest.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ZipLatest.cs.meta
+END
+RepeatSafe.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/RepeatSafe.cs.meta
+END
+Distinct.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Distinct.cs.meta
+END
+Take.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Take.cs.meta
+END
+SynchronizedObserver.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SynchronizedObserver.cs.meta
+END
+RepeatSafe.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/RepeatSafe.cs
+END
+ZipLatest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ZipLatest.cs
+END
+Timer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timer.cs
+END
+Range.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Range.cs.meta
+END
+DefaultIfEmpty.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DefaultIfEmpty.cs
+END
+Merge.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Merge.cs.meta
+END
+TakeUntil.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeUntil.cs.meta
+END
+Aggregate.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Aggregate.cs
+END
+SynchronizedObserver.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SynchronizedObserver.cs
+END
+Last.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Last.cs.meta
+END
+CombineLatest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/CombineLatest.cs
+END
+AsObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsObservable.cs.meta
+END
+Merge.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Merge.cs
+END
+FromEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/FromEvent.cs
+END
+PairWise.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/PairWise.cs.meta
+END
+AsSingleUnitObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsSingleUnitObservable.cs
+END
+ToArray.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToArray.cs
+END
+OperatorObserverBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OperatorObserverBase.cs.meta
+END
+Finally.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Finally.cs.meta
+END
+RefCount.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/RefCount.cs
+END
+Zip.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Zip.cs.meta
+END
+Create.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Create.cs.meta
+END
+Materialize.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Materialize.cs.meta
+END
+Concat.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Concat.cs.meta
+END
+AsUnitObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsUnitObservable.cs.meta
+END
+Start.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Start.cs
+END
+TakeLast.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeLast.cs.meta
+END
+Timestamp.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timestamp.cs
+END
+Select.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Select.cs.meta
+END
+Throttle.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Throttle.cs
+END
+IgnoreElements.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/IgnoreElements.cs.meta
+END
+ContinueWith.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ContinueWith.cs.meta
+END
+ForEachAsync.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ForEachAsync.cs
+END
+SkipUntil.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SkipUntil.cs.meta
+END
+Concat.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Concat.cs
+END
+Defer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Defer.cs.meta
+END
+GroupBy.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/GroupBy.cs.meta
+END
+ToObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToObservable.cs.meta
+END
+ThrottleFirst.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ThrottleFirst.cs
+END
+CombineLatest.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/CombineLatest.cs.meta
+END
+SubscribeOn.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SubscribeOn.cs
+END
+Select.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Select.cs
+END
+Repeat.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Repeat.cs
+END
+Sample.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Sample.cs
+END
+Delay.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Delay.cs.meta
+END
+Empty.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Empty.cs.meta
+END
+Amb.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Amb.cs.meta
+END
+Timeout.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Timeout.cs
+END
+ToObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToObservable.cs
+END
+GroupBy.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/GroupBy.cs
+END
+TimeInterval.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TimeInterval.cs.meta
+END
+Amb.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Amb.cs
+END
+Where.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Where.cs.meta
+END
+TakeWhile.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeWhile.cs.meta
+END
+Zip.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Zip.cs
+END
+DelaySubscription.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DelaySubscription.cs
+END
+Throw.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Throw.cs
+END
+Never.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Never.cs.meta
+END
+ToArray.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ToArray.cs.meta
+END
+Aggregate.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Aggregate.cs.meta
+END
+Never.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Never.cs
+END
+OperatorObservableBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OperatorObservableBase.cs.meta
+END
+Single.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Single.cs
+END
+SkipUntil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/SkipUntil.cs
+END
+ObserveOn.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/ObserveOn.cs.meta
+END
+DistinctUntilChanged.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DistinctUntilChanged.cs.meta
+END
+TakeUntil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/TakeUntil.cs
+END
+OfType.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/OfType.cs
+END
+Sample.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Sample.cs.meta
+END
+DistinctUntilChanged.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/DistinctUntilChanged.cs
+END
+Catch.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Catch.cs.meta
+END
+AsObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/AsObservable.cs
+END
+Where.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Operators/Where.cs
+END

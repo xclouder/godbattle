@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM
+END
+INotifyCollectionChanged.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/INotifyCollectionChanged.cs.meta
+END
+NotifyCollectionChangedAction.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedAction.cs
+END
+NotifyCollectionChangedEventArgs.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedEventArgs.cs
+END
+NotifyCollectionChangedEventHandler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedEventHandler.cs
+END
+ObservableCollection.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/ObservableCollection.cs
+END
+NotifyCollectionChangedAction.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedAction.cs.meta
+END
+NotifyCollectionChangedEventArgs.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedEventArgs.cs.meta
+END
+NotifyCollectionChangedEventHandler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/NotifyCollectionChangedEventHandler.cs.meta
+END
+ObservableCollection.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/ObservableCollection.cs.meta
+END
+INotifyCollectionChanged.cs
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM/INotifyCollectionChanged.cs
+END

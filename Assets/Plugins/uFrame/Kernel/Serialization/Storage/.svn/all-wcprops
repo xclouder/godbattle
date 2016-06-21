@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization/Storage
+END
+FileSerializerStorage.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization/Storage/FileSerializerStorage.cs
+END
+FileSerializerStorage.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization/Storage/FileSerializerStorage.cs.meta
+END
+StringSerializerStorage.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization/Storage/StringSerializerStorage.cs
+END
+StringSerializerStorage.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization/Storage/StringSerializerStorage.cs.meta
+END

@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/galaxy/!svn/ver/453/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel
+END
+SceneManagementService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/390/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneManagementService.cs
+END
+GameContainer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/162/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/GameContainer.cs
+END
+ISystemService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISystemService.cs
+END
+SceneSettings.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneSettings.cs
+END
+uFrameKernel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/galaxy/!svn/ver/390/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/uFrameKernel.cs
+END
+ISystemLoader.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISystemLoader.cs
+END
+IGameContainer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IGameContainer.cs
+END
+InjectAttribute.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/InjectAttribute.cs.meta
+END
+uFrameComponent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/uFrameComponent.cs.meta
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/README.md
+END
+IScene.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IScene.cs.meta
+END
+SystemControllerExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemControllerExtensions.cs.meta
+END
+SimpleSubject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SimpleSubject.cs.meta
+END
+GameContainer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/GameContainer.cs.meta
+END
+ISystemService.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISystemService.cs.meta
+END
+SceneSettings.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneSettings.cs.meta
+END
+uFrameKernel.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/uFrameKernel.cs.meta
+END
+ISystemLoader.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISystemLoader.cs.meta
+END
+SimpleSubject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SimpleSubject.cs
+END
+README.md.meta
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/README.md.meta
+END
+SystemServiceMonoBehavior.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemServiceMonoBehavior.cs
+END
+Scene.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Scene.cs.meta
+END
+ISceneLoader.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISceneLoader.cs.meta
+END
+IEventAggregator.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IEventAggregator.cs.meta
+END
+SceneLoader.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneLoader.cs
+END
+EventAggregator.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/EventAggregator.cs
+END
+IDisposableContainer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IDisposableContainer.cs.meta
+END
+SystemService.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemService.cs.meta
+END
+ISceneLoader.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/ISceneLoader.cs
+END
+IEventAggregator.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IEventAggregator.cs
+END
+Scene.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/galaxy/!svn/ver/453/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Scene.cs
+END
+Serialization.meta
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/Serialization.meta
+END
+SceneManagementService.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneManagementService.cs.meta
+END
+InjectAttribute.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/InjectAttribute.cs
+END
+IDisposableContainer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IDisposableContainer.cs
+END
+uFrameComponent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/uFrameComponent.cs
+END
+SystemServiceMonoBehavior.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemServiceMonoBehavior.cs.meta
+END
+SystemService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemService.cs
+END
+IScene.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IScene.cs
+END
+SystemControllerExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SystemControllerExtensions.cs
+END
+SceneLoader.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/SceneLoader.cs.meta
+END
+EventAggregator.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/EventAggregator.cs.meta
+END
+IGameContainer.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/Kernel/IGameContainer.cs.meta
+END

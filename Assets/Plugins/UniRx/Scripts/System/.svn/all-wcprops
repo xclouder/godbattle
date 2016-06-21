@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System
+END
+IObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IObservable.cs
+END
+IProgress.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IProgress.cs
+END
+Tuple.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/Tuple.cs.meta
+END
+Unit.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/Unit.cs
+END
+IObserver.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IObserver.cs
+END
+IObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IObservable.cs.meta
+END
+IOptimizedObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IOptimizedObservable.cs
+END
+IProgress.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IProgress.cs.meta
+END
+Unit.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/Unit.cs.meta
+END
+IObserver.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IObserver.cs.meta
+END
+IOptimizedObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/IOptimizedObservable.cs.meta
+END
+Tuple.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/System/Tuple.cs
+END

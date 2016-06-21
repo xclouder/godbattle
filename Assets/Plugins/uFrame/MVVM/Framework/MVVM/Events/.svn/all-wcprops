@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events
+END
+ViewEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewEvent.cs
+END
+InstantiateViewCommand.cs
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/InstantiateViewCommand.cs
+END
+ViewDestroyedEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewDestroyedEvent.cs
+END
+ViewEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewEvent.cs.meta
+END
+InstantiateViewCommand.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/InstantiateViewCommand.cs.meta
+END
+ViewCreatedEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewCreatedEvent.cs
+END
+ViewDestroyedEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewDestroyedEvent.cs.meta
+END
+ViewCreatedEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events/ViewCreatedEvent.cs.meta
+END

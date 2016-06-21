@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables
+END
+DictionaryDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/DictionaryDisposable.cs
+END
+MultipleAssignmentDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/MultipleAssignmentDisposable.cs.meta
+END
+SingleAssignmentDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/SingleAssignmentDisposable.cs
+END
+RefCountDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/RefCountDisposable.cs.meta
+END
+ICancelable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/ICancelable.cs
+END
+Disposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/Disposable.cs
+END
+BooleanDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/BooleanDisposable.cs
+END
+SerialDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/SerialDisposable.cs
+END
+StableCompositeDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/StableCompositeDisposable.cs.meta
+END
+MultipleAssignmentDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/MultipleAssignmentDisposable.cs
+END
+DisposableExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/DisposableExtensions.cs.meta
+END
+RefCountDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/RefCountDisposable.cs
+END
+ScheduledDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/ScheduledDisposable.cs.meta
+END
+CompositeDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/CompositeDisposable.cs.meta
+END
+DictionaryDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/DictionaryDisposable.cs.meta
+END
+StableCompositeDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/StableCompositeDisposable.cs
+END
+DisposableExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/DisposableExtensions.cs
+END
+SingleAssignmentDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/SingleAssignmentDisposable.cs.meta
+END
+ScheduledDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/ScheduledDisposable.cs
+END
+ICancelable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/ICancelable.cs.meta
+END
+CompositeDisposable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/CompositeDisposable.cs
+END
+SerialDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/SerialDisposable.cs.meta
+END
+BooleanDisposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/BooleanDisposable.cs.meta
+END
+Disposable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Disposables/Disposable.cs.meta
+END

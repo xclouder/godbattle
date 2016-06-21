@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics
+END
+Logger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/Logger.cs
+END
+LogEntry.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/LogEntry.cs
+END
+LogEntryExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/LogEntryExtensions.cs
+END
+Logger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/Logger.cs.meta
+END
+ObservableLogger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/ObservableLogger.cs
+END
+UnityDebugSink.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/UnityDebugSink.cs
+END
+LogEntry.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/LogEntry.cs.meta
+END
+LogEntryExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/LogEntryExtensions.cs.meta
+END
+ObservableLogger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/ObservableLogger.cs.meta
+END
+UnityDebugSink.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/UnityEngineBridge/Diagnostics/UnityDebugSink.cs.meta
+END

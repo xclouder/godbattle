@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/galaxy/!svn/ver/162/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM
+END
+MVVMKernelExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/MVVMKernelExtensions.cs.meta
+END
+Views.meta
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Views.meta
+END
+ViewModels.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels.meta
+END
+UnityMVVM.meta
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/UnityMVVM.meta
+END
+AggregatorExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/AggregatorExtensions.cs
+END
+Services.meta
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Services.meta
+END
+Events.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Events.meta
+END
+MvcExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/MvcExtensions.cs
+END
+MVVMKernelExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/162/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/MVVMKernelExtensions.cs
+END
+Controllers.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Controllers.meta
+END
+AggregatorExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/AggregatorExtensions.cs.meta
+END
+Attributes.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/Attributes.meta
+END
+StateMachines.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/StateMachines.meta
+END
+MvcExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/MvcExtensions.cs.meta
+END

@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects
+END
+ReplaySubject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ReplaySubject.cs
+END
+AsyncSubject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/AsyncSubject.cs
+END
+ISubject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ISubject.cs.meta
+END
+BehaviorSubject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/BehaviorSubject.cs
+END
+Subject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/Subject.cs
+END
+SubjectExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/SubjectExtensions.cs
+END
+ReplaySubject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ReplaySubject.cs.meta
+END
+AsyncSubject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/AsyncSubject.cs.meta
+END
+ConnectableObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ConnectableObservable.cs
+END
+BehaviorSubject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/BehaviorSubject.cs.meta
+END
+Subject.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/Subject.cs.meta
+END
+SubjectExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/SubjectExtensions.cs.meta
+END
+ConnectableObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ConnectableObservable.cs.meta
+END
+ISubject.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Subjects/ISubject.cs
+END

@@ -1,0 +1,245 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples
+END
+Sample12_ReactiveProperty.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample12_ReactiveProperty.cs
+END
+Sample04_ConvertFromUnityCallback.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample04_ConvertFromUnityCallback.cs
+END
+Sample01_ObservableWWW.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample01_ObservableWWW.cs.meta
+END
+Sample08_DetectDoubleClick.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample08_DetectDoubleClick.cs
+END
+Sample14_CubeLevel1.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_CubeLevel1.cs.meta
+END
+Sample14_CubeLevel2.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_CubeLevel2.cs.meta
+END
+Sample10_MainThreadDispatcher.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample10_MainThreadDispatcher.cs
+END
+Sample09_EventHandling.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample09_EventHandling.cs.meta
+END
+Sample01_ObservableWWW.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample01_ObservableWWW.cs
+END
+Sample14_CubeLevel1.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_CubeLevel1.cs
+END
+Sample14_PresenterBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_PresenterBase.cs.meta
+END
+Sample02_ObservableTriggers.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample02_ObservableTriggers.cs
+END
+Sample13_ToDoApp.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13_ToDoApp.cs.meta
+END
+Sample05_ConvertFromCoroutine.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample05_ConvertFromCoroutine.cs
+END
+Sample13Scene.unity
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13Scene.unity
+END
+Sample08_DetectDoubleClick.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample08_DetectDoubleClick.cs.meta
+END
+Sample13_ToDoItem.prefab.meta
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13_ToDoItem.prefab.meta
+END
+Sample13_ToDoApp.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13_ToDoApp.cs
+END
+Sample03_GameObjectAsObservable.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample03_GameObjectAsObservable.cs.meta
+END
+Sample06_ConvertToCoroutine.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample06_ConvertToCoroutine.cs
+END
+Sample11_Logger.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample11_Logger.cs
+END
+Sample02_ObservableTriggers.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample02_ObservableTriggers.cs.meta
+END
+Sample13_ToDoItem.prefab
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13_ToDoItem.prefab
+END
+Sample07_OrchestratIEnumerator.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample07_OrchestratIEnumerator.cs.meta
+END
+Sample05_ConvertFromCoroutine.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample05_ConvertFromCoroutine.cs.meta
+END
+Sample12Scene.unity.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample12Scene.unity.meta
+END
+Sample13Scene.unity.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample13Scene.unity.meta
+END
+Sample14Scene.unity.meta
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14Scene.unity.meta
+END
+Sample03_GameObjectAsObservable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample03_GameObjectAsObservable.cs
+END
+Sample14_CubeLevel2.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_CubeLevel2.cs
+END
+Sample12_ReactiveProperty.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample12_ReactiveProperty.cs.meta
+END
+Sample09_EventHandling.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample09_EventHandling.cs
+END
+Sample07_OrchestratIEnumerator.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample07_OrchestratIEnumerator.cs
+END
+Sample04_ConvertFromUnityCallback.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample04_ConvertFromUnityCallback.cs.meta
+END
+Sample12Scene.unity
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample12Scene.unity
+END
+Sample11_Logger.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample11_Logger.cs.meta
+END
+Sample06_ConvertToCoroutine.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample06_ConvertToCoroutine.cs.meta
+END
+Sample14Scene.unity
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14Scene.unity
+END
+Sample14_PresenterBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample14_PresenterBase.cs
+END
+Sample10_MainThreadDispatcher.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Examples/Sample10_MainThreadDispatcher.cs.meta
+END

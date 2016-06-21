@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels
+END
+ISignal.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ISignal.cs.meta
+END
+ViewModelExtensions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelExtensions.cs
+END
+ViewModelManager.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelManager.cs.meta
+END
+ModelCollection.cs
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelCollection.cs
+END
+ViewModelPropertyInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelPropertyInfo.cs
+END
+Signal.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/Signal.cs
+END
+ViewModelCommand.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCommand.cs.meta
+END
+ViewModelDestroyedEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelDestroyedEvent.cs
+END
+ViewModel.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModel.cs.meta
+END
+IViewModelManager.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/IViewModelManager.cs.meta
+END
+ViewModelCreatedEvent.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCreatedEvent.cs
+END
+ModelPropertyBase.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelPropertyBase.cs.meta
+END
+ModelPropertyBinding.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelPropertyBinding.cs.meta
+END
+ViewModelManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelManager.cs
+END
+ISignal.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ISignal.cs
+END
+IObservableProperty.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/IObservableProperty.cs.meta
+END
+ViewModelCommand.cs
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCommand.cs
+END
+ViewModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModel.cs
+END
+ViewModelCommandInfo.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCommandInfo.cs.meta
+END
+IViewModelManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/IViewModelManager.cs
+END
+ViewModelExtensions.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelExtensions.cs.meta
+END
+ModelPropertyBase.cs
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelPropertyBase.cs
+END
+ModelPropertyBinding.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelPropertyBinding.cs
+END
+ViewModelPropertyInfo.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelPropertyInfo.cs.meta
+END
+ModelCollection.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ModelCollection.cs.meta
+END
+IObservableProperty.cs
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/IObservableProperty.cs
+END
+Signal.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/Signal.cs.meta
+END
+ViewModelDestroyedEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelDestroyedEvent.cs.meta
+END
+ViewModelCommandInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCommandInfo.cs
+END
+ViewModelCreatedEvent.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/galaxy/!svn/ver/140/client/trunk/Galaxy/Assets/Plugins/uFrame/MVVM/Framework/MVVM/ViewModels/ViewModelCreatedEvent.cs.meta
+END

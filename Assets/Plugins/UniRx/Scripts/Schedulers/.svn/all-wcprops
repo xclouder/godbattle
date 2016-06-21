@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers
+END
+IScheduler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/IScheduler.cs.meta
+END
+ImmediateScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/ImmediateScheduler.cs
+END
+CurrentThreadScheduler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/CurrentThreadScheduler.cs.meta
+END
+Scheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/Scheduler.cs
+END
+ThreadPoolScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/ThreadPoolScheduler.cs
+END
+ImmediateScheduler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/ImmediateScheduler.cs.meta
+END
+Scheduler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/Scheduler.cs.meta
+END
+ThreadPoolScheduler.cs.meta
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/galaxy/!svn/ver/125/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/ThreadPoolScheduler.cs.meta
+END
+IScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/IScheduler.cs
+END
+CurrentThreadScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/galaxy/!svn/ver/288/client/trunk/Galaxy/Assets/Plugins/UniRx/Scripts/Schedulers/CurrentThreadScheduler.cs
+END
