@@ -6,7 +6,7 @@ using System.Collections;
 [InitializeOnLoad]
 #endif
 public class AutoInitGame {
-	/*
+	
 	#if UNITY_EDITOR
 	static AutoInitGame()
 	{
@@ -40,7 +40,5 @@ public class AutoInitGame {
 		};
 	}
 	#endif
-
-*/
 	
 }

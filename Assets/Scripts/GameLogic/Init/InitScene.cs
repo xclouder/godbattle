@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class InitSceneOrigin : MonoBehaviour {
+public class InitScene : MonoBehaviour {
 
 	public Text loadingTip;
 	public ProgressBar progressBar;
