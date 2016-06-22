@@ -52,9 +52,8 @@ public class ResourceMgr
 		}
 
 		if (onComplete != null)
-		{
 			onComplete(val);
-		}
+		
 	}
 
 	/// <summary>
@@ -65,12 +64,23 @@ public class ResourceMgr
 	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public static T CreateInstance<T>(string name) where T : UnityEngine.Object
 	{
-		return null;
+		var obj = Get<T> (name);
+		if (obj != null)
+			return GameObject.Instantiate(obj) as T;
+		else
+			return null;
 	}
 
 	public static void CreateInstanceAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
 	{
-		
+		GetAsync<T> (name, obj => {
+
+			var ins = obj == null ? null : GameObject.Instantiate(obj);
+
+			if (onComplete != null)
+				onComplete(ins);
+			
+		});
 	}
 
 
