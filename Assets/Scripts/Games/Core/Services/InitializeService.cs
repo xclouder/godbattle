@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using uFrame.Kernel;
+using UniRx;
 
 public class InitializeService : SystemServiceMonoBehavior {
 
@@ -19,16 +20,20 @@ public class InitializeService : SystemServiceMonoBehavior {
 
 		private IEnumerator LoadInternal<T>(string name, IObserver<T> observer, CancellationToken cancellationToken) where T : UnityEngine.Object
 		{
-			var asyncOp = Resources.LoadAsync(name);
+			var index = name.IndexOf ('/');
+			var bundleName = name.Substring (0, index);
+			var req1 = AssetBundle.LoadFromFileAsync (Application.dataPath + "/StreamingAssets/AssetBundles/" + bundleName);
+			yield return req1;
 
-			while (!asyncOp.isDone && !cancellationToken.IsCancellationRequested)
-			{
-				yield return null;
-			}
+			var assetName = name.Substring (index + 1);
+			var req2 = req1.assetBundle.LoadAssetAsync(assetName);
+			yield return req2;
+
+			var obj = req2.asset;
 
 			if (!cancellationToken.IsCancellationRequested)
 			{
-				observer.OnNext(asyncOp.asset as T); // push 100%
+				observer.OnNext(obj as T); // push 100%
 				observer.OnCompleted();
 			}
 		}
@@ -38,7 +43,7 @@ public class InitializeService : SystemServiceMonoBehavior {
 	{
 		base.Setup ();
 
-		ResourceMgr.SetResourceLoader(null);
+		ResourceMgr.SetResourceLoader(new AssetBundleResourceLoader());
 	}
 
 }

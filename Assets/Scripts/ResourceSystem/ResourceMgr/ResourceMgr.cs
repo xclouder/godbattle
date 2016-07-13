@@ -46,6 +46,9 @@ public class ResourceMgr
 		if (_resourceCache.Contains (name))
 		{
 			val = _resourceCache.Get(name) as T;
+
+			if (onComplete != null)
+				onComplete (val);
 		}
 		else {
 			_resourceLoader.LoadAsync(name, onComplete);
