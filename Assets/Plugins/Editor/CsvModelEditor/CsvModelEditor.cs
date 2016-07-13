@@ -60,7 +60,7 @@ namespace Assets.Editor.CsvModelEditor
             _rebuildPropertyActions.Add("Custom", RebuildPropertyInstance<CustomProperty>);
         }
 
-        [MenuItem("UsefulTools/CsvModel Tools/CsvModel Editor")]
+        [MenuItem("Tools/CsvModel Tools/CsvModel Editor")]
         private static void Init()
         {
             var editor = GetWindow<CsvModelEditor>();

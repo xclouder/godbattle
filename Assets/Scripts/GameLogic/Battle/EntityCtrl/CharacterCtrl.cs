@@ -16,65 +16,12 @@ public class CharacterCtrl : MonoBehaviour {
 		var skillsInfo = SkillInfoMgr.Instance.GetCharacterSkills(characterId);
 
 		UserSkillMgr.Instance.Init(skillsInfo);
+		ResourceMgr.CreateInstanceAsync<GameObject>("ab_MapObjects_01/Sphere", (go)=>{
+			Debug.Assert(go != null, "go is null");
+			go.transform.position = Vector3.zero;
+		});
 	}
 
-	void FixedUpdate()
-	{
-		if (!InputMgr.Instance.CanAcceptUserInput)
-		{
-			return;
-		}
-		
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			if (Spell1())
-				return;
-		}
-
-
-		if (Input.GetKeyDown(KeyCode.W))
-		{
-			if (Spell2())
-				return;
-		}
-
-		if (Input.GetKeyDown(KeyCode.E))
-		{
-			if (Spell3())
-				return;
-		}
-
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			if (Spell4())
-				return;
-		}
-
-		if (Input.GetKeyDown(KeyCode.B))
-		{
-			if (GoHome())
-				return;
-		}
-
-		
-		if (Input.GetMouseButton(1))
-		{
-			var mousePos = Input.mousePosition;
-			var ray = Camera.main.ScreenPointToRay(mousePos);
-
-			RaycastHit hit;
-			var hitted = Physics.Raycast(ray, out hit, 1000f);//, LayerMask.GetMask(new string[]{"Terrain"}));
-			if (!hitted)
-			{
-				Debug.LogWarning("not hit terrain");
-				return;
-			}
-			
-			RunTo(hit.point);
-		}
-		
-	}
-	
 	public bool GoHome()
 	{
 		var floatVar = stateMachine.blackboard.GetStringVar("SkillName");
