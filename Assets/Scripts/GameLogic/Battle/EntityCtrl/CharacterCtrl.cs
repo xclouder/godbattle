@@ -16,6 +16,10 @@ public class CharacterCtrl : MonoBehaviour {
 		var skillsInfo = SkillInfoMgr.Instance.GetCharacterSkills(characterId);
 
 		UserSkillMgr.Instance.Init(skillsInfo);
+		ResourceMgr.CreateInstanceAsync<GameObject>("ab_MapObjects_01/Sphere", (go)=>{
+			Debug.Assert(go != null, "go is null");
+			go.transform.position = Vector3.zero;
+		});
 	}
 
 	public bool GoHome()

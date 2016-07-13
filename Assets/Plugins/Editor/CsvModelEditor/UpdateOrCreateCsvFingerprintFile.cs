@@ -13,7 +13,7 @@ namespace Assets.Editor.CsvModelEditor
         //相对 Application.dataPath 的路径
         private static readonly String[] CsvConfigDirs = { "Resources/Configs/", "Scenes/Maps/Resources/Configs" };
 
-        [MenuItem("UsefulTools/CsvModel Tools/Update Csv Fingerprint")]
+        [MenuItem("Tools/CsvModel Tools/Update Csv Fingerprint")]
         public static void Run()
         {
             RunOnCIEnv();

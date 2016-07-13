@@ -50,9 +50,6 @@ public class ResourceMgr
 		else {
 			_resourceLoader.LoadAsync(name, onComplete);
 		}
-
-		if (onComplete != null)
-			onComplete(val);
 		
 	}
 
