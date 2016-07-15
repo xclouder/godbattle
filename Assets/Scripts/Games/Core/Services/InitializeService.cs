@@ -26,7 +26,8 @@ public class InitializeService : SystemServiceMonoBehavior {
 			yield return req1;
 
 			var assetName = name.Substring (index + 1);
-			var req2 = req1.assetBundle.LoadAssetAsync(assetName);
+			var bundle = req1.assetBundle;
+			var req2 = bundle.LoadAssetAsync(assetName);
 			yield return req2;
 
 			var obj = req2.asset;
