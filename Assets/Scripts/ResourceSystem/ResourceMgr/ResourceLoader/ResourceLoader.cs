@@ -10,6 +10,9 @@ using UnityEngine;
 using System.Collections;
 using UniRx;
 
+/// <summary>
+/// 从Resources加载资源的简单Loader
+/// </summary>
 public class ResourceLoader : IResourceLoader
 {
 	public void LoadAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object

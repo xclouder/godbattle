@@ -40,11 +40,35 @@ public class InitializeService : SystemServiceMonoBehavior {
 		}
 	}
 
+	private class MyResourceProtocol : ResourceProtocol
+	{
+		public override bool GetResourceDetail(string name, out string bundleName, out string assetName)
+		{
+			bool isFromBundle = name.StartsWith("ab_");
+
+			if (isFromBundle)
+			{
+				var index = name.IndexOf ('/');
+				bundleName = name.Substring (0, index);
+				assetName = name.Substring(index + 1);
+			}
+			else
+			{
+				bundleName = null;
+				assetName = name;
+			}
+			
+			return isFromBundle;
+		} 
+	}
 	public override void Setup ()
 	{
 		base.Setup ();
 
-		ResourceMgr.SetResourceLoader(new AssetBundleResourceLoader());
+		var loader = new UniversalResourceLoader();
+		loader.ResourceProtocol = new MyResourceProtocol();
+
+		ResourceMgr.SetResourceLoader(loader);
 	}
 
 }

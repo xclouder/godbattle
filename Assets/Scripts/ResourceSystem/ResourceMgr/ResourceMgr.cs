@@ -7,7 +7,6 @@
  *************************************************************************/
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class ResourceMgr
@@ -124,28 +123,20 @@ public class ResourceMgr
 		int total = nameList.Count;
 		BATCH_CACHE_WORKERS.Add(cacheWorker);
 
-		try {
-			cacheWorker.Cache(nameList, (o) => {
-				cachedCount++;
+		cacheWorker.Cache(nameList, (o) => {
+			cachedCount++;
 
-				if (onCachedOneItem != null)
-					onCachedOneItem(o, (float)cachedCount / total);
+			if (onCachedOneItem != null)
+				onCachedOneItem(o, (float)cachedCount / total);
 
-				if (cachedCount == total)
-				{
-					if (onComplete != null)
-						onComplete();
-					
-					BATCH_CACHE_WORKERS.Remove(cacheWorker);
-				}
-			});
-
-		}
-		catch (System.InvalidOperationException e)
-		{
-			BATCH_CACHE_WORKERS.Remove(cacheWorker);
-			throw e;
-		}
+			if (cachedCount == total)
+			{
+				if (onComplete != null)
+					onComplete();
+				
+				BATCH_CACHE_WORKERS.Remove(cacheWorker);
+			}
+		});
 
 	}
 

@@ -1,0 +1,71 @@
+/*************************************************************************
+ *  FileName: UniversalResourceLoader.cs
+ *  Author: xClouder
+ *  Create Time: 07/15/2016
+ *  Description:
+ *
+ *************************************************************************/
+
+using UnityEngine;
+using System.Collections;
+
+/// <summary>
+/// 统一资源加载器，支持Resources、Bundles的资源加载。
+/// 接口上不必明确区分是否为Bundle资源，可以通过资源名name进行识别该从哪里加载。
+/// 和URL概念一致，具体协议可以自己定义。比如：
+/// bundle://asset@bundlename
+/// res://asset
+/// 
+/// 默认提供一个简单的协议实现
+/// </summary>
+public class UniversalResourceLoader : IResourceLoader
+{
+
+	public IBundleResourceLoader BundleResourceLoader {get;set;}
+	public IResourceLoader ResourceLoader {get;set;}
+
+	// public 
+	private ResourceProtocol resourceProtocol = new ResourceProtocol(); 
+	public ResourceProtocol ResourceProtocol { get;set; }
+
+	public UniversalResourceLoader()
+	{
+		BundleResourceLoader = new BundleResourceLoader();
+		ResourceLoader = new ResourceLoader();
+	}
+
+	public void LoadAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
+	{
+		string bundleName = null;
+		string assetName = null;
+
+		bool isBundleAsset = resourceProtocol.GetResourceDetail(name, out bundleName, out assetName);
+
+		if (isBundleAsset)
+		{
+			BundleResourceLoader.LoadAsync(bundleName, assetName, onComplete);
+		}
+		else
+		{
+			ResourceLoader.LoadAsync(assetName, onComplete);
+		}
+	}
+}
+
+public class ResourceProtocol
+{
+	/// <summary>
+    /// 根据名称获取相应资源的信息，这个方法可能访问频率比较高，为了效率 参数使用out方式传递
+    /// </summary>
+    /// <param name="name">统一资源名称</param>
+    /// <param name="bundleName">解析后的bundle，如果不是bundle资源，为null</param>
+    /// <param name="assetName">解析后的资源名，如果不是bundle资源，为name</param>
+    /// <returns>是否为bundle资源</returns>
+	public virtual bool GetResourceDetail(string name, out string bundleName, out string assetName)
+	{
+		bundleName = null;
+		assetName = name;
+
+		return false;
+	}
+}
