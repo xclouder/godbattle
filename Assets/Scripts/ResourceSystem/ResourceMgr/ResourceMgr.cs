@@ -135,17 +135,16 @@ public class ResourceMgr
 				{
 					if (onComplete != null)
 						onComplete();
+					
+					BATCH_CACHE_WORKERS.Remove(cacheWorker);
 				}
 			});
 
 		}
 		catch (System.InvalidOperationException e)
 		{
-			throw e;
-		}
-		finally
-		{
 			BATCH_CACHE_WORKERS.Remove(cacheWorker);
+			throw e;
 		}
 
 	}
