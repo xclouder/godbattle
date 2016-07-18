@@ -11,7 +11,11 @@ public class InitializeService : SystemServiceMonoBehavior {
 
 		// yield return StartCoroutine(AssetBundles.AssetBundleManager.Initialize());
 
+		var bundleResourceLoader = new BundleResourceLoader();
+		yield return bundleResourceLoader.InitializeAsync();
+
 		var loader = new UniversalResourceLoader();
+		loader.BundleResourceLoader = bundleResourceLoader;
 
 		ResourceMgr.SetResourceLoader(loader);
 	}

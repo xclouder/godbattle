@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3990321792
+CRC: 985627272
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5d607acd32537288c1aabd860ec25fc7
+    Hash: 7f34a3c56f0491a278232362830aa033
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e31bb66c613ffa17225cc42c82af9ad1
+    Hash: 79de9cd6c44d42cb62c211b36630d0fc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -17,6 +17,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 23
   Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
 - Class: 33
   Script: {instanceID: 0}
 - Class: 43
@@ -26,5 +28,8 @@ ClassTypes:
 - Class: 135
   Script: {instanceID: 0}
 Assets:
+- Assets/AssetBundles/characters/m2.mat
 - Assets/AssetBundles/characters/Sphere.prefab
-Dependencies: []
+Dependencies:
+- AssetBundles/WebPlayer/shader
+- AssetBundles/WebPlayer/textures

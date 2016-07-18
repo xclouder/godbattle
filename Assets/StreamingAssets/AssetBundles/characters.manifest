@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1859057117
+CRC: 985627272
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a78f20e111b4ae5d12023b3761000eca
+    Hash: 7f34a3c56f0491a278232362830aa033
   TypeTreeHash:
     serializedVersion: 2
     Hash: 79de9cd6c44d42cb62c211b36630d0fc
@@ -31,5 +31,5 @@ Assets:
 - Assets/AssetBundles/characters/m2.mat
 - Assets/AssetBundles/characters/Sphere.prefab
 Dependencies:
-- AssetBundles/Android/shader
-- AssetBundles/Android/textures
+- AssetBundles/WebPlayer/shader
+- AssetBundles/WebPlayer/textures
