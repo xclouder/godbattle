@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 2392320303
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: db66ff752a8817b2a3907e296bf4ab2f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: acbf8ebebe832af3566d40e9ab185f9c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0381403f328464921ba80d077e5a908d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/skills/Cube.prefab
+Dependencies: []

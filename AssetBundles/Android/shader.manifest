@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 4055513417
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 35730cf7f0de52f601dcbb3236ec2bae
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1094ce4a8b63a0cc7870d736bb694a93
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/shader/tt.shader
+Dependencies: []

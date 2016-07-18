@@ -16,7 +16,7 @@ public class Test : uFrameComponent
 	{
 		base.KernelLoaded ();
 
-		ResourceMgr.CreateInstanceAsync<GameObject>("ab_MapObjects_01/Sphere", (go)=>{
+		ResourceMgr.CreateInstanceAsync<GameObject>("AssetBundles/characters/Sphere", (go)=>{
 			Debug.Assert(go != null, "go is null");
 			go.transform.position = Vector3.zero;
 		});

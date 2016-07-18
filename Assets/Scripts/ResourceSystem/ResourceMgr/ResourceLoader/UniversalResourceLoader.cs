@@ -11,7 +11,7 @@ using System.Collections;
 
 /// <summary>
 /// 统一资源加载器，支持Resources、Bundles的资源加载。
-/// 接口上不必明确区分是否为Bundle资源，可以通过资源名name进行识别该从哪里加载。
+/// 接口上不必明确区分是否为Bundle资源，通过资源名name进行识别该从哪里加载。
 /// 和URL概念一致，具体协议可以自己定义。比如：
 /// bundle://asset@bundlename
 /// res://asset
@@ -25,7 +25,7 @@ public class UniversalResourceLoader : IResourceLoader
 	public IResourceLoader ResourceLoader {get;set;}
 
 	// public 
-	private ResourceProtocol resourceProtocol = new ResourceProtocol(); 
+	private ResourceProtocol resourceProtocol = new DefaultResourceProtocol(); 
 	public ResourceProtocol ResourceProtocol { get;set; }
 
 	public UniversalResourceLoader()
@@ -52,7 +52,7 @@ public class UniversalResourceLoader : IResourceLoader
 	}
 }
 
-public class ResourceProtocol
+public abstract class ResourceProtocol
 {
 	/// <summary>
     /// 根据名称获取相应资源的信息，这个方法可能访问频率比较高，为了效率 参数使用out方式传递
@@ -61,11 +61,30 @@ public class ResourceProtocol
     /// <param name="bundleName">解析后的bundle，如果不是bundle资源，为null</param>
     /// <param name="assetName">解析后的资源名，如果不是bundle资源，为name</param>
     /// <returns>是否为bundle资源</returns>
-	public virtual bool GetResourceDetail(string name, out string bundleName, out string assetName)
-	{
-		bundleName = null;
-		assetName = name;
+	public abstract bool GetResourceDetail(string name, out string bundleName, out string assetName);
 
-		return false;
+}
+
+public class DefaultResourceProtocol : ResourceProtocol
+{
+	private static string PREFIX = "AssetBundles/";
+	public override bool GetResourceDetail(string name, out string bundleName, out string assetName)
+	{
+		if (!name.StartsWith(PREFIX))
+		{
+			assetName = name;
+			bundleName = null;
+
+			return false;
+		}
+		
+		var left = name.Substring(PREFIX.Length);
+		var index = left.LastIndexOf('/');
+		if (index < 0)
+			throw new System.ArgumentException("invalid bundle location name:" + name); 
+
+		assetName = left.Substring(index + 1);
+		bundleName = left.Substring(0, index);
+		return true;
 	}
 }
