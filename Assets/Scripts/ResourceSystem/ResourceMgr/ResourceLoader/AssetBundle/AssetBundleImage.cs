@@ -107,6 +107,8 @@ public class AssetBundleImage
 
 		Debug.Log("==> start load image:" + Name);
 
+		State = ImageState.Loading;
+
 		//load dependencies first
 		if (_dependencies != null && _dependencies.Count > 0)
 		{

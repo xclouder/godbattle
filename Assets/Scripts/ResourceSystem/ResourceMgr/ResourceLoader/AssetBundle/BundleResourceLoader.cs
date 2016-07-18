@@ -95,7 +95,7 @@ public class BundleResourceLoader : IBundleResourceLoader
 		{
 			foreach (var d in dep_list)
 			{
-				var dep = CreateAssetBundleImage(d);
+				var dep = m_assetBundleImages.ContainsKey(d) ? m_assetBundleImages[d] : CreateAssetBundleImage(d);
 
 				image.AddDependency(dep);
 			}
