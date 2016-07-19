@@ -179,6 +179,7 @@ public class AssetBundleImage
 		Debug.Assert(State == ImageState.Loaded);
 		Debug.Assert(ReferenceCount == 0);
 		
+		State = ImageState.Unloaded;
 		AssetBundle.Unload(false);
 	}
 
