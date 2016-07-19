@@ -21,15 +21,15 @@ public class BundleResourceLoader : IBundleResourceLoader
 	public IEnumerator InitializeAsync()
 	{
 		m_assetBundleImages = new Dictionary<string, AssetBundleImage>();
-
-		BundleRootDirectory = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles/");
-		SecondaryBundleRootDirectory = System.IO.Path.Combine(Application.streamingAssetsPath, "AssetBundles/");
+		
+		var platformName = BundleUtility.GetPlatformName();
+		BundleRootDirectory = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles/" + platformName + "/");
+		SecondaryBundleRootDirectory = System.IO.Path.Combine(Application.streamingAssetsPath, "AssetBundles/" + platformName + "/");
 
 		Debug.Log("== BUNDLE ROOT DIR:" + BundleRootDirectory);
 		Debug.Log("== SECONDARY BUNDLE ROOT DIR:" + SecondaryBundleRootDirectory);
 
-		//for test
-		ManifestFileName = "OSX";
+		ManifestFileName = BundleUtility.GetPlatformName();
 
 		var req = AssetBundle.LoadFromFileAsync(GetBundlePath(ManifestFileName));
 		yield return req;

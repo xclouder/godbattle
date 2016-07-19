@@ -18,7 +18,7 @@ namespace AssetBundles
 		[SerializeField]
 		int 	m_ServerPID = 0;
 
-		[MenuItem (kLocalAssetbundleServerMenu)]
+		// [MenuItem (kLocalAssetbundleServerMenu)]
 		public static void ToggleLocalAssetBundleServer ()
 		{
 			bool isRunning = IsRunning();
@@ -32,7 +32,7 @@ namespace AssetBundles
 			}
 		}
 
-		[MenuItem (kLocalAssetbundleServerMenu, true)]
+		// [MenuItem (kLocalAssetbundleServerMenu, true)]
 		public static bool ToggleLocalAssetBundleServerValidate ()
 		{
 			bool isRunnning = IsRunning ();
