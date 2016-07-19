@@ -13,8 +13,6 @@ using System.IO;
 /// 这里后续可以支持：选择不同打包策略
 /// 自Unity3D 5.3以后版本，支持了ChunkBasedCompression方式压缩（LZ4格式），它是基于对每个asset做单独的压缩，并且加载时只在内存中驻留一个bundle头部结构，从而允许运行时不需要将整个bundle全部解压也能随机读取asset。
 /// 相比默认的LZMA压缩方式，LZ4压缩大大的降低了内存占用，可以放心地让可能被多次使用的AssetBundle常驻内存。但LZ4打出来的AssetBundle包会大一点。
-/// </summary> <summary>
-/// 
 /// </summary>
 public class AssetBundleBuidler
 {
@@ -50,9 +48,7 @@ public class AssetBundleBuidler
         var platformName = BundleUtility.GetPlatformName();
         
         // Setup the destination folder for assetbundles.
-        
-        var streamingAssetsPathInEditor = Path.Combine(Path.Combine(System.Environment.CurrentDirectory, "Assets"), "StreamingAssets");
-        streamingAssetsPathInEditor = Path.Combine(streamingAssetsPathInEditor, BundleUtility.AssetBundlesOutputPath);
+        var streamingAssetsPathInEditor = Path.Combine(Application.streamingAssetsPath, BundleUtility.AssetBundlesOutputPath);
         
         if (Directory.Exists(streamingAssetsPathInEditor))
             FileUtil.DeleteFileOrDirectory(streamingAssetsPathInEditor);
