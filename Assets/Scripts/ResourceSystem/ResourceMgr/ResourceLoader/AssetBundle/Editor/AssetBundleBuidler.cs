@@ -33,8 +33,10 @@ public class AssetBundleBuidler
         var platformName = BundleUtility.GetPlatformName();
         
         // Setup the destination folder for assetbundles.
-        var streamingAssetsPathInEditor = "Assets/StreamingAssets/AssetBundles/";
-        streamingAssetsPathInEditor = streamingAssetsPathInEditor + platformName;
+        
+        var streamingAssetsPathInEditor = Path.Combine(Path.Combine(System.Environment.CurrentDirectory, "Assets"), "StreamingAssets");
+        streamingAssetsPathInEditor = Path.Combine(streamingAssetsPathInEditor, platformName);
+        Debug.Log("dest:" + streamingAssetsPathInEditor);
         
         if (Directory.Exists(streamingAssetsPathInEditor))
             FileUtil.DeleteFileOrDirectory(streamingAssetsPathInEditor);
@@ -44,9 +46,9 @@ public class AssetBundleBuidler
         string outputPath = Path.Combine(BundleUtility.AssetBundlesOutputPath,  platformName);
 
         // Setup the source folder for assetbundles.
-        var source = Path.Combine(Path.Combine(System.Environment.CurrentDirectory, BundleUtility.AssetBundlesOutputPath), "folder");
+        var source = Path.Combine(Path.Combine(System.Environment.CurrentDirectory, BundleUtility.AssetBundlesOutputPath), platformName);
         Debug.Log("source:" + source);
-        if (!System.IO.Directory.Exists(source) )
+        if (!System.IO.Directory.Exists(source))
         {
             throw new System.InvalidOperationException("No assetBundle output folder, try to build the assetBundles first.");
         }
