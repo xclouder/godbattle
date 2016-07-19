@@ -184,12 +184,14 @@ public class AssetBundleImage
 
 	public AssetBundleRequest LoadAssetAsync(string name)
 	{
+		Debug.Log("==> load asset:" + name);
 		return AssetBundle.LoadAssetAsync(name);
 	}
 
 	#region Dependency Image Event Listener
 	private void OnDependencyImageLoaded(AssetBundleImage img)
 	{
+		Debug.Log("==> img loaded:" + img.Name);
 		CheckAndNotifyIfAllCompleted();
 	}
 

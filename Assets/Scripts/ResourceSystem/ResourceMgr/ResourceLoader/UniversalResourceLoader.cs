@@ -24,7 +24,6 @@ public class UniversalResourceLoader : IResourceLoader
 	public IBundleResourceLoader BundleResourceLoader {get;set;}
 	public IResourceLoader ResourceLoader {get;set;}
 
-	// public 
 	private ResourceProtocol resourceProtocol = new DefaultResourceProtocol(); 
 	public ResourceProtocol ResourceProtocol { get;set; }
 

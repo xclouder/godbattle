@@ -21,7 +21,7 @@ namespace AssetBundles
 			return true;
 		}
 		
-		[MenuItem ("Assets/AssetBundles/Build AssetBundles")]
+		//[MenuItem ("Assets/AssetBundles/Build AssetBundles")]
 		static public void BuildAssetBundles ()
 		{
 			BuildScript.BuildAssetBundles();

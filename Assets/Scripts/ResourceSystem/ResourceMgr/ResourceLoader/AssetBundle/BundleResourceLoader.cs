@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using UniRx;
 
 /// <summary>
-/// 用来从
+/// 用来从AssetBundle中加载资源，处理bundle间依赖关系
 /// </summary>
 public class BundleResourceLoader : IBundleResourceLoader
 {
@@ -22,7 +22,6 @@ public class BundleResourceLoader : IBundleResourceLoader
 	{
 		m_assetBundleImages = new Dictionary<string, AssetBundleImage>();
 
-
 		BundleRootDirectory = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles/");
 		SecondaryBundleRootDirectory = System.IO.Path.Combine(Application.streamingAssetsPath, "AssetBundles/");
 
@@ -30,7 +29,7 @@ public class BundleResourceLoader : IBundleResourceLoader
 		Debug.Log("== SECONDARY BUNDLE ROOT DIR:" + SecondaryBundleRootDirectory);
 
 		//for test
-		ManifestFileName = "WebPlayer";
+		ManifestFileName = "OSX";
 
 		var req = AssetBundle.LoadFromFileAsync(GetBundlePath(ManifestFileName));
 		yield return req;
@@ -144,44 +143,6 @@ public class BundleResourceLoader : IBundleResourceLoader
 		yield return null;
 
 		image.DecreaseReferenceCount();
-
-		//xvar req = AssetBundleManager.LoadAssetAsync(bundleName, assetName, typeof(T));
-		/*
-		var path = BundleRootDirectory + bundleName;
-		if (!System.IO.File.Exists(path))
-		{
-			Debug.LogWarning("bundle:" + bundleName + " not found in path:" + path);
-			path = SecondaryBundleRootDirectory + bundleName;
-
-			Debug.LogWarning("use path:" + path);
-		}
-		
-		var req = AssetBundle.LoadFromFileAsync(path);
-
-		while (!req.isDone && !cancellationToken.IsCancellationRequested)
-		{
-			yield return null;
-		}
-
-		var bundle = req.assetBundle;
-		var req2 = bundle.LoadAssetAsync(assetName);
-
-		while (!req2.isDone && !cancellationToken.IsCancellationRequested)
-		{
-			yield return null;
-		}
-
-        if (!cancellationToken.IsCancellationRequested)
-		{
-            observer.OnNext(req2.asset as T);
-			observer.OnCompleted();
-        }
-		*/
-        
 	}
-
-
-
-    //todo load level
 }
 
