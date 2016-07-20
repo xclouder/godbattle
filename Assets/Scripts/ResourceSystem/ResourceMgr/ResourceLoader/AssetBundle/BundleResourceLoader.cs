@@ -42,6 +42,7 @@ public class BundleResourceLoader : IBundleResourceLoader
 			Debug.LogError("bundle manifest is null");
 
 		isInitialized = true;
+		req.assetBundle.Unload(true);
 	}
 
 	private string GetBundlePath(string bundleName)

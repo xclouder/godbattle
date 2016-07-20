@@ -21,7 +21,10 @@ public class InitSceneController : SceneController
 		
 		StartCoroutine(updateService.CheckUpdate((type) => {
 			Debug.Log("need update, type:" + type);
-
+			if (type == GameUpdateService.UpdateType.NoNeed)
+			{
+				return;
+			}
 			StartCoroutine(updateService.UpdateAssetBundles((progress) => {
 
 				Debug.Log("update progress:" + progress);

@@ -12,6 +12,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class GameUpdateService : SystemServiceMonoBehavior
 {
 	public enum UpdateType
@@ -122,6 +126,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
 			if (fail != null)
 				fail(new System.Exception("download version file error:" + w.error));
 
+			w.Dispose();
             yield break;
         }
 
@@ -135,9 +140,11 @@ public class GameUpdateService : SystemServiceMonoBehavior
 		}
 
 		NewestVersion = new System.Version(strServerVersion);
+		w.Dispose();
 		
 		Debug.Assert(GameVersion != null);
 		
+		Debug.Log("Server Version:" + NewestVersion);
 		//normally, it's impossible. we do a check and log
 		if (NewestVersion < GameVersion)
 		{
@@ -193,7 +200,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
 		var req1 = localBundleReq.assetBundle.LoadAssetAsync("assetbundlemanifest");
 		yield return req1;
 		var localManifest = req1.asset as AssetBundleManifest;
-		localBundleReq.assetBundle.Unload(true);
+		localBundleReq.assetBundle.Unload(false);
 
 		var w2 = new WWW(remoteManifestPath);
 		yield return w2;
@@ -209,7 +216,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
 		var req2 = w2.assetBundle.LoadAssetAsync("assetbundlemanifest");
 		yield return req2;
 		var remoteManifest = req2.asset as AssetBundleManifest;
-		w2.assetBundle.Unload(true);
+		w2.assetBundle.Unload(false);
 		w2.Dispose();
 
 		var downloadList = GetAssetbundlesNeedsUpdate(remoteManifest, localManifest);
@@ -217,6 +224,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
 		
 		int downloadCount = downloadList.Length;
 		int currentDownload = 1;
+		Debug.Log("download count:" + downloadCount);
 		foreach (var bundleName in downloadList)
 		{
 			downloadUrl = remoteDownloadRootPath + bundleName;
@@ -256,6 +264,13 @@ public class GameUpdateService : SystemServiceMonoBehavior
 
 			currentDownload++;
 		}
+
+		GameVersion = NewestVersion;
+		PlayerPrefs.SetString(ASSET_VERSION_KEY, GameVersion.ToString());
+		PlayerPrefs.Save();
+		
+		Debug.Log("Update completed. Current Version:" + GameVersion);
+
 	}
 
 	private string[] GetAssetbundlesNeedsUpdate(AssetBundleManifest servermanifest, AssetBundleManifest localmanifest)
@@ -264,6 +279,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
         var allassets = servermanifest.GetAllAssetBundles();
         for (int i = 0; i < allassets.Length; i++)
         {
+			Debug.Log("compare hash for bundle:" + allassets[i]);
             if (localmanifest.GetAssetBundleHash(allassets[i]).ToString() != servermanifest.GetAssetBundleHash(allassets[i]).ToString())
                 result.Add(allassets[i]);
         }
@@ -272,10 +288,29 @@ public class GameUpdateService : SystemServiceMonoBehavior
     }
 
 	private string versionFile = "asset_version.txt";
-	private string updateURL = "http://localhost:8080/";
+	private string updateURL = "http://localhost:80/";
 	
 	public string UpdateURL {get { return updateURL; } set {updateURL = value;}}
 
+	#if UNITY_EDITOR
+	[MenuItem("Assets/AssetBundles/Clean Cached AssetBundles")]
+	public static void CleanDynamicAssetDir()
+	{
+		var cachedPath = Path.Combine(Application.persistentDataPath, ASSET_BUNDLE_DOWNLOAD_DIR);
+		var di = new DirectoryInfo(cachedPath);
+		if (di.Exists)
+		{
+			Debug.Log("remove dir:" + di.FullName);
+			di.Delete(true);
+		}
+
+		PlayerPrefs.DeleteKey(ASSET_VERSION_KEY);
+		PlayerPrefs.Save();
+
+		Debug.Log("clean cached assetbundles completed.");
+	}
+
+	#endif
 	
 	class CopyDir
 	{
