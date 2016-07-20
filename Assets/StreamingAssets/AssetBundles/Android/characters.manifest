@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 2212783254
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fbc81743257f44c819adc571e8469924
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 79de9cd6c44d42cb62c211b36630d0fc
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/characters/m2.mat
+- Assets/AssetBundles/characters/Sphere.prefab
+Dependencies:
+- AssetBundles/Android/materials
+- AssetBundles/Android/shader
+- AssetBundles/Android/textures

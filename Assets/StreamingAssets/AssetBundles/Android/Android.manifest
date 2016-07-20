@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 2831492693
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: characters
+      Dependencies:
+        Dependency_0: materials
+        Dependency_1: shader
+        Dependency_2: textures
+    Info_1:
+      Name: skills
+      Dependencies: {}
+    Info_2:
+      Name: materials
+      Dependencies:
+        Dependency_0: shader
+        Dependency_1: textures
+    Info_3:
+      Name: shader
+      Dependencies: {}
+    Info_4:
+      Name: textures
+      Dependencies: {}
