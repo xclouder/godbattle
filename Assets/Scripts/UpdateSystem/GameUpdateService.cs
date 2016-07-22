@@ -28,6 +28,8 @@ public class GameUpdateService : SystemServiceMonoBehavior
 	public static string ASSET_VERSION_KEY = "__local_asset_version";
 	public override IEnumerator SetupAsync()
 	{
+		Debug.Log ("~~~ setup GameUpdate Service");
+
 		var nativeAssetVersion = GetNativeAssetVersion();
 		var dynamicAssetVersion = GetDynamicAssetVersion();
 		Debug.Log("native asset version:" + nativeAssetVersion);
