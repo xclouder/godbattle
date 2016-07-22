@@ -15,6 +15,11 @@ using UniRx;
 /// </summary>
 public class ResourceLoader : IResourceLoader
 {
+	public T Load<T>(string name) where T : UnityEngine.Object
+	{
+		return Resources.Load<T> (name);
+	}
+
 	public void LoadAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
 	{
 		var observable = Observable.FromCoroutine<T>((observer, cancellationToken) => LoadInternal(name, observer, cancellationToken));

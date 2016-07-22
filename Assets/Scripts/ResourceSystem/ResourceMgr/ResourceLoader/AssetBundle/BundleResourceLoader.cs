@@ -63,6 +63,29 @@ public class BundleResourceLoader : IBundleResourceLoader
     public string BundleRootDirectory { get;set; }
 	public string SecondaryBundleRootDirectory {get;set;}
 
+	public T Load<T>(string bundleName, string assetName) where T : UnityEngine.Object
+	{
+		AssetBundleImage image = null;
+		if (!m_assetBundleImages.ContainsKey(bundleName))
+		{
+			image = CreateAssetBundleImage(bundleName);
+		}
+
+		image.IncreaseReferenceCount();
+
+		if (image.State == AssetBundleImage.ImageState.Unloaded)
+		{
+			image.Load ();
+		}
+
+		//image loaded
+		var asset = image.LoadAsset<T>(assetName);
+
+		image.DecreaseReferenceCount();
+
+		asset;
+	}
+
 	public void LoadAsync<T>(string bundleName, string assetName, System.Action<T> onComplete) where T : UnityEngine.Object
 	{
 		if (!isInitialized)

@@ -94,6 +94,38 @@ public class AssetBundleImage
 	}
 
 	/// <summary>
+	/// 同步加载镜像
+	/// </summary>
+	public void Load()
+	{
+		if (!(State == ImageState.Unloaded))
+		{
+			Debug.LogWarning("Image is loading or loaded.");
+			return;
+		}
+
+		State = ImageState.Loading;
+
+		if (_dependencies != null && _dependencies.Count > 0)
+		{
+			foreach (var img in _dependencies)
+			{
+				if (img.State == ImageState.Unloaded)
+					img.Load ();
+
+				//可能别的地方已经在异步加载这个bundle，此时再同步加载会出错
+				if (img.State == ImageState.Loading) {
+					throw new System.Exception ("AssetBundleImage is loading async, you are loading sync this image too, please wait for async operation completing");
+				}
+			}
+		}
+
+		AssetBundle = AssetBundle.LoadFromFile(BundlePath);
+
+		CheckAndNotifyIfAllCompleted ();
+	}
+
+	/// <summary>
 	/// 加载完成需要：assetBundle自己加载完成，Dependencies全部加载完成
 	/// </summary>
 	/// <typeparam name="T">The 1st type parameter.</typeparam>
@@ -183,8 +215,22 @@ public class AssetBundleImage
 		AssetBundle.Unload(false);
 	}
 
+	public T LoadAsset<T>(string name) where T : UnityEngine.Object
+	{
+		if (State != ImageState.Loaded) {
+			throw new System.Exception ("please load asset after image loaded");
+		}
+
+		return AssetBundle.LoadAsset<T> (name);
+
+	}
+
 	public AssetBundleRequest LoadAssetAsync(string name)
 	{
+		if (State != ImageState.Loaded) {
+			throw new System.Exception ("please load asset after image loaded");
+		}
+
 		Debug.Log("==> load asset:" + name);
 		return AssetBundle.LoadAssetAsync(name);
 	}
