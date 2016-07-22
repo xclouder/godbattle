@@ -82,17 +82,14 @@ public class GameUpdateService : SystemServiceMonoBehavior
 
 	private System.Version GetNativeAssetVersion()
 	{
-		try 
-		{
-			var strNativeVer = System.IO.File.ReadAllText(GetNativeAssetVersionFilePath());
-			return new System.Version(strNativeVer);
-		}
-		catch(System.Exception e)
-		{
-			Debug.LogException(e);
-			return new System.Version(0,0,0,0);
-		}
+
+		//Can I use ResourceMgr here?
+		var asset = Resources.Load<TextAsset>(versionFile.Replace(".txt", string.Empty));
+		var strNativeVer = asset.text;
+		return new System.Version(strNativeVer);
+
 	}
+
 	private System.Version GetDynamicAssetVersion()
 	{
 		string verStr = PlayerPrefs.GetString(ASSET_VERSION_KEY);
@@ -107,11 +104,6 @@ public class GameUpdateService : SystemServiceMonoBehavior
 	}
 
 	private static string ASSET_BUNDLE_DOWNLOAD_DIR = "AssetBundles";
-	private string GetNativeAssetVersionFilePath()
-	{
-		var nativeBundleDir = System.IO.Path.Combine(Application.streamingAssetsPath, ASSET_BUNDLE_DOWNLOAD_DIR);
-		return System.IO.Path.Combine(nativeBundleDir, versionFile);
-	}
 
 	public System.Version GameVersion { get;set; }
 	public System.Version NewestVersion { get;set; }

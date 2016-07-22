@@ -14,12 +14,15 @@ using UniRx;
 /// <summary>
 /// 用来从AssetBundle中加载资源，处理bundle间依赖关系
 /// </summary>
-public class BundleResourceLoader : IBundleResourceLoader
+public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 {
 	private bool isInitialized = false;
 	private AssetBundleManifest Manifest {get;set;}
 	public IEnumerator InitializeAsync()
 	{
+		if (isInitialized)
+			throw new System.InvalidOperationException ("already initialized");
+
 		m_assetBundleImages = new Dictionary<string, AssetBundleImage>();
 		
 		var platformName = BundleUtility.GetPlatformName();
@@ -83,7 +86,7 @@ public class BundleResourceLoader : IBundleResourceLoader
 
 		image.DecreaseReferenceCount();
 
-		asset;
+		return asset;
 	}
 
 	public void LoadAsync<T>(string bundleName, string assetName, System.Action<T> onComplete) where T : UnityEngine.Object
@@ -167,6 +170,12 @@ public class BundleResourceLoader : IBundleResourceLoader
 		yield return null;
 
 		image.DecreaseReferenceCount();
+	}
+
+	public void Dispose()	
+	{
+		if (Manifest != null)
+			Resources.UnloadAsset (Manifest);
 	}
 }
 
