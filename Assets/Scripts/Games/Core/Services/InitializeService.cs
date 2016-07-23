@@ -9,6 +9,8 @@ public class InitializeService : SystemServiceMonoBehavior {
     {   
 		yield return base.SetupAsync ();
 
+		Debug.Log ("~~~ setup Initialize Service");
+
 		// yield return StartCoroutine(AssetBundles.AssetBundleManager.Initialize());
 
 		var bundleResourceLoader = new BundleResourceLoader();

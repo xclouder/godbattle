@@ -14,12 +14,15 @@ using UniRx;
 /// <summary>
 /// 用来从AssetBundle中加载资源，处理bundle间依赖关系
 /// </summary>
-public class BundleResourceLoader : IBundleResourceLoader
+public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 {
 	private bool isInitialized = false;
 	private AssetBundleManifest Manifest {get;set;}
 	public IEnumerator InitializeAsync()
 	{
+		if (isInitialized)
+			throw new System.InvalidOperationException ("already initialized");
+
 		m_assetBundleImages = new Dictionary<string, AssetBundleImage>();
 		
 		var platformName = BundleUtility.GetPlatformName();
@@ -62,6 +65,29 @@ public class BundleResourceLoader : IBundleResourceLoader
 	public string ManifestFileName { get;set; }
     public string BundleRootDirectory { get;set; }
 	public string SecondaryBundleRootDirectory {get;set;}
+
+	public T Load<T>(string bundleName, string assetName) where T : UnityEngine.Object
+	{
+		AssetBundleImage image = null;
+		if (!m_assetBundleImages.ContainsKey(bundleName))
+		{
+			image = CreateAssetBundleImage(bundleName);
+		}
+
+		image.IncreaseReferenceCount();
+
+		if (image.State == AssetBundleImage.ImageState.Unloaded)
+		{
+			image.Load ();
+		}
+
+		//image loaded
+		var asset = image.LoadAsset<T>(assetName);
+
+		image.DecreaseReferenceCount();
+
+		return asset;
+	}
 
 	public void LoadAsync<T>(string bundleName, string assetName, System.Action<T> onComplete) where T : UnityEngine.Object
 	{
@@ -144,6 +170,12 @@ public class BundleResourceLoader : IBundleResourceLoader
 		yield return null;
 
 		image.DecreaseReferenceCount();
+	}
+
+	public void Dispose()	
+	{
+		if (Manifest != null)
+			Resources.UnloadAsset (Manifest);
 	}
 }
 

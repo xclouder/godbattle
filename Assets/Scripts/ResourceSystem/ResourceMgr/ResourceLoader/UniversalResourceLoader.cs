@@ -33,6 +33,23 @@ public class UniversalResourceLoader : IResourceLoader
 		ResourceLoader = new ResourceLoader();
 	}
 
+	public T Load<T>(string name) where T : UnityEngine.Object
+	{
+		string bundleName = null;
+		string assetName = null;
+
+		bool isBundleAsset = resourceProtocol.GetResourceDetail(name, out bundleName, out assetName);
+
+		if (isBundleAsset)
+		{
+			return BundleResourceLoader.Load<T>(bundleName, assetName);
+		}
+		else
+		{
+			return ResourceLoader.Load<T>(assetName);
+		}
+	}
+
 	public void LoadAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
 	{
 		string bundleName = null;

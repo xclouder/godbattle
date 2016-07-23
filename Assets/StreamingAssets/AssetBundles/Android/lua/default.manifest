@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2967745044
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 53e301833fc16608b45b4e9db960f92f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/lua/default/thanks.txt
+- Assets/AssetBundles/lua/default/hello.txt
+Dependencies: []

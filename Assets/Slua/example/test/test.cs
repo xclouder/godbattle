@@ -846,7 +846,7 @@ public class test : MonoBehaviour {
 		*/
 		public void GarbageCollection()
 		{
-			ObjectCache oc = ObjectCache.get(lua.L);
+			SLua.ObjectCache oc = SLua.ObjectCache.get(lua.L);
 			Dictionary<object, int> objMap = (Dictionary<object, int>)oc.GetType ()
 				.GetField ("objMap", BindingFlags.Instance| BindingFlags.NonPublic).GetValue(oc);
 			Assert.True(objMap != null);

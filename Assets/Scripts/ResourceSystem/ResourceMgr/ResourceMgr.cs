@@ -36,7 +36,8 @@ public class ResourceMgr
 			return _resourceCache.Get(name) as T;
 		else {
 			Debug.LogWarning ("res:'" + name + "' not cached, now Load it synchronously.");
-			return Resources.Load<T> (name);
+			var asset = _resourceLoader.Load<T> (name);
+			return asset;
 		}
 	}
 

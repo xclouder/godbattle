@@ -28,6 +28,8 @@ public class GameUpdateService : SystemServiceMonoBehavior
 	public static string ASSET_VERSION_KEY = "__local_asset_version";
 	public override IEnumerator SetupAsync()
 	{
+		Debug.Log ("~~~ setup GameUpdate Service");
+
 		var nativeAssetVersion = GetNativeAssetVersion();
 		var dynamicAssetVersion = GetDynamicAssetVersion();
 		Debug.Log("native asset version:" + nativeAssetVersion);
@@ -82,17 +84,14 @@ public class GameUpdateService : SystemServiceMonoBehavior
 
 	private System.Version GetNativeAssetVersion()
 	{
-		try 
-		{
-			var strNativeVer = System.IO.File.ReadAllText(GetNativeAssetVersionFilePath());
-			return new System.Version(strNativeVer);
-		}
-		catch(System.Exception e)
-		{
-			Debug.LogException(e);
-			return new System.Version(0,0,0,0);
-		}
+
+		//Can I use ResourceMgr here?
+		var asset = Resources.Load<TextAsset>(versionFile.Replace(".txt", string.Empty));
+		var strNativeVer = asset.text;
+		return new System.Version(strNativeVer);
+
 	}
+
 	private System.Version GetDynamicAssetVersion()
 	{
 		string verStr = PlayerPrefs.GetString(ASSET_VERSION_KEY);
@@ -107,11 +106,6 @@ public class GameUpdateService : SystemServiceMonoBehavior
 	}
 
 	private static string ASSET_BUNDLE_DOWNLOAD_DIR = "AssetBundles";
-	private string GetNativeAssetVersionFilePath()
-	{
-		var nativeBundleDir = System.IO.Path.Combine(Application.streamingAssetsPath, ASSET_BUNDLE_DOWNLOAD_DIR);
-		return System.IO.Path.Combine(nativeBundleDir, versionFile);
-	}
 
 	public System.Version GameVersion { get;set; }
 	public System.Version NewestVersion { get;set; }
@@ -287,10 +281,8 @@ public class GameUpdateService : SystemServiceMonoBehavior
         return result.ToArray();
     }
 
-	private string versionFile = "asset_version.txt";
-	private string updateURL = "http://localhost:80/";
-	
-	public string UpdateURL {get { return updateURL; } set {updateURL = value;}}
+	public string versionFile = "asset_version.txt";
+	public string updateURL = "http://localhost:8080/";
 
 	#if UNITY_EDITOR
 	[MenuItem("Assets/AssetBundles/Clean Cached AssetBundles")]
