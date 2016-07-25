@@ -37,7 +37,6 @@ public class LuaService : SystemServiceMonoBehavior
 
 	}
 
-
 	private byte[] LoadLuaFile(string name)
 	{
 		var path = name.IndexOf('/') < 0 ? "AssetBundles/lua/default/" + name : "AssetBundles/lua/" + name; 
@@ -49,5 +48,21 @@ public class LuaService : SystemServiceMonoBehavior
 	public object RunFile(string name)
 	{
 		return l.start (name);
+	}
+
+	public object CallFunction(string funcName, params object[] args)
+	{
+		LuaFunction func = l.luaState.getFunction(funcName);
+
+		if (func != null) {
+			return func.call(args);
+		}
+
+		return null;
+	}
+
+	public object RunString(string code)
+	{
+		return l.luaState.doString(code);
 	}
 }

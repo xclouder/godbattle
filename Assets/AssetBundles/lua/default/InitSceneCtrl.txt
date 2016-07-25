@@ -1,0 +1,6 @@
+SceneController = Class.Create({
+					ctor = function (self, ... )
+                        print('SceneController construct')
+                    end
+                    });
+

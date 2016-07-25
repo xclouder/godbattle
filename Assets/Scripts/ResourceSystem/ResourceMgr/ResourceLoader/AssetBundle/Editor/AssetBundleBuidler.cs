@@ -16,6 +16,7 @@ using System.IO;
 /// </summary>
 public class AssetBundleBuidler
 {
+    const string kSimulationModeMenu = "Assets/AssetBundles/Simulation Mode";
     
     [MenuItem ("Assets/AssetBundles/Build for Current Platform")]
 	public static void BuildForCurrentPlatform()
@@ -28,6 +29,20 @@ public class AssetBundleBuidler
     {
         BuildForPlatform(BuildTarget.iOS);
         BuildForPlatform(BuildTarget.Android);
+    }
+
+    [MenuItem(kSimulationModeMenu, false, 100)]
+    public static void ToggleSimulationMode ()
+    {
+        UniversalResourceLoader.IsSimulateMode = ! UniversalResourceLoader.IsSimulateMode;
+    }
+
+    [MenuItem(kSimulationModeMenu, true, 100)]
+    public static bool ToggleSimulationModeValidate ()
+    {
+        Menu.SetChecked(kSimulationModeMenu, UniversalResourceLoader.IsSimulateMode);
+
+        return true;
     }
 
     private static void BuildForPlatform(BuildTarget target)
