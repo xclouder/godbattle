@@ -7,9 +7,12 @@ local this = LoginSceneController;
 
 --启动事件--
 function LoginSceneController.KernelLoaded()
-	local o = GameObject("Created From Lua")
+	local usernameInputObj = GameObject.Find("Canvas/LoginPanel/Container/Passport/InputField");
+	print("username obj name:"..usernameInputObj.name)
 
-	local cube = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube)
+	local input = usernameInputObj:GetComponent("InputField");
+	print("username:"..input.text)
+
 end
 
 function LoginSceneController.SceneLoaded()
