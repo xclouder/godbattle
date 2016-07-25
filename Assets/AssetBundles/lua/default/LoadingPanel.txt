@@ -1,3 +1,4 @@
+import "UnityEngine"
 print("LoadingPanel loaded in lua")
 
 LoadingPanel = {}
@@ -6,11 +7,17 @@ local this = LoadingPanel;
 
 --启动事件--
 function LoadingPanel.KernelLoaded()
-	
+	local o = GameObject("Created From Lua")
+
 	print("KernelLoaded lua--->>".."LoadingPanel");
+
+	-- local cube = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube)
+
+	local pos = Vector3(10,10,10)+Vector3(1,1,1)
+	-- print("pos:" .. pos)
 end
 
 function LoadingPanel.Update()
 	
-	print("Update lua--->>".."LoadingPanel");
+	-- print("Update lua--->>".."LoadingPanel");
 end

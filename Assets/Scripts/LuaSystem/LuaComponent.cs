@@ -22,10 +22,14 @@ public class LuaComponent : uFrameComponent
 			luaScript = name;
 	}
 
+	protected void RequireLuaScript(string scriptName)
+	{
+		luaService.RunString("require(\"" + luaScript + "\")");
+	}
+
 	virtual protected void BindLuaScript(string scriptName)
 	{
-		//TODO require File scriptName
-		luaService.RunString("require(\"" + luaScript + "\")");
+		RequireLuaScript(scriptName);
 	}
 
 	public override void KernelLoaded ()

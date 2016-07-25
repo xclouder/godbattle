@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -145,6 +145,20 @@ public class Lua_UnityEngine_Application : LuaObject {
 			UnityEngine.Application.ExternalCall(a1,a2);
 			pushValue(l,true);
 			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int RequestAdvertisingIdentifierAsync_s(IntPtr l) {
+		try {
+			UnityEngine.Application.AdvertisingIdentifierCallback a1;
+			LuaDelegation.checkDelegate(l,1,out a1);
+			var ret=UnityEngine.Application.RequestAdvertisingIdentifierAsync(a1);
+			pushValue(l,true);
+			pushValue(l,ret);
+			return 2;
 		}
 		catch(Exception e) {
 			return error(l,e);
@@ -604,6 +618,7 @@ public class Lua_UnityEngine_Application : LuaObject {
 		addMember(l,CaptureScreenshot_s);
 		addMember(l,HasProLicense_s);
 		addMember(l,ExternalCall_s);
+		addMember(l,RequestAdvertisingIdentifierAsync_s);
 		addMember(l,OpenURL_s);
 		addMember(l,RequestUserAuthorization_s);
 		addMember(l,HasUserAuthorization_s);

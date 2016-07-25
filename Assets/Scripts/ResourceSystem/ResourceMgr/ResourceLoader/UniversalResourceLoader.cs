@@ -9,6 +9,10 @@
 using UnityEngine;
 using System.Collections;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /// <summary>
 /// 统一资源加载器，支持Resources、Bundles的资源加载。
 /// 接口上不必明确区分是否为Bundle资源，通过资源名name进行识别该从哪里加载。
@@ -24,7 +28,7 @@ public class UniversalResourceLoader : IResourceLoader
 	public IBundleResourceLoader BundleResourceLoader {get;set;}
 	public IResourceLoader ResourceLoader {get;set;}
 
-	private ResourceProtocol resourceProtocol = new DefaultResourceProtocol(); 
+	private ResourceProtocol resourceProtocol = new DefaultResourceProtocol();
 	public ResourceProtocol ResourceProtocol { get;set; }
 
 	public UniversalResourceLoader()
@@ -42,12 +46,25 @@ public class UniversalResourceLoader : IResourceLoader
 
 		if (isBundleAsset)
 		{
-			return BundleResourceLoader.Load<T>(bundleName, assetName);
+			return GetBundleResourceLoader().Load<T>(bundleName, assetName);
 		}
 		else
 		{
 			return ResourceLoader.Load<T>(assetName);
 		}
+	}
+
+	private IBundleResourceLoader m_simulateLoader = new BundleResourceSimulateLoader(); 
+	private IBundleResourceLoader GetBundleResourceLoader()
+	{
+		#if UNITY_EDITOR
+		if (IsSimulateMode)
+		{
+			return m_simulateLoader;
+		}
+		#endif
+
+		return BundleResourceLoader;
 	}
 
 	public void LoadAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
@@ -59,13 +76,23 @@ public class UniversalResourceLoader : IResourceLoader
 
 		if (isBundleAsset)
 		{
-			BundleResourceLoader.LoadAsync(bundleName, assetName, onComplete);
+			GetBundleResourceLoader().LoadAsync(bundleName, assetName, onComplete);
 		}
 		else
 		{
 			ResourceLoader.LoadAsync(assetName, onComplete);
 		}
 	}
+
+	#if UNITY_EDITOR
+	const string kSimulateModeFlag = "is_asset_bundle_use_simulate_mode";
+	public static bool IsSimulateMode
+	{
+		get { return EditorPrefs.GetBool(kSimulateModeFlag, false); }
+		set { EditorPrefs.SetBool(kSimulateModeFlag, value); }
+	}
+
+	#endif
 }
 
 public abstract class ResourceProtocol
@@ -103,4 +130,5 @@ public class DefaultResourceProtocol : ResourceProtocol
 		bundleName = left.Substring(0, index);
 		return true;
 	}
+
 }

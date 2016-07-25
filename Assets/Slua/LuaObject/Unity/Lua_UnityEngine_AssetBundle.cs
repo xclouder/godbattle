@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -278,6 +278,18 @@ public class Lua_UnityEngine_AssetBundle : LuaObject {
 				pushValue(l,ret);
 				return 2;
 			}
+			else if(argc==3){
+				System.String a1;
+				checkType(l,1,out a1);
+				System.UInt32 a2;
+				checkType(l,2,out a2);
+				System.UInt64 a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.AssetBundle.LoadFromFileAsync(a1,a2,a3);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
 			pushValue(l,false);
 			LuaDLL.lua_pushstring(l,"No matched override function to call");
 			return 2;
@@ -304,6 +316,18 @@ public class Lua_UnityEngine_AssetBundle : LuaObject {
 				System.UInt32 a2;
 				checkType(l,2,out a2);
 				var ret=UnityEngine.AssetBundle.LoadFromFile(a1,a2);
+				pushValue(l,true);
+				pushValue(l,ret);
+				return 2;
+			}
+			else if(argc==3){
+				System.String a1;
+				checkType(l,1,out a1);
+				System.UInt32 a2;
+				checkType(l,2,out a2);
+				System.UInt64 a3;
+				checkType(l,3,out a3);
+				var ret=UnityEngine.AssetBundle.LoadFromFile(a1,a2,a3);
 				pushValue(l,true);
 				pushValue(l,ret);
 				return 2;
