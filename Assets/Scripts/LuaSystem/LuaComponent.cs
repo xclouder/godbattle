@@ -68,7 +68,7 @@ public class LuaComponent : uFrameComponent
 	{
 		Debug.Assert (luaService != null);
 		
-		var funcString = name + "." + methodName; 
+		var funcString = name + "." + methodName;
 		return luaService.CallFunction(funcString, args);
 	}
 }

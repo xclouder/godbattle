@@ -21,7 +21,7 @@ public class BundleResourceSimulateLoader : IBundleResourceLoader
 
 	public T Load<T>(string bundleName, string assetName) where T : UnityEngine.Object
 	{
-		Debug.Log ("load in simulate mode => bundle:" + bundleName + ", asset:" + assetName);
+		Debug.Log ("[Simulate Load] bundle:" + bundleName + ", asset:" + assetName);
 
 		return _Get<T>(bundleName, assetName);
 	}

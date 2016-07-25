@@ -1,0 +1,19 @@
+import "UnityEngine"
+print("Login Scene Controller")
+
+LoginSceneController = {}
+
+local this = LoginSceneController;
+
+--启动事件--
+function LoginSceneController.KernelLoaded()
+	local o = GameObject("Created From Lua")
+
+	local cube = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube)
+end
+
+function LoginSceneController.SceneLoaded()
+	
+	print("SceneLoaded lua--->>".."LoadingPanel");
+
+end
