@@ -14,6 +14,20 @@ public class LuaComponent : uFrameComponent
 {
 	private LuaService luaService;
 
+	public string luaScript = null;
+
+	virtual protected void Awake()
+	{
+		if (string.IsNullOrEmpty(luaScript))
+			luaScript = name;
+	}
+
+	virtual protected void BindLuaScript(string scriptName)
+	{
+		//TODO require File scriptName
+		luaService.RunString("require(\"" + luaScript + "\")");
+	}
+
 	public override void KernelLoaded ()
 	{
 		base.KernelLoaded ();
@@ -22,12 +36,35 @@ public class LuaComponent : uFrameComponent
 
 		if (luaService == null)
 			throw new System.Exception ("No Lua Service found!");
+
+		BindLuaScript(name);
+
+		CallLuaMethod("KernelLoaded");
 	}
 
-	public object RunFile(string name)
+	virtual protected void Update()
+	{
+		if (uFrameKernel.IsKernelLoaded)
+			CallLuaMethod("Update");
+	}
+
+	override protected void OnDestroy()
+	{
+		base.OnDestroy();
+
+		CallLuaMethod("OnDestroy");
+	}
+
+	public LuaService GetLuaService()
+	{
+		return luaService;
+	}
+
+	protected object CallLuaMethod(string methodName, params object[] args)
 	{
 		Debug.Assert (luaService != null);
-
-		return luaService.RunFile (name);
+		
+		var funcString = name + "." + methodName; 
+		return luaService.CallFunction(funcString, args);
 	}
 }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2967745044
+CRC: 1320358269
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 53e301833fc16608b45b4e9db960f92f
+    Hash: 5adc28229d9f8a63b2eef2bfdc417d80
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,6 +12,7 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
+- Assets/AssetBundles/lua/default/LoadingPanel.txt
 - Assets/AssetBundles/lua/default/thanks.txt
 - Assets/AssetBundles/lua/default/hello.txt
 Dependencies: []

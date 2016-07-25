@@ -1,0 +1,16 @@
+print("LoadingPanel loaded in lua")
+
+LoadingPanel = {}
+
+local this = LoadingPanel;
+
+--启动事件--
+function LoadingPanel.KernelLoaded()
+	
+	print("KernelLoaded lua--->>".."LoadingPanel");
+end
+
+function LoadingPanel.Update()
+	
+	print("Update lua--->>".."LoadingPanel");
+end
