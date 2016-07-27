@@ -47,11 +47,14 @@ public class InitSceneController : SceneController
 			}, 
 			(updateErr) =>{
 				Debug.LogError("update error:" + updateErr.Message);
+
+					tipLabel.text = "更新失败：" + updateErr.Message;
 			}
 			));
 		}, 
 		(err) => {
 			Debug.LogError("check update error:" + err.Message);
+			tipLabel.text = "更新检测失败";
 		}));
 	}
 
@@ -70,7 +73,7 @@ public class InitSceneController : SceneController
 
 			Publish(new LoadSceneCommand() {
 
-				SceneName = "MainScene"
+				SceneName = "LoginScene"
 
 			});
 

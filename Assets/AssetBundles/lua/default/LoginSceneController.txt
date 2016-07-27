@@ -7,11 +7,13 @@ local this = LoginSceneController;
 
 --启动事件--
 function LoginSceneController.KernelLoaded()
-	local usernameInputObj = GameObject.Find("Canvas/LoginPanel/Container/Passport/InputField");
-	print("username obj name:"..usernameInputObj.name)
+	this.usernameInputObj = GameObject.Find("Canvas/LoginPanel/Container/Passport/InputField")
+	this.usernameInput = usernameInputObj:GetComponent("InputField")
 
-	local input = usernameInputObj:GetComponent("InputField");
-	print("username:"..input.text)
+	this.passwordInputObj = GameObject.Find("Canvas/LoginPanel/Container/Password/InputField")
+	this.passwordInput = passwordInputObj:GetComponent("InputField")
+
+	
 
 end
 
