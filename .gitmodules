@@ -1,3 +1,9 @@
 [submodule "Assets/SdkManager"]
 	path = Assets/SdkManager
 	url = https://github.com/xclouder/SdkManager.git
+[submodule "Assets/Plugins/STTool"]
+	path = Assets/Plugins/STTool
+	url = https://github.com/xclouder/STTool.git
+[submodule "Assets/Plugins/xClouderSearch"]
+	path = Assets/Plugins/xClouderSearch
+	url = https://github.com/xclouder/xcloudersearch.git
