@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using uFrame.Kernel;
+using SLua;
 
+[CustomLuaClass]
 public class LuaSceneController : SceneController {
 
 	private LuaScriptBinder luaBinder;
@@ -15,13 +17,18 @@ public class LuaSceneController : SceneController {
 		luaBinder = new LuaScriptBinder(luaScript);
 		luaBinder.Bind();
 
-		luaBinder.CallMethod("KernelLoaded");
+		luaBinder.CallMethod("KernelLoaded", this);
 	}
 
 	protected override void SceneLoaded() {
 
 		luaBinder.CallMethod("SceneLoaded");
 
+	}
+
+	public void PublishEvent(object eventMsg)
+	{
+		Publish(eventMsg);
 	}
 
 }

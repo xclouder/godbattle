@@ -1,19 +1,54 @@
 import "UnityEngine"
-print("Login Scene Controller")
 
 LoginSceneController = {}
 
 local this = LoginSceneController;
 
 --启动事件--
-function LoginSceneController.KernelLoaded()
+function LoginSceneController.KernelLoaded(luaComponent)
+	this.luaComponent = luaComponent
+
 	this.usernameInputObj = GameObject.Find("Canvas/LoginPanel/Container/Passport/InputField")
-	this.usernameInput = usernameInputObj:GetComponent("InputField")
+	this.usernameInput = this.usernameInputObj:GetComponent("InputField")
 
 	this.passwordInputObj = GameObject.Find("Canvas/LoginPanel/Container/Password/InputField")
-	this.passwordInput = passwordInputObj:GetComponent("InputField")
+	this.passwordInput = this.passwordInputObj:GetComponent("InputField")
 
-	
+	this.loginBtnObj = GameObject.Find("Canvas/LoginPanel/Container/LoginBtn")
+	this.loginBtn = this.loginBtnObj:GetComponent("Button")
+
+	this.loadingTextObj = GameObject.Find("Canvas/LoginPanel/Container/LoadingText")
+	this.loadingText = this.loadingTextObj:GetComponent("Text")
+
+	local c_login = coroutine.create(function(user,pwd,cb)
+
+		Yield(WaitForSeconds(1))
+
+		print("login success:user"..user..",pwd:"..pwd)
+		cb(true)
+
+	end)
+
+
+	this.loginBtn.onClick:AddListener(function()
+		--print("usrname:"..this.usernameInput.text..",password:"..this.passwordInput.text)
+
+		local user = this.usernameInput.text
+		local pwd = this.passwordInput.text
+
+		this.loadingTextObj:SetActive(true)
+		this.loadingText.text = "login..."
+
+		coroutine.resume(c_login, user, pwd, function()
+			this.loadingText.text = "login success"
+
+			--jump to main scene
+			local switchCmd = SwitchSceneCommand()
+			switchCmd.FromSceneName = "LoginScene"
+			switchCmd.ToSceneName = "MainScene"
+			this.luaComponent:PublishEvent(switchCmd)
+		end)
+	end)
 
 end
 

@@ -15,6 +15,8 @@ namespace SLua {
 				Lua_XXList.reg,
 				Lua_AbsClass.reg,
 				Lua_HelloWorld.reg,
+				Lua_SwitchSceneCommand.reg,
+				Lua_LuaSceneController.reg,
 				Lua_System_Collections_Generic_Dictionary_2_int_string.reg,
 				Lua_System_String.reg,
 			};
