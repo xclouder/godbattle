@@ -71,9 +71,10 @@ public class InitSceneController : SceneController
 
 		Observable.Timer(new System.TimeSpan(1000L)).Subscribe(_ => {
 
-			Publish(new LoadSceneCommand() {
+			Publish(new SwitchSceneCommand() {
 
-				SceneName = "LoginScene"
+				ToSceneName = "LoginScene",
+				FromSceneName = "InitScene"
 
 			});
 

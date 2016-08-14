@@ -282,7 +282,7 @@ public class GameUpdateService : SystemServiceMonoBehavior
     }
 
 	public string versionFile = "asset_version.txt";
-	public string updateURL = "http://localhost:8080/";
+	public string updateURL = "http://localhost:80/";
 
 	#if UNITY_EDITOR
 	[MenuItem("Assets/AssetBundles/Clean Cached AssetBundles")]
