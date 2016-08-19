@@ -1,0 +1,18 @@
+import "UnityEngine"
+
+ShopSceneController = {}
+
+local this = ShopSceneController;
+
+--启动事件--
+function ShopSceneController.KernelLoaded(luaComponent)
+	this.luaComponent = luaComponent
+
+	print("This is xClouder's Shop")
+end
+
+function ShopSceneController.SceneLoaded()
+	
+	print("SceneLoaded lua--->>".."ShopScene")
+
+end

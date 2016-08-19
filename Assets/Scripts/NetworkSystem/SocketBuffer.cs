@@ -56,6 +56,7 @@ public class SocketBuffer {
 			return false;
 		}
 
+
 		//copy data
 		int remainingSpace = 0;
 		if (ProducePosition >= ConsumePosition)
@@ -77,11 +78,8 @@ public class SocketBuffer {
 			Array.Copy(data, 0, m_buffer, ProducePosition, dataLen);
 		}
 
-		//TODO atomicity HERE
-		m_availableDataLen += dataLen;
-		ProducePosition += dataLen;
-		if (ProducePosition >= BufferSize)
-			ProducePosition -= BufferSize;
+
+		SetBytesProduced(dataLen);
 
 		return true;
 	}

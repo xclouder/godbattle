@@ -5,10 +5,13 @@ using uFrame.Kernel;
 public class NetworkService : SystemServiceMonoBehavior {
 
 	private NetworkInterface netInterface;
+	private PackageSender packageSender;
 
 	public override IEnumerator SetupAsync ()
 	{
 		netInterface = new NetworkInterface();
+		packageSender = new PackageSender();
+
 
 		netInterface.ConnectTo("127.0.0.1", 50001);
 
@@ -34,8 +37,8 @@ public class NetworkService : SystemServiceMonoBehavior {
 			yield return new WaitForSeconds(1f);
 
 			var t = Time.time.ToString();
-			Debug.Log("t:"+t);
-			ni.Send(System.Text.Encoding.ASCII.GetBytes(t));
+			var msg = new Message() { ID = 1, Content = t};
+			packageSender.Send(msg, ni);
 
 			ni.Process();
 		}

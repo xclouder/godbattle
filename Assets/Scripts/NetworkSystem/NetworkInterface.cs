@@ -12,6 +12,12 @@ public class NetworkInterface {
 	private SocketBuffer sendBuffer;
 	private SocketBuffer receiveBuffer;
 
+	public NetworkInterface()
+	{
+		sendBuffer = new SocketBuffer(20480);
+		receiveBuffer = new SocketBuffer(20480);
+	}
+
 	public enum ConnectionState
 	{
 		NotConnected,
@@ -22,6 +28,11 @@ public class NetworkInterface {
 	public ConnectionState State 
 	{
 		get; private set;
+	}
+
+	public bool IsValid
+	{
+		get  { return socket != null && socket.Connected; }
 	}
 
 	public void ConnectTo(string ip, int port)
@@ -60,9 +71,10 @@ public class NetworkInterface {
 		socket.ConnectAsync(connectEA);
 	}
 
+
+	//TODO 断线重连的情况
 	public void Send(byte[] data)
 	{
-		sendBuffer = sendBuffer ?? new SocketBuffer(2048);
 
 		var succ = sendBuffer.AddData(data);
 		if (!succ)
@@ -125,12 +137,9 @@ public class NetworkInterface {
 
 	public void StartReceive()
 	{
-		UnityEngine.Debug.Log("startReceive");
 		receiveEA = receiveEA ?? CreateSAEA(new EventHandler<SocketAsyncEventArgs>(OnReceiveComplete));
-		receiveBuffer = receiveBuffer ?? new SocketBuffer(64);
 		var raw = receiveBuffer.RawBuffer;
 
-		//TODO availableSpace not enough, we need space to the array end.
 		receiveEA.SetBuffer(raw, receiveBuffer.ProducePosition, receiveBuffer.RawAvailableSpace);
 
 		var isSucc = socket.ReceiveAsync(receiveEA);
@@ -144,7 +153,7 @@ public class NetworkInterface {
 	{
 		if (e.SocketError == SocketError.Success)
 		{
-			UnityEngine.Debug.LogError("receive complete success: transfered:" + e.BytesTransferred);
+			UnityEngine.Debug.Log("receive complete success: transfered:" + e.BytesTransferred);
 			receiveBuffer.SetBytesProduced(e.BytesTransferred);
 
 			if (receiveBuffer.AvailableSpace > 0)
@@ -166,6 +175,11 @@ public class NetworkInterface {
 	internal class AsyncUserToken
 	{
 
+	}
+
+	~NetworkInterface()
+	{
+		socket.Close();
 	}
 
 }
