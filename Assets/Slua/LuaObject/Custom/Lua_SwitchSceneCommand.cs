@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -95,11 +95,65 @@ public class Lua_SwitchSceneCommand : LuaObject {
 			return error(l,e);
 		}
 	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int get_Settings(IntPtr l) {
+		try {
+			SwitchSceneCommand self=(SwitchSceneCommand)checkSelf(l);
+			pushValue(l,true);
+			pushValue(l,self.Settings);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int set_Settings(IntPtr l) {
+		try {
+			SwitchSceneCommand self=(SwitchSceneCommand)checkSelf(l);
+			uFrame.Kernel.ISceneSettings v;
+			checkType(l,2,out v);
+			self.Settings=v;
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int get_RestrictToSingleScene(IntPtr l) {
+		try {
+			SwitchSceneCommand self=(SwitchSceneCommand)checkSelf(l);
+			pushValue(l,true);
+			pushValue(l,self.RestrictToSingleScene);
+			return 2;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int set_RestrictToSingleScene(IntPtr l) {
+		try {
+			SwitchSceneCommand self=(SwitchSceneCommand)checkSelf(l);
+			bool v;
+			checkType(l,2,out v);
+			self.RestrictToSingleScene=v;
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"SwitchSceneCommand");
 		addMember(l,"FromSceneName",get_FromSceneName,set_FromSceneName,true);
 		addMember(l,"ToSceneName",get_ToSceneName,set_ToSceneName,true);
 		addMember(l,"TranslateEffectName",get_TranslateEffectName,set_TranslateEffectName,true);
-		createTypeMetatable(l,constructor, typeof(SwitchSceneCommand),typeof(uFrame.Kernel.LoadSceneCommand));
+		addMember(l,"Settings",get_Settings,set_Settings,true);
+		addMember(l,"RestrictToSingleScene",get_RestrictToSingleScene,set_RestrictToSingleScene,true);
+		createTypeMetatable(l,constructor, typeof(SwitchSceneCommand));
 	}
 }
