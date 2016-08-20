@@ -6,16 +6,18 @@ public class LuaScriptBinder {
 
 	private LuaService luaService;
 	private string LuaScript {get;set;}
+	private string ModuleName {get;set;}
 
 	public LuaScriptBinder(string script)
 	{
 		luaService = uFrameKernel.Container.Resolve<LuaService>();
 		LuaScript = script;
+		ModuleName = GetModuleName(LuaScript);
 	}
 
 	protected void RequireLuaScript(string scriptName)
 	{
-		var o = luaService.RunString("require(\"" + LuaScript + "\")");
+		luaService.RunString("require(\"" + LuaScript + "\")");
 		//TODO get module name from o
 	}
 
@@ -31,6 +33,15 @@ public class LuaScriptBinder {
 
 	private string GetFuncName(string methodName)
 	{
-		return LuaScript + "." + methodName;
+		return ModuleName + "." + methodName;
+	}
+
+	private string GetModuleName(string scriptName)
+	{
+		var index = scriptName.LastIndexOf('/');
+		if (index < 0)
+			return scriptName;
+
+		return scriptName.Substring(index + 1);
 	}
 }

@@ -1,0 +1,73 @@
+import "UnityEngine"
+
+ShopSceneController = {}
+
+local this = ShopSceneController;
+
+--启动事件--
+function ShopSceneController.KernelLoaded(luaComponent)
+	this.luaComponent = luaComponent
+
+	local gridParentObj = GameObject.Find("/_ShopScene/Canvas/ShopPanel/Scroll View/Viewport/Content")
+	local gridParentTr = gridParentObj.transform
+
+	LuaResourceMgr.GetObjectAsync("AssetBundles/config/shop_data", function(textAsset)
+
+		local t = textAsset.text
+
+		local arr = split(t, "|")
+		local len = table.getn(arr)
+
+		LuaResourceMgr.GetObjectAsync("AssetBundles/shop/item", function(itemPrefab)
+			
+			for i = 1, len, 1 do
+				local rec = arr[i]
+				local itemObj = GameObject.Instantiate(itemPrefab)
+
+				local data = split(rec, ",")
+				local id = data[1]
+				local name = data[2]
+				local price = data[3]
+
+				local tr = itemObj.transform
+				tr:SetParent(gridParentTr)
+				tr.localScale = Vector3.one
+				tr.localPosition = Vector3.zero
+
+				local desObj = tr:Find("Des").gameObject
+				local desText = desObj:GetComponent("Text")
+				desText.text = name
+
+				local btnObj = tr:Find("Icon").gameObject
+				local btn = btnObj:GetComponent("Button")
+				btn.onClick:AddListener(function()
+					print("clicked item id:"..id)
+				end)
+
+			end
+				
+		end)
+
+
+
+	end)
+end
+
+function ShopSceneController.SceneLoaded()
+	
+	print("SceneLoaded lua--->>".."ShopScene")
+
+end
+
+
+function split(inputstr, sep)
+        if sep == nil then
+			sep = "%s"
+        end
+        local t={} ; i=1
+        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+                t[i] = str
+                i = i + 1
+        end
+        return t
+end
