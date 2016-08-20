@@ -33,6 +33,10 @@ public class LuaService : SystemServiceMonoBehavior
 		while (!_isLoaded)
 			yield return null;
 
+
+		//Init lua libs
+		RunString("require \"core/Init\"");
+
 		Debug.Log ("Lua Service setup completed.");
 
 	}

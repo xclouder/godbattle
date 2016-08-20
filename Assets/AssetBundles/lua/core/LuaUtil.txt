@@ -1,0 +1,18 @@
+﻿LuaUtil = {}
+function LuaUtil.AddComponent(gameObject, LuaComponentClass)
+	--LuaComponentClass.nativeComponentName = "LuaComponent"
+	local nativeComp = gameObject:AddComponent(LuaComponentClass.nativeComponentName)
+
+	local compInstance = LuaComponentClass.New()
+	compInstance.gameObject = gameObject
+	compInstance.nativeComponent = nativeComp
+
+	__componentBinding:Add(nativeComp, compInstance)
+
+
+	--Event listener bind
+	--OnDestroy handle
+
+end
+
+return LuaUtil

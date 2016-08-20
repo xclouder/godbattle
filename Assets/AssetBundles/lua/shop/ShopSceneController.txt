@@ -16,7 +16,7 @@ function ShopSceneController.KernelLoaded(luaComponent)
 		local t = textAsset.text
 
 		local arr = split(t, "|")
-		local len = table.getn(arr)
+		local len = #(arr)
 
 		LuaResourceMgr.GetObjectAsync("AssetBundles/shop/item", function(itemPrefab)
 			
