@@ -11,6 +11,7 @@ using System.Collections;
 using uFrame.Kernel;
 using SLua;
 
+[CustomLuaClass]
 public class LuaComponent : uFrameComponent
 {
 	private LuaService luaService;
