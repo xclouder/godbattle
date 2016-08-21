@@ -26,7 +26,8 @@ public class LuaComponent : uFrameComponent
 
 		InitIfNeeds();
 
-		CallLuaMethod("Awake", false, this, gameObject);
+		if (luaObj != null)
+			CallLuaMethod("Awake", false, this, gameObject);
 	}
 
 	public LuaTable GetLuaObject()
@@ -42,7 +43,7 @@ public class LuaComponent : uFrameComponent
 
 	private void InitIfNeeds()
 	{
-		if (luaScriptBinder != null)
+		if (luaObj != null)
 			return;
 
 		luaObj = BindLuaScript(luaScript);
