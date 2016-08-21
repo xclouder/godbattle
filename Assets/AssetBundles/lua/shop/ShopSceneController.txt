@@ -34,22 +34,19 @@ function ShopSceneController:KernelLoaded(luaComponent)
 				local name = data[2]
 				local price = data[3]
 
-				local luaObj = GetLuaObj(itemObj)
+				local itemLuaComp = GetLuaObj(itemObj)
 
 				local tr = itemObj.transform
 				tr:SetParent(gridParentTr)
 				tr.localScale = Vector3.one
 				tr.localPosition = Vector3.zero
 
-				local desObj = tr:Find("Des").gameObject
-				local desText = desObj:GetComponent("Text")
-				desText.text = name
+				local model = {}
+				model.id = id
+				model.name = name
+				model.price = price
 
-				local btnObj = tr:Find("Icon").gameObject
-				local btn = btnObj:GetComponent("Button")
-				btn.onClick:AddListener(function()
-					print("clicked item id:"..id)
-				end)
+				itemLuaComp:Show(model)
 			end
 		end)
 	end)

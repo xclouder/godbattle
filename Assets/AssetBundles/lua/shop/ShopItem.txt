@@ -2,15 +2,24 @@ local oo = require "core/SimpleOO"
 
 local ShopItem = oo.Class.Create()
 
-function ShopItem:KernelLoaded(luaComponent)
-	
+function ShopItem:Awake(luaComponent, gameObject)
 	self.luaComponent = luaComponent
+	self.gameObject = gameObject
 
-	print("KernelLoaded")
+	local tr = gameObject.transform
+	local desObj = tr:Find("Des").gameObject
+	self.desText = desObj:GetComponent("Text")
 
-	local s = luaComponent:GetLuaObject()
-	print("type: "..type(s))
-	--print("obj hash:"..luaComponent:ToString())
+	local btnObj = tr:Find("Icon").gameObject
+	self.button = btnObj:GetComponent("Button")
+end
+
+function ShopItem:Show(model)
+
+	self.desText.text = model.name
+	self.button.onClick:AddListener(function()
+		print("clicked item id:"..id)
+	end)
 
 end
 

@@ -26,7 +26,7 @@ public class LuaComponent : uFrameComponent
 
 		InitIfNeeds();
 
-		CallLuaMethod("Awake");
+		CallLuaMethod("Awake", false, this, gameObject);
 	}
 
 	public LuaTable GetLuaObject()

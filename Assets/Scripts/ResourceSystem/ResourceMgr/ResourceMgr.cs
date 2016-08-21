@@ -42,9 +42,9 @@ public class ResourceMgr
 		}
 	}
 
-	public static UnityEngine.Object Get(string name)
+	public static Object Get(string name)
 	{
-		return Get<UnityEngine.Object>(name);
+		return Get<Object>(name);
 	}
 
 	public static void GetAsync<T>(string name, System.Action<T> onComplete) where T : Object
