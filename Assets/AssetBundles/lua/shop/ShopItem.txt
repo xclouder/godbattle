@@ -1,0 +1,16 @@
+local oo = require "core/CSharpOO"
+
+local ShopItem = {}
+ShopItem.__index = ShopItem
+
+function ShopItem.New
+
+function ShopItem:KernelLoaded(luaComponent)
+	
+	self.luaComponent = luaComponent
+
+	print("KernelLoaded")
+
+end
+
+return ShopItem

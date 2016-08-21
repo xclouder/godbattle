@@ -1,7 +1,15 @@
-import "UnityEngine"
-local oo = require "core/CSharpOO"
+--local oo = require "core/CSharpOO"
+--local ShopSceneController = oo.Class.Create({parentClass = oo.Object})
 
-local ShopSceneController = oo.Class.Create({parentClass = oo.Object})
+local ShopSceneController={}
+ShopSceneController.__index = ShopSceneController
+
+function ShopSceneController.New()
+	local ins = {}
+	setmetatable(ins, ShopSceneController)
+
+	return ins
+end
 
 function ShopSceneController:KernelLoaded(luaComponent)
 

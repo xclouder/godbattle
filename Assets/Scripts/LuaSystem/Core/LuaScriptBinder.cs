@@ -17,6 +17,7 @@ public class LuaScriptBinder {
 
 	public void Bind()
 	{
+//		var result = luaService.RunString("require \"" + LuaScript + "\"");
 		var result = luaService.RunFile(LuaScript);
 		Debug.Assert(result != null, "lua result is null");
 

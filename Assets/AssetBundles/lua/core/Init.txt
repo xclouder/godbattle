@@ -1,1 +1,2 @@
-﻿require "core/CSharpOO"
+﻿import("UnityEngine")
+require("core/CSharpOO")

@@ -860,7 +860,7 @@ end
 			object obj;
 			if (doBuffer(bytes, "temp buffer", out obj))
 				return obj;
-			return null; ;
+			return null;
 		}
 
 		public object doString(string str, string chunkname)
@@ -870,7 +870,7 @@ end
 			object obj;
 			if (doBuffer(bytes, chunkname, out obj))
 				return obj;
-			return null; ;
+			return null;
 		}
 
 		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

@@ -3,8 +3,8 @@ local luaoo = {}
 -- Class
 local __classes = {}
 
-local Class = {}
-Class.Create = function (options)
+local _Class = {}
+_Class.Create = function (options)
     local parentCls = options.parentClass or nil
 
     if (Object ~= nil and parentCls == nil) then
@@ -75,17 +75,17 @@ Class.Create = function (options)
 end
 
 -- create root class
-local Object = Class.Create({
+local _Object = _Class.Create({
                     ctor = function(self)
                     end
                       })
 
-function Object:ToString ()
+function _Object:ToString ()
     return 'object[' .. tostring(self) .. ']'
 end
 
 
-luaoo.Class = Class
-luaoo.Object = Object
+luaoo.Class = _Class
+luaoo.Object = _Object
 
 return luaoo
