@@ -5,17 +5,6 @@ local oo = require "core/SimpleOO"
 
 local ShopSceneController = oo.Class.Create()
 
---[[local ShopSceneController={}
-ShopSceneController.__index = ShopSceneController
-
-function ShopSceneController.New()
-	local ins = {}
-	setmetatable(ins, ShopSceneController)
-
-	return ins
-end
-]]
-
 function ShopSceneController:KernelLoaded(luaComponent)
 
 	self.luaComponent = luaComponent

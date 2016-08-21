@@ -56,13 +56,6 @@ public class LuaComponent : uFrameComponent
 			CallLuaMethod("Update");
 	}
 
-	override protected void OnDestroy()
-	{
-		base.OnDestroy();
-
-		CallLuaMethod("OnDestroy", false, this);
-	}
-
 	public LuaService GetLuaService()
 	{
 		return luaService;
