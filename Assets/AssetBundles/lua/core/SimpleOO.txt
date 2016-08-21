@@ -1,0 +1,29 @@
+﻿local oo = {}           -- 局部的变量
+
+local _Class = {}
+local _Object = {}
+
+function _Class.Create(name, parent)
+	local cls = {}
+	cls.__index = cls
+
+	cls.New = function()
+		local ins = {}
+		ins.GetClass = function(self)
+			return cls
+		end
+
+		setmetatable(ins, cls)
+
+		return ins
+	end
+
+	cls.parentClass = parent
+
+	return cls
+end
+
+oo.Class = _Class
+oo.Object = _Object
+
+return oo

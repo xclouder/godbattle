@@ -1,7 +1,11 @@
 --local oo = require "core/CSharpOO"
+local oo = require "core/SimpleOO"
+
 --local ShopSceneController = oo.Class.Create({parentClass = oo.Object})
 
-local ShopSceneController={}
+local ShopSceneController = oo.Class.Create()
+
+--[[local ShopSceneController={}
 ShopSceneController.__index = ShopSceneController
 
 function ShopSceneController.New()
@@ -10,6 +14,7 @@ function ShopSceneController.New()
 
 	return ins
 end
+]]
 
 function ShopSceneController:KernelLoaded(luaComponent)
 
