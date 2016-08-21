@@ -1,13 +1,6 @@
---local oo = require "core/CSharpOO"
 local oo = require "core/SimpleOO"
 
---local ShopSceneController = oo.Class.Create({parentClass = oo.Object})
-
 local ShopSceneController = oo.Class.Create()
-
-function ShopSceneController:GiveVal(val)
-	self.currVal = val
-end
 
 function ShopSceneController:KernelLoaded(luaComponent)
 
@@ -49,6 +42,18 @@ function ShopSceneController:KernelLoaded(luaComponent)
 				itemLuaComp:Show(model)
 			end
 		end)
+	end)
+
+	local backBtnObj = GameObject.Find("BackButton")
+	print(backBtnObj.name)
+	local backBtn = backBtnObj:GetComponent("Button")
+
+	backBtn.onClick:AddListener(function()
+		local evt = SwitchSceneCommand()
+		evt.FromSceneName = "ShopScene"
+		evt.ToSceneName = "InitScene"
+
+		luaComponent:PublishEvent(evt)
 	end)
 end
 

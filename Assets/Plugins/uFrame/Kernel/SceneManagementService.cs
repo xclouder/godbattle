@@ -133,7 +133,7 @@ namespace uFrame.Kernel
             //Else, means scene was the start scene (loaded before kernel)
             else
             {
-                sceneRoot.Name = SceneManager.GetActiveScene().name;//Application.loadedLevelName;
+                sceneRoot.Name = SceneManager.GetActiveScene().name;
             }
 
 
@@ -238,7 +238,7 @@ namespace uFrame.Kernel
             if (restrictToSingleScene &&
                 (LoadedScenes.Any(p => p.Name == name) || ScenesQueue.Any(p => p.Name == name) ||
                 SceneManager.GetSceneByName(name).isLoaded)) return;
-                 //Application.loadedLevelName == name)) return;
+
             this.QueueSceneLoad(name, settings);
             this.ExecuteLoad();
         }

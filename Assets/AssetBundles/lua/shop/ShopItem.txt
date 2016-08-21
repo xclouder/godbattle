@@ -18,7 +18,7 @@ function ShopItem:Show(model)
 
 	self.desText.text = model.name
 	self.button.onClick:AddListener(function()
-		print("clicked item id:"..id)
+		print("clicked item id:".. model.id)
 	end)
 
 end

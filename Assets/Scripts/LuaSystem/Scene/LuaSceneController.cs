@@ -17,7 +17,7 @@ public class LuaSceneController : SceneController {
 		luaBinder = new LuaScriptBinder(luaScript);
 		luaBinder.Bind();
 
-		luaBinder.CallMethod("KernelLoaded", this);
+		luaBinder.CallMethod("KernelLoaded", false, this, gameObject);
 	}
 
 	protected override void SceneLoaded() {
