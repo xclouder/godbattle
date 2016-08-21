@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using Object = UnityEngine.Object;
 
 public class ResourceMgr
 {
@@ -41,7 +42,12 @@ public class ResourceMgr
 		}
 	}
 
-	public static void GetAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
+	public static UnityEngine.Object Get(string name)
+	{
+		return Get<UnityEngine.Object>(name);
+	}
+
+	public static void GetAsync<T>(string name, System.Action<T> onComplete) where T : Object
 	{
 		T val = null;
 		if (_resourceCache.Contains (name))
@@ -57,13 +63,18 @@ public class ResourceMgr
 		
 	}
 
+	public static void GetAsync(string name, System.Action<Object> onComplete)
+	{
+		GetAsync<Object>(name, onComplete);
+	}
+
 	/// <summary>
 	/// 同步获取资源并创建实例，如果资源之前没有被缓存，则会有警告
 	/// </summary>
 	/// <returns>The instance.</returns>
 	/// <param name="name">Name.</param>
 	/// <typeparam name="T">The 1st type parameter.</typeparam>
-	public static T CreateInstance<T>(string name) where T : UnityEngine.Object
+	public static T CreateInstance<T>(string name) where T : Object
 	{
 		var obj = Get<T> (name);
 		if (obj != null)
@@ -72,7 +83,12 @@ public class ResourceMgr
 			return null;
 	}
 
-	public static void CreateInstanceAsync<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
+	public static Object CreateInstance(string name)
+	{
+		return CreateInstance<Object>(name);
+	}
+
+	public static void CreateInstanceAsync<T>(string name, System.Action<T> onComplete) where T : Object
 	{
 		GetAsync<T> (name, obj => {
 
@@ -84,7 +100,12 @@ public class ResourceMgr
 		});
 	}
 
-	public static void Cache<T>(string name, System.Action<T> onComplete) where T : UnityEngine.Object
+	public static void createInstanceAsync(string name, System.Action<Object> onComplete)
+	{
+		CreateInstanceAsync<Object>(name, onComplete);
+	}
+
+	public static void Cache<T>(string name, System.Action<T> onComplete) where T : Object
 	{
 		if (_resourceCache.Contains(name))
 		{
@@ -105,6 +126,11 @@ public class ResourceMgr
 					onComplete(o);
 			});
 		}
+	}
+
+	public static void Cache(string name, System.Action<Object> onComplete)
+	{
+		Cache<Object>(name, onComplete);
 	}
 
 

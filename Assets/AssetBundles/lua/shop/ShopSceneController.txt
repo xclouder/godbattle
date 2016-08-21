@@ -1,24 +1,30 @@
 import "UnityEngine"
 
-ShopSceneController = {}
+local ShopSceneController = {}
+ShopSceneController.__index = ShopSceneController
 
-local this = ShopSceneController;
+function ShopSceneController.New()
+	local ins = {}
+	setmetatable(ins, ShopSceneController)
 
---启动事件--
-function ShopSceneController.KernelLoaded(luaComponent)
-	this.luaComponent = luaComponent
+	return ins
+end
+
+function ShopSceneController:KernelLoaded(luaComponent)
+
+	self.luaComponent = luaComponent
 
 	local gridParentObj = GameObject.Find("/_ShopScene/Canvas/ShopPanel/Scroll View/Viewport/Content")
 	local gridParentTr = gridParentObj.transform
 
-	LuaResourceMgr.GetObjectAsync("AssetBundles/config/shop_data", function(textAsset)
+	ResourceMgr.GetAsync("AssetBundles/config/shop_data", function(textAsset)
 
 		local t = textAsset.text
 
 		local arr = split(t, "|")
 		local len = #(arr)
 
-		LuaResourceMgr.GetObjectAsync("AssetBundles/shop/item", function(itemPrefab)
+		ResourceMgr.GetAsync("AssetBundles/shop/item", function(itemPrefab)
 			
 			for i = 1, len, 1 do
 				local rec = arr[i]
@@ -43,31 +49,28 @@ function ShopSceneController.KernelLoaded(luaComponent)
 				btn.onClick:AddListener(function()
 					print("clicked item id:"..id)
 				end)
-
 			end
-				
 		end)
-
-
-
 	end)
 end
 
-function ShopSceneController.SceneLoaded()
-	
+function ShopSceneController:SceneLoaded()
+
 	print("SceneLoaded lua--->>".."ShopScene")
 
 end
 
 
 function split(inputstr, sep)
-        if sep == nil then
-			sep = "%s"
-        end
-        local t={} ; i=1
-        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-                t[i] = str
-                i = i + 1
-        end
-        return t
+    if sep == nil then
+		sep = "%s"
+    end
+    local t={} ; i=1
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+            t[i] = str
+            i = i + 1
+    end
+    return t
 end
+
+return ShopSceneController

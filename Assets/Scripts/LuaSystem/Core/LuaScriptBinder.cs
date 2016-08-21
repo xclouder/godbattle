@@ -1,47 +1,62 @@
 using UnityEngine;
 using System.Collections;
 using uFrame.Kernel;
+using SLua;
 
 public class LuaScriptBinder {
 
 	private LuaService luaService;
+	private LuaTable luaTable;
 	private string LuaScript {get;set;}
-	private string ModuleName {get;set;}
 
 	public LuaScriptBinder(string script)
 	{
 		luaService = uFrameKernel.Container.Resolve<LuaService>();
 		LuaScript = script;
-		ModuleName = GetModuleName(LuaScript);
-	}
-
-	protected void RequireLuaScript(string scriptName)
-	{
-		luaService.RunString("require(\"" + LuaScript + "\")");
-		//TODO get module name from o
 	}
 
 	public void Bind()
 	{
-		RequireLuaScript(LuaScript);
+		var result = luaService.RunFile(LuaScript);
+		Debug.Assert(result != null, "lua result is null");
+
+		var _luaTable = result as LuaTable;
+		Debug.Assert(_luaTable != null, "luaTable is null");
+
+		var newFuncObj = _luaTable["New"];
+		if (newFuncObj != null)
+		{
+			var newTableObj = (newFuncObj as LuaFunction).call(this);
+			_luaTable = newTableObj as LuaTable;
+		}
+
+		luaTable = _luaTable;
 	}
 	
-	public object CallMethod(string methodName, params object[] args)
+	public object CallMethod(string methodName, bool warnIfNotExist = false, params object[] args)
 	{
-		return luaService.CallFunction(GetFuncName(methodName), args);
-	}
+		Debug.Assert (luaService != null);
+		Debug.Assert(!string.IsNullOrEmpty(methodName), "method name is null");
 
-	private string GetFuncName(string methodName)
-	{
-		return ModuleName + "." + methodName;
-	}
+		var _luaFuncObj = luaTable[methodName];
+		if(_luaFuncObj == null)
+		{
+			if (warnIfNotExist)
+				Debug.LogWarning(string.Format("Method {0} not exist, ignore.", methodName));
 
-	private string GetModuleName(string scriptName)
-	{
-		var index = scriptName.LastIndexOf('/');
-		if (index < 0)
-			return scriptName;
+			return null;
+		}
 
-		return scriptName.Substring(index + 1);
+		if (args.Length == 0)
+			return (_luaFuncObj as LuaFunction).call(luaTable);
+		else if (args.Length == 1)
+			return (_luaFuncObj as LuaFunction).call(luaTable, args[0]);
+		else
+		{
+			if (args.Length > 2)
+				Debug.LogWarning("args > 2 not supported now.");
+			
+			return (_luaFuncObj as LuaFunction).call(luaTable, args[0], args[1]);
+		}
 	}
 }

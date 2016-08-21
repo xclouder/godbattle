@@ -14,7 +14,7 @@ using SLua;
 public class LuaComponent : uFrameComponent
 {
 	private LuaService luaService;
-	private LuaTable luaTable;
+	private LuaScriptBinder luaScriptBinder;
 
 	public string luaScript = null;
 
@@ -26,30 +26,14 @@ public class LuaComponent : uFrameComponent
 
 	virtual protected void BindLuaScript(string scriptName)
 	{
-		var result = luaService.RunFile(luaScript);
-		Debug.Assert(result != null, "lua result is null");
-		
-		var _luaTable = result as LuaTable;
-		Debug.Assert(_luaTable != null, "luaTable is null");
-
-		var newFuncObj = _luaTable["New"]; // if a New function exist, new a table!
-		if (newFuncObj != null)
-		{
-			var newTableObj = (newFuncObj as LuaFunction).call(this);
-			_luaTable = newTableObj as LuaTable;
-		}
-
-		luaTable = _luaTable;
+		luaScriptBinder = new LuaScriptBinder(scriptName);
+		luaScriptBinder.Bind();
 	}
 
 	private void InitIfNeeds()
 	{
-		if (luaTable != null)
+		if (luaScriptBinder != null)
 			return;
-
-		luaService = uFrameKernel.Container.Resolve<LuaService> ();
-		if (luaService == null)
-			throw new System.Exception ("No Lua Service found!");
 
 		BindLuaScript(luaScript);
 
@@ -60,19 +44,22 @@ public class LuaComponent : uFrameComponent
 	{
 		base.KernelLoaded ();
 
-		CallLuaMethod("KernelLoaded");
+		InitIfNeeds();
+
+		CallLuaMethod("KernelLoaded", false, this);
 	}
 
 	virtual protected void Update()
 	{
-		CallLuaMethod("Update");
+		if (uFrameKernel.IsKernelLoaded)
+			CallLuaMethod("Update");
 	}
 
 	override protected void OnDestroy()
 	{
 		base.OnDestroy();
 
-		CallLuaMethod("OnDestroy");
+		CallLuaMethod("OnDestroy", false, this);
 	}
 
 	public LuaService GetLuaService()
@@ -82,19 +69,8 @@ public class LuaComponent : uFrameComponent
 
 	protected object CallLuaMethod(string methodName, bool warnIfNotExist = false, params object[] args)
 	{
-		Debug.Assert (luaService != null);
-		Debug.Assert(!string.IsNullOrEmpty(methodName), "method name is null");
+		InitIfNeeds();
 
-		var _luaFuncObj = luaTable[methodName];
-		if(_luaFuncObj == null)
-		{
-			if (warnIfNotExist)
-				Debug.LogWarning(string.Format("Method {0} not exist, ignore.", methodName));
-			
-			return;
-		}
-
-		var luaObj = (_luaFuncObj as LuaFunction).call(luaTable, this);
-		return luaObj;
+		return luaScriptBinder.CallMethod(methodName, warnIfNotExist, args);
 	}
 }

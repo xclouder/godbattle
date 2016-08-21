@@ -43,6 +43,9 @@ namespace SLua
             add(typeof(string), "String");
             
             // add your custom class here
+			add(typeof(ResourceMgr), null);
+			add(typeof(System.Action<UnityEngine.Object>), null);
+
             // add( type, typename)
             // type is what you want to export
             // typename used for simplify generic type name or rename, like List<int> named to "ListInt", if not a generic type keep typename as null or rename as new type name

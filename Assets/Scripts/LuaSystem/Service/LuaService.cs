@@ -51,7 +51,7 @@ public class LuaService : SystemServiceMonoBehavior
 
 	public object RunFile(string name)
 	{
-		return l.start (name);
+		return l.luaState.doFile(name);
 	}
 
 	public object CallFunction(string funcName, params object[] args)
