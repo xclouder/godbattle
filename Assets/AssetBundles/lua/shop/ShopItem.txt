@@ -1,9 +1,6 @@
-local oo = require "core/CSharpOO"
+local oo = require "core/SimpleOO"
 
-local ShopItem = {}
-ShopItem.__index = ShopItem
-
-function ShopItem.New
+local ShopItem = oo.Class.Create()
 
 function ShopItem:KernelLoaded(luaComponent)
 	
