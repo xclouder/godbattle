@@ -5,6 +5,10 @@ local oo = require "core/SimpleOO"
 
 local ShopSceneController = oo.Class.Create()
 
+function ShopSceneController:GiveVal(val)
+	self.currVal = val
+end
+
 function ShopSceneController:KernelLoaded(luaComponent)
 
 	self.luaComponent = luaComponent
@@ -30,6 +34,8 @@ function ShopSceneController:KernelLoaded(luaComponent)
 				local name = data[2]
 				local price = data[3]
 
+				local luaObj = GetLuaObj(itemObj)
+
 				local tr = itemObj.transform
 				tr:SetParent(gridParentTr)
 				tr.localScale = Vector3.one
@@ -47,6 +53,12 @@ function ShopSceneController:KernelLoaded(luaComponent)
 			end
 		end)
 	end)
+end
+
+function GetLuaObj(gameObject)
+	local luaComp = gameObject:GetComponent(LuaComponent)
+	local luaObj = luaComp:GetLuaObject()
+	return luaObj
 end
 
 function ShopSceneController:SceneLoaded()

@@ -45,6 +45,7 @@ namespace SLua
             // add your custom class here
 			add(typeof(ResourceMgr), null);
 			add(typeof(System.Action<UnityEngine.Object>), null);
+			add(typeof(System.Action<LuaTable>), null);
 
             // add( type, typename)
             // type is what you want to export

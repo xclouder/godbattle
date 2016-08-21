@@ -8,6 +8,10 @@ function ShopItem:KernelLoaded(luaComponent)
 
 	print("KernelLoaded")
 
+	local s = luaComponent:GetLuaObject()
+	print("type: "..type(s))
+	--print("obj hash:"..luaComponent:ToString())
+
 end
 
 return ShopItem

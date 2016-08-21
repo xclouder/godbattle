@@ -14,8 +14,8 @@ using SLua;
 [CustomLuaClass]
 public class LuaComponent : uFrameComponent
 {
-	private LuaService luaService;
 	private LuaScriptBinder luaScriptBinder;
+	private LuaTable luaObj;
 
 	public string luaScript = null;
 
@@ -23,12 +23,21 @@ public class LuaComponent : uFrameComponent
 	{
 		if (string.IsNullOrEmpty(luaScript))
 			luaScript = name;
+
+		InitIfNeeds();
+
+		CallLuaMethod("Awake");
 	}
 
-	virtual protected void BindLuaScript(string scriptName)
+	public LuaTable GetLuaObject()
+	{
+		return luaObj;
+	}
+
+	virtual protected LuaTable BindLuaScript(string scriptName)
 	{
 		luaScriptBinder = new LuaScriptBinder(scriptName);
-		luaScriptBinder.Bind();
+		return luaScriptBinder.Bind();
 	}
 
 	private void InitIfNeeds()
@@ -36,9 +45,7 @@ public class LuaComponent : uFrameComponent
 		if (luaScriptBinder != null)
 			return;
 
-		BindLuaScript(luaScript);
-
-		CallLuaMethod("OnInit");
+		luaObj = BindLuaScript(luaScript);
 	}
 
 	public override void KernelLoaded ()
@@ -54,11 +61,6 @@ public class LuaComponent : uFrameComponent
 	{
 		if (uFrameKernel.IsKernelLoaded)
 			CallLuaMethod("Update");
-	}
-
-	public LuaService GetLuaService()
-	{
-		return luaService;
 	}
 
 	protected object CallLuaMethod(string methodName, bool warnIfNotExist = false, params object[] args)

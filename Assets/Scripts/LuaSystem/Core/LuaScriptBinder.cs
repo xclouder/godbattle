@@ -11,12 +11,17 @@ public class LuaScriptBinder {
 
 	public LuaScriptBinder(string script)
 	{
-		luaService = uFrameKernel.Container.Resolve<LuaService>();
 		LuaScript = script;
 	}
 
-	public void Bind()
+	public LuaTable Bind()
 	{
+		luaService = uFrameKernel.Container.Resolve<LuaService>();
+
+		//LuaComponent非动态加载出来的情况，可能uFrameKernel还没启动完成，这时的luaService为null。我们不作处理，等待kernelLoaded回调再重新绑定
+		if (luaService == null)
+			return null;
+		
 		var result = luaService.RunString("return require(\"" + LuaScript + "\")");
 		Debug.Assert(result != null, "lua result is null");
 
@@ -31,6 +36,8 @@ public class LuaScriptBinder {
 		}
 
 		luaTable = _luaTable;
+
+		return luaTable;
 	}
 	
 	public object CallMethod(string methodName, bool warnIfNotExist = false, params object[] args)
