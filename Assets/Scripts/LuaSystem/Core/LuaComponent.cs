@@ -25,9 +25,6 @@ public class LuaComponent : uFrameComponent
 			luaScript = name;
 
 		InitIfNeeds();
-
-		if (luaObj != null)
-			CallLuaMethod("Awake", false, this, gameObject);
 	}
 
 	public LuaTable GetLuaObject()
@@ -47,6 +44,9 @@ public class LuaComponent : uFrameComponent
 			return;
 
 		luaObj = BindLuaScript(luaScript);
+
+		if (luaObj != null)
+			CallLuaMethod("Init", false, this, gameObject);
 	}
 
 	public override void KernelLoaded ()

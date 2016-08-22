@@ -3,7 +3,21 @@
 local Player = oo.Class.Create()
 
 function Player:KernelLoaded(luaComonent, gameObject)
-	print("player loaded")
+	self.luaComponent = luaComponent
+	self.gameObject = gameObject
+end
+
+function Player:Update()
+	if (Input.GetMouseButton(0)) then
+		local screenPos = Input.mousePosition
+		local worldPos = Camera.main:ScreenToWorldPoint(screenPos)
+		worldPos.z = 0
+		self.targetPos = worldPos
+
+		print("position:(" .. worldPos.x)
+	end
+
+	
 end
 
 return Player
