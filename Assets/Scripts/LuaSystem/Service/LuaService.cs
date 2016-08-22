@@ -33,7 +33,8 @@ public class LuaService : SystemServiceMonoBehavior
 		while (!_isLoaded)
 			yield return null;
 
-
+		//TODO:在这里调用lua环境初始化脚本有一点问题，线上的版本assetbundle可能存在于两个地方:StreammingAssets or PersistentDataPath
+		//在UpdateService执行完更新逻辑之前，任何调用可热更资源都可能造成读脏数据
 		//Init lua libs
 		RunString("require \"core/Init\"");
 

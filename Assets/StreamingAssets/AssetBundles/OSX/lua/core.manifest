@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 1404748951
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bf165790c7c23e8928bcfaaea74407cd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/lua/core/SimpleOO.txt
+- Assets/AssetBundles/lua/core/LuaUtil.txt
+- Assets/AssetBundles/lua/core/EventDispatcher.txt
+- Assets/AssetBundles/lua/core/CSharpOO.txt
+- Assets/AssetBundles/lua/core/Init.txt
+Dependencies: []

@@ -73,6 +73,10 @@ public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 		{
 			image = CreateAssetBundleImage(bundleName);
 		}
+		else
+		{
+			image = m_assetBundleImages[bundleName];
+		}
 
 		image.IncreaseReferenceCount();
 
