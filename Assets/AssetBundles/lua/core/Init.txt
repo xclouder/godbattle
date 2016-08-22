@@ -1,4 +1,4 @@
 ﻿import("UnityEngine")
 
---local EvtD = require("core/EventDispatcher")
---dispatcher = EvtD()
+local EvtD = require("core/EventDispatcher")
+dispatcher = EvtD()
