@@ -55,7 +55,7 @@ public class LuaComponent : uFrameComponent
 
 		InitIfNeeds();
 
-		CallLuaMethod("KernelLoaded", false, this);
+		CallLuaMethod("KernelLoaded", false, this, gameObject);
 	}
 
 	virtual protected void Update()

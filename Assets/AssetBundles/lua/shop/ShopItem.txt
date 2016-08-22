@@ -2,7 +2,7 @@ local oo = require "core/SimpleOO"
 
 local ShopItem = oo.Class.Create()
 
-function ShopItem:Awake(luaComponent, gameObject)
+function ShopItem:Init(luaComponent, gameObject)
 	self.luaComponent = luaComponent
 	self.gameObject = gameObject
 

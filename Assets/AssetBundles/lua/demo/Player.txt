@@ -2,9 +2,12 @@
 
 local Player = oo.Class.Create()
 
-function Player:KernelLoaded(luaComonent, gameObject)
-	self.luaComponent = luaComponent
+function Player:Init(monoComonent, gameObject)
+	self.monoComponent = monoComponent
 	self.gameObject = gameObject
+	self.transform = gameObject.transform
+
+	self.targetPos = Vector3.zero
 end
 
 function Player:Update()
@@ -13,11 +16,9 @@ function Player:Update()
 		local worldPos = Camera.main:ScreenToWorldPoint(screenPos)
 		worldPos.z = 0
 		self.targetPos = worldPos
-
-		print("position:(" .. worldPos.x)
 	end
 
-	
+	self.transform.position = self.targetPos
 end
 
 return Player
