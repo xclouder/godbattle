@@ -8,6 +8,9 @@ function Player:Init(monoComonent, gameObject)
 	self.transform = gameObject.transform
 
 	self.targetPos = Vector3.zero
+
+	self.bulletPrefab = ResourceMgr.Get("AssetBundles/demo/Bullet")
+
 end
 
 function Player:Update()
@@ -18,7 +21,20 @@ function Player:Update()
 		self.targetPos = worldPos
 	end
 
+	if (Input.GetMouseButtonDown(1)) then
+		print("Fire")
+		self:Fire()
+	end
+
 	self.transform.position = self.targetPos
+end
+
+function Player:Fire()
+	local bulletObj = GameObject.Instantiate(self.bulletPrefab)
+	local bulletTr = bulletObj.transform
+
+	bulletTr.position = self.transform.position
+
 end
 
 return Player

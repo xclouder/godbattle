@@ -1,12 +1,20 @@
-﻿local _M = {}           -- 局部的变量
-_M._VERSION = '1.0'     -- 模块版本
+﻿local oo = require "core/SimpleOO"
 
-local mt = { __index = _M }
+local DemoSceneController = oo.Class.Create()
 
-function _M:new(self)
-    return setmetatable({ }, mt)
+function DemoSceneController:KernelLoaded(monoComponent)
+	self.monoComponent = monoComponent
+
+	local labelObj = GameObject.Find("/_DemoScene/UI/Canvas/UIPanel/Score/Value")
+	self.scoreText = labelObj:GetComponent("Text")
+	self.score = 0
+
+	dispatcher:addEventListener("Hit", function (evt)
+		self.score = self.score + 1
+		self.scoreText.text = tostring(self.score)
+	end)
 end
 
---function declare here:
+dispatcher:on( "eventName", listener )
 
-return _M
+return DemoSceneController

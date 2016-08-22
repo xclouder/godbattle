@@ -1,0 +1,35 @@
+﻿local oo = require "core/SimpleOO"
+
+local Bullet = oo.Class.Create()
+
+function Bullet:Init(monoComonent, gameObject)
+	self.monoComponent = monoComponent
+	self.gameObject = gameObject
+	self.transform = gameObject.transform
+
+	self.speed = 3
+	self.timeToDestroy = 5
+	self.aliveTime = 0
+end
+
+function Bullet:FixedUpdate()
+	self.transform.position = self.transform.position + Vector3.up * self.speed * Time.deltaTime
+
+	self.aliveTime = self.aliveTime + Time.deltaTime
+	if (self.aliveTime > self.timeToDestroy) then
+		GameObject.Destroy(self.gameObject)
+	end
+end
+
+function Bullet:OnTriggerEnter2D(collider)
+	local theGameObject = collider.gameObject
+	local tag = theGameObject.tag
+	if (tag == "Enemy") then
+		GameObject.Destroy(self.gameObject)
+		GameObject.Destroy(theGameObject)
+
+		dispatcher:dispatchEvent("Hit")
+	end
+end
+
+return Bullet

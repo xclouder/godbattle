@@ -1,2 +1,4 @@
 ﻿import("UnityEngine")
-require("core/CSharpOO")
+
+local EvtD = require("core/EventDispatcher")
+dispatcher = EvtD()
