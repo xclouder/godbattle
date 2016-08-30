@@ -86,6 +86,40 @@ namespace LuaInterface
 #else
         const string LUADLL = "slua";
 #endif
+        //pdc
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_protobuf_c(IntPtr luaState);
+
+        //lpeg
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_lpeg(IntPtr luaState);
+
+        //cjson
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_cjson(IntPtr luaState);
+
+        //lua socket
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_socket_core(IntPtr luaState);
+
+        //lua socket mime
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_mime_core(IntPtr luaState);
+
+        //sproto
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_sproto_core(IntPtr luaState);
+
+        //sqlite
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        public static extern int luaopen_lsqlite3(IntPtr luaState);
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern void luaS_openextlibs(IntPtr L);
@@ -503,10 +537,6 @@ namespace LuaInterface
 
         public static void lua_pushcfunction(IntPtr luaState, LuaCSFunction function)
         {
-#if SLUA_STANDALONE
-            // Add all LuaCSFunction£¬ or they will be GC collected!  (problem at windows, .net framework 4.5, `CallbackOnCollectedDelegated` exception)
-            GCHandle.Alloc(function);
-#endif
             IntPtr fn = Marshal.GetFunctionPointerForDelegate(function);
             lua_pushcclosure(luaState, fn, 0);
         }
@@ -647,10 +677,6 @@ namespace LuaInterface
 
         public static void lua_pushcclosure(IntPtr l, LuaCSFunction f, int nup)
         {
-#if SLUA_STANDALONE
-            // Add all LuaCSFunction£¬ or they will be GC collected!  (problem at windows, .net framework 4.5, `CallbackOnCollectedDelegated` exception)
-            GCHandle.Alloc(f);
-#endif
             IntPtr fn = Marshal.GetFunctionPointerForDelegate(f);
             lua_pushcclosure(l, fn, nup);
         }

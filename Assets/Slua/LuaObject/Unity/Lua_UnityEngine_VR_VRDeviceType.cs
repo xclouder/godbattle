@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -11,7 +11,7 @@ public class Lua_UnityEngine_VR_VRDeviceType : LuaObject {
 		addMember(l,2,"Split");
 		addMember(l,3,"Oculus");
 		addMember(l,4,"PlayStationVR");
-		addMember(l,4,"Morpheus");
+		addMember(l,4,"PlayStationVR");
 		LuaDLL.lua_pop(l, 1);
 	}
 }

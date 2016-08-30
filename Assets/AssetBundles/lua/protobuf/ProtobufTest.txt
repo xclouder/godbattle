@@ -1,0 +1,40 @@
+﻿local oo = require "core/SimpleOO"
+require "core/protobuf"
+
+local ProtobufTest = oo.Class.Create()
+
+function ProtobufTest:Init(monoComonent, gameObject)
+	self.monoComponent = monoComponent
+	self.gameObject = gameObject
+	self.transform = gameObject.transform
+
+	--buffer = ProtoTest.GetProtoBytes()
+	--ResourceMgr.Get("")
+
+	local asset = ResourceMgr.Get("AssetBundles/config/addressbookBytes")
+
+	local data = asset.bytes
+	local buffer = SLua.ByteArray(data)
+
+//	protobuf.register(buffer)
+
+	t = protobuf.decode("google.protobuf.FileDescriptorSet", buffer)
+	proto = t.file[1]
+
+	print("name:"..proto.name)
+	print("package:"..proto.package)
+
+	local addressbook = {
+	name = "Alice",
+	id = 12345,
+	phone = {
+			{ number = "1301234567" },
+			{ number = "87654321", type = "WORK" },
+		}
+	}
+
+	local code = protobuf.encode("tutorial.Person", addressbook)
+
+end
+
+return ProtobufTest

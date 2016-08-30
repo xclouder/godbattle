@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -55,9 +55,9 @@ public class Lua_UnityEngine_TextureFormat : LuaObject {
 		addMember(l,60,"ETC_RGB4_3DS");
 		addMember(l,61,"ETC_RGBA8_3DS");
 		addMember(l,-127,"PVRTC_4BPP_RGB");
-		addMember(l,-127,"PVRTC_4BPP_RGBA");
-		addMember(l,-127,"PVRTC_2BPP_RGB");
-		addMember(l,-127,"PVRTC_2BPP_RGBA");
+		addMember(l,-127,"PVRTC_4BPP_RGB");
+		addMember(l,-127,"PVRTC_4BPP_RGB");
+		addMember(l,-127,"PVRTC_4BPP_RGB");
 		LuaDLL.lua_pop(l, 1);
 	}
 }

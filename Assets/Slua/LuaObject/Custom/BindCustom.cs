@@ -1,10 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 namespace SLua {
 	[LuaBinder(3)]
 	public class BindCustom {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
+				Lua_SLua_ByteArray.reg,
+				Lua_SwitchSceneCommand.reg,
+				Lua_LuaComponent.reg,
+				Lua_LuaComponentFull.reg,
+				Lua_LuaSceneController.reg,
 				Lua_Custom.reg,
 				Lua_Deleg.reg,
 				Lua_foostruct.reg,
@@ -15,9 +20,8 @@ namespace SLua {
 				Lua_XXList.reg,
 				Lua_AbsClass.reg,
 				Lua_HelloWorld.reg,
-				Lua_SwitchSceneCommand.reg,
-				Lua_LuaComponent.reg,
-				Lua_LuaSceneController.reg,
+				Lua_ProtoTest.reg,
+				Lua_SprotoTest.reg,
 				Lua_System_Collections_Generic_Dictionary_2_int_string.reg,
 				Lua_System_String.reg,
 				Lua_ResourceMgr.reg,

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -25,7 +25,7 @@ public class Lua_UnityEngine_SystemLanguage : LuaObject {
 		addMember(l,16,"Greek");
 		addMember(l,17,"Hebrew");
 		addMember(l,18,"Hungarian");
-		addMember(l,18,"Hugarian");
+		addMember(l,18,"Hungarian");
 		addMember(l,19,"Icelandic");
 		addMember(l,20,"Indonesian");
 		addMember(l,21,"Italian");

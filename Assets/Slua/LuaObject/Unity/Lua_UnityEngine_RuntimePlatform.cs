@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -22,13 +22,13 @@ public class Lua_UnityEngine_RuntimePlatform : LuaObject {
 		addMember(l,15,"FlashPlayer");
 		addMember(l,17,"WebGLPlayer");
 		addMember(l,18,"WSAPlayerX86");
-		addMember(l,18,"MetroPlayerX86");
+		addMember(l,18,"WSAPlayerX86");
 		addMember(l,19,"WSAPlayerX64");
-		addMember(l,19,"MetroPlayerX64");
+		addMember(l,19,"WSAPlayerX64");
 		addMember(l,20,"WSAPlayerARM");
-		addMember(l,20,"MetroPlayerARM");
+		addMember(l,20,"WSAPlayerARM");
 		addMember(l,21,"WP8Player");
-		addMember(l,22,"BlackBerryPlayer");
+		addMember(l,22,"BB10Player");
 		addMember(l,22,"BB10Player");
 		addMember(l,23,"TizenPlayer");
 		addMember(l,24,"PSP2");
