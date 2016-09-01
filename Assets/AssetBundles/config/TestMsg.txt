@@ -1,0 +1,4 @@
+message Student {
+  string name = 1;
+  int32 age = 2;
+}

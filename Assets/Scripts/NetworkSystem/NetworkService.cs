@@ -8,19 +8,17 @@ public class NetworkService : SystemServiceMonoBehavior {
 	/// <summary>
 	/// NetworkInterface
 	/// NetworkService
-	/// PacketSender
 	/// PacketReceiver
 	/// ByteBuffer
 	/// </summary>
 
 	private NetworkInterface netInterface;
-	private PacketSender packageSender;
+	private PacketSender packetSender;
 
 	public override IEnumerator SetupAsync ()
 	{
 		netInterface = new NetworkInterface();
-		packageSender = new PacketSender();
-
+		packetSender = new PacketSender();
 
 		netInterface.ConnectTo("127.0.0.1", 50001);
 
@@ -35,23 +33,10 @@ public class NetworkService : SystemServiceMonoBehavior {
 
 		netInterface.Send(data);
 		netInterface.StartReceive();
-
-		//StartCoroutine(send(netInterface));
 	}
 
-	IEnumerator send(NetworkInterface ni)
+	public void Send(Packet packet)
 	{
-		while (true)
-		{
-			yield return new WaitForSeconds(1f);
-
-			var t = Time.time.ToString();
-			var msg = new Message() { ID = 1, Content = t};
-//			packageSender.Send(msg, ni);
-
-			ni.Process();
-		}
-
+		packetSender.Send(netInterface, packet);
 	}
-
 }

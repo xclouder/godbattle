@@ -1,0 +1,14 @@
+﻿local oo = require "core/SimpleOO"
+require "core/protobuf"
+
+local ProtobufSceneController = oo.Class.Create()
+
+function ProtobufSceneController:KernelLoaded(monoComonent)
+	self.monoComponent = monoComponent
+
+	print(type(monoComonent))
+	--monoComonent:PrintType(code)
+
+end
+
+return ProtobufSceneController

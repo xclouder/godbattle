@@ -70,4 +70,5 @@ public class LuaComponent : uFrameComponent
 
 		return luaScriptBinder.CallMethod(methodName, warnIfNotExist, args);
 	}
+
 }

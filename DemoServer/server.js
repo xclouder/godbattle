@@ -17,12 +17,12 @@ net.createServer(function (sock) {
             return;
 
         var packageLen = data.readInt32BE(0);
-        var id = data.readInt32BE(4);
+        // var id = data.readInt32BE(4);
 
-        var content = data.toString("utf8", 8);
+        var content = data.toString("utf8", 4);
 
         console.log('packageLen:' + packageLen);
-        console.log('id:' + id + "| content:" + content);
+        console.log("content:" + content);
 
         sock.write("You said:" + data);
     });

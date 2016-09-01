@@ -50,6 +50,10 @@ namespace SLua
 			add(typeof(System.Action<UnityEngine.Object>), null);
 			add(typeof(System.Action<LuaTable>), null);
 
+			//uframe export to lua
+			add(typeof(uFrame.Kernel.uFrameKernel), null);
+			add(typeof(uFrame.IOC.UFrameContainer), null);
+			add(typeof(NetworkService), null);
         }
 
         public static void OnAddCustomAssembly(ref List<string> list)

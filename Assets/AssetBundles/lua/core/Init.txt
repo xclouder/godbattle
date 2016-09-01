@@ -1,4 +1,18 @@
 ﻿import("UnityEngine")
 
+require "core/protobuf"
+
 local EvtD = require("core/EventDispatcher")
 dispatcher = EvtD()
+
+--networkService
+networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, nil, true)
+
+local asset = ResourceMgr.Get("AssetBundles/config/addressbookBytes")
+
+local data = asset.bytes
+local buffer = SLua.ByteArray(data)
+
+protobuf.register(buffer)
+
+

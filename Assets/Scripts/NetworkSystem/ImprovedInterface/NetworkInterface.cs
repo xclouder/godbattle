@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Network.ImprovedInterface
 {
-	public class NetworkInterface {
+	public class NetworkInterface : INetworkInterface{
 
 		private Socket socket;
 		private SocketAsyncEventArgs sendEA;

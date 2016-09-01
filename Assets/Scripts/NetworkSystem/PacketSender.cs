@@ -1,34 +1,25 @@
 using UnityEngine;
 using System.Collections;
-using System.IO;
-using System;
 
 public class PacketSender {
 
-//	public bool Send(Message msg, NetworkInterface ni)
-//	{
-//		var idBytes = GetNetworkOrderBytes(msg.ID);
-//
-//		var contentBytes = System.Text.Encoding.UTF8.GetBytes(msg.Content);
-//
-//		var packageLen = idBytes.Length + contentBytes.Length;
-//		var packageLenBytes = GetNetworkOrderBytes(packageLen);
-//
-//		var data = new byte[4 + packageLen];
-//
-//		Array.Copy(packageLenBytes, 0, data, 0, packageLenBytes.Length);
-//		Array.Copy(idBytes, 0, data, packageLenBytes.Length, idBytes.Length);
-//		Array.Copy(contentBytes, 0, data, packageLenBytes.Length + idBytes.Length, contentBytes.Length);
-//
-//		ni.Send(data);
-//
-//		return true;
-//	}
-
-	private byte[] GetNetworkOrderBytes(int val)
+	public void Send(INetworkInterface i, Packet packet)
 	{
-		var v = System.Net.IPAddress.HostToNetworkOrder(val);
-		return System.BitConverter.GetBytes(v);
+		var buffer = new Packet();
+
+		var data = packet.ToBytes();
+		var len = data.Length;
+
+		Debug.Log("send data with len:" + len);
+
+		buffer.WriteInt(len);
+		buffer.WriteBytes(data);
+
+		i.Send(buffer.ToBytes());
 	}
 
+	private Packet GetBuffer()
+	{
+		return new Packet();
+	}
 }

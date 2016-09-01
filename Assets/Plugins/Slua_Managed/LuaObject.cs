@@ -1061,7 +1061,9 @@ return index
 			}
 			else
 			{
-				Array array = checkObj(l, p) as Array;
+				var o = checkObj(l, p);
+				Array array = o as Array;
+
 				ta = array as T[];
 				return ta!=null;
 			}

@@ -3,20 +3,17 @@ require "core/protobuf"
 
 local ProtobufTest = oo.Class.Create()
 
-function ProtobufTest:Init(monoComonent, gameObject)
+function ProtobufTest:KernelLoaded(monoComponent, gameObject)
 	self.monoComponent = monoComponent
 	self.gameObject = gameObject
 	self.transform = gameObject.transform
-
-	--buffer = ProtoTest.GetProtoBytes()
-	--ResourceMgr.Get("")
 
 	local asset = ResourceMgr.Get("AssetBundles/config/addressbookBytes")
 
 	local data = asset.bytes
 	local buffer = SLua.ByteArray(data)
 
-//	protobuf.register(buffer)
+	protobuf.register(buffer)
 
 	t = protobuf.decode("google.protobuf.FileDescriptorSet", buffer)
 	proto = t.file[1]
@@ -34,7 +31,11 @@ function ProtobufTest:Init(monoComonent, gameObject)
 	}
 
 	local code = protobuf.encode("tutorial.Person", addressbook)
+	local packet = LuaPacket()
+	packet:WriteInt(355)
+	packet:WriteBlob(code)
 
+	networkService:Send(packet)
 end
 
 return ProtobufTest
