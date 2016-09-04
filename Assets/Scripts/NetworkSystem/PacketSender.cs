@@ -12,7 +12,7 @@ public class PacketSender {
 
 		Debug.Log("send data with len:" + len);
 
-		buffer.WriteInt(len);
+		buffer.WriteInt(len + 4);
 		buffer.WriteBytes(data);
 
 		i.Send(buffer.ToBytes());

@@ -2,13 +2,108 @@
 require "core/protobuf"
 
 local ProtobufSceneController = oo.Class.Create()
+local Entity = oo.Class.Create()
 
 function ProtobufSceneController:KernelLoaded(monoComonent)
 	self.monoComponent = monoComponent
 
-	print(type(monoComonent))
-	--monoComonent:PrintType(code)
+	self:Register("AssetBundles/protocol/MsgHead")
+	self:Register("AssetBundles/protocol/GameMsg")
 
+	--prefab cache
+	--self.entityPrefab = 
+
+	--init entities dict
+	self.entities = {}
+
+	self:PlayerEnter(function(entityId)
+
+		local entity = Entity.New()
+		entity.entityId = entityId
+
+		self.entities[entityId] = entity
+
+	end)
+
+
+end
+
+function ProtobufSceneController:CreateEntity(pos)
+	
+end
+
+function ProtobufSceneController:PlayerEnter(callback)
+
+	print("Player Enter")
+
+	local head = {
+		cmd = 5,
+		sequence = 1
+	}
+
+	local headCode = protobuf.encode("MsgHead", head)
+	local packet = LuaPacket()
+	packet:WriteHead(headCode)
+	networkService:Send(packet)
+
+	--wait packet from server
+	dispatcher:addEventListener("OnReceivePacket", function (evt, packet)
+		print("Protobuf SceneController handle OnReceivePacket")
+
+		--read head
+		local byte_head = packet:ReadHead()
+		local responseHead = protobuf.decode("MsgHead", byte_head)
+		print("response cmd:"..responseHead.cmd)
+		print("response seq:"..responseHead.sequence)
+
+		--read body
+		--local byte_body = packet:ReadBody()
+
+
+	end)
+
+end
+
+function ProtobufSceneController:Register(proto)
+	local asset = ResourceMgr.Get(proto)
+	local data = asset.bytes
+	local buffer = SLua.ByteArray(data)
+
+	protobuf.register(buffer)
+end
+
+function print_r ( t )  
+    local print_r_cache={}
+    local function sub_print_r(t,indent)
+        if (print_r_cache[tostring(t)]) then
+            print(indent.."*"..tostring(t))
+        else
+            print_r_cache[tostring(t)]=true
+            if (type(t)=="table") then
+                for pos,val in pairs(t) do
+                    if (type(val)=="table") then
+                        print(indent.."["..pos.."] => "..tostring(t).." {")
+                        sub_print_r(val,indent..string.rep(" ",string.len(pos)+8))
+                        print(indent..string.rep(" ",string.len(pos)+6).."}")
+                    elseif (type(val)=="string") then
+                        print(indent.."["..pos..'] => "'..val..'"')
+                    else
+                        print(indent.."["..pos.."] => "..tostring(val))
+                    end
+                end
+            else
+                print(indent..tostring(t))
+            end
+        end
+    end
+    if (type(t)=="table") then
+        print(tostring(t).." {")
+        sub_print_r(t,"  ")
+        print("}")
+    else
+        sub_print_r(t,"  ")
+    end
+    print()
 end
 
 return ProtobufSceneController

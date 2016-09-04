@@ -10,6 +10,7 @@ using UnityEngine;
 using System.Collections;
 using uFrame.Kernel;
 using SLua;
+using UniRx;
 
 public class LuaService : SystemServiceMonoBehavior
 {
@@ -37,6 +38,14 @@ public class LuaService : SystemServiceMonoBehavior
 		//在UpdateService执行完更新逻辑之前，任何调用可热更资源都可能造成读脏数据
 		//Init lua libs
 		RunString("require \"core/Init\"");
+
+		var luaNetMgr = (LuaTable)RunString("return networkCallback");
+		var func = luaNetMgr["OnReceivePacket"] as LuaFunction;
+
+		OnEvent<Packet>().ObserveOnMainThread().Subscribe((packet) => {
+			Debug.Log("call lua networkService:OnReceivePacket");
+			func.call(luaNetMgr, packet);
+		});
 
 		Debug.Log ("Lua Service setup completed.");
 

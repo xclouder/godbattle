@@ -1,0 +1,42 @@
+syntax = "proto2";
+package game;
+
+//cmd:1 CLI->SVR
+message MoveMsg
+{
+    required int32 entityId = 1;
+    required float x = 2;
+    required float y = 3;
+}
+
+//cmd:2 NOTIFY
+message UpdatePosMsg
+{
+    required int32 entityId = 1;
+    required float x = 2;
+    required float y = 3;
+}
+
+//cmd:3 NOTIFY
+message EnterWorldMsg
+{
+    required int32 entityId = 1;
+}
+
+//cmd:4 NOTIFY
+message ExitWorldMsg
+{
+    required int32 entityId = 1;
+}
+
+//cmd:5 CLI->SVR
+message CreateEntityMsg
+{
+
+}
+
+//cmd:6 
+message EntityCreatedMsg
+{
+    required int32 entityId = 1;
+}

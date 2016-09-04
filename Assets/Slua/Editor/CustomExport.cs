@@ -46,14 +46,6 @@ namespace SLua
             // add( type, typename)
             // type is what you want to export
             // typename used for simplify generic type name or rename, like List<int> named to "ListInt", if not a generic type keep typename as null or rename as new type name
-			add(typeof(ResourceMgr), null);
-			add(typeof(System.Action<UnityEngine.Object>), null);
-			add(typeof(System.Action<LuaTable>), null);
-
-			//uframe export to lua
-			add(typeof(uFrame.Kernel.uFrameKernel), null);
-			add(typeof(uFrame.IOC.UFrameContainer), null);
-			add(typeof(NetworkService), null);
         }
 
         public static void OnAddCustomAssembly(ref List<string> list)

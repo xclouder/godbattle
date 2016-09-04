@@ -68,7 +68,6 @@ public class Lua_LuaComponent : LuaObject {
 			return error(l,e);
 		}
 	}
-
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"LuaComponent");
 		addMember(l,GetLuaObject);

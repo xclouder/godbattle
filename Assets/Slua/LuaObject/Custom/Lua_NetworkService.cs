@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using LuaInterface;
 using SLua;
@@ -44,10 +44,27 @@ public class Lua_NetworkService : LuaObject {
 			return error(l,e);
 		}
 	}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static public int set_PacketHandler(IntPtr l) {
+		try {
+			NetworkService self=(NetworkService)checkSelf(l);
+			NetworkService.PacketHandlerDelegate v;
+			int op=LuaDelegation.checkDelegate(l,2,out v);
+			if(op==0) self.PacketHandler=v;
+			else if(op==1) self.PacketHandler+=v;
+			else if(op==2) self.PacketHandler-=v;
+			pushValue(l,true);
+			return 1;
+		}
+		catch(Exception e) {
+			return error(l,e);
+		}
+	}
 	static public void reg(IntPtr l) {
 		getTypeTable(l,"NetworkService");
 		addMember(l,SetupAsync);
 		addMember(l,Send);
+		addMember(l,"PacketHandler",null,set_PacketHandler,true);
 		createTypeMetatable(l,constructor, typeof(NetworkService),typeof(uFrame.Kernel.SystemServiceMonoBehavior));
 	}
 }

@@ -14,11 +14,17 @@ public class NetworkService : SystemServiceMonoBehavior {
 
 	private NetworkInterface netInterface;
 	private PacketSender packetSender;
+	private PacketReceiver packetReceiver;
+
+	public delegate void PacketHandlerDelegate(Packet p);
+	public PacketHandlerDelegate PacketHandler;
 
 	public override IEnumerator SetupAsync ()
 	{
 		netInterface = new NetworkInterface();
 		packetSender = new PacketSender();
+		packetReceiver = new PacketReceiver(netInterface);
+		packetReceiver.AddPacketListener(OnReceivePacket);
 
 		netInterface.ConnectTo("127.0.0.1", 50001);
 
@@ -38,5 +44,11 @@ public class NetworkService : SystemServiceMonoBehavior {
 	public void Send(Packet packet)
 	{
 		packetSender.Send(netInterface, packet);
+	}
+
+	private void OnReceivePacket(Packet packet)
+	{
+		//for test
+		Publish(packet);
 	}
 }

@@ -1,0 +1,6 @@
+syntax = "proto2";
+message MsgHead
+{
+    required int32 cmd = 1;
+    optional int32 sequence = 3;
+}

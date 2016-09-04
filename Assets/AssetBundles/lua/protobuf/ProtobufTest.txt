@@ -8,32 +8,23 @@ function ProtobufTest:KernelLoaded(monoComponent, gameObject)
 	self.gameObject = gameObject
 	self.transform = gameObject.transform
 
-	local asset = ResourceMgr.Get("AssetBundles/config/addressbookBytes")
+	local asset = ResourceMgr.Get("AssetBundles/protocol/MsgHead")
 
 	local data = asset.bytes
 	local buffer = SLua.ByteArray(data)
 
 	protobuf.register(buffer)
 
-	t = protobuf.decode("google.protobuf.FileDescriptorSet", buffer)
-	proto = t.file[1]
+	t = protobuf.decode("MsgHead", buffer)
 
-	print("name:"..proto.name)
-	print("package:"..proto.package)
-
-	local addressbook = {
-	name = "Alice",
-	id = 12345,
-	phone = {
-			{ number = "1301234567" },
-			{ number = "87654321", type = "WORK" },
-		}
+	local head = {
+		cmd = 101,
+		sequence = 1
 	}
 
-	local code = protobuf.encode("tutorial.Person", addressbook)
+	local code = protobuf.encode("MsgHead", head)
 	local packet = LuaPacket()
-	packet:WriteInt(355)
-	packet:WriteBlob(code)
+	packet:WriteHead(code)
 
 	networkService:Send(packet)
 end

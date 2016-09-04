@@ -8,6 +8,8 @@ namespace Network.ImprovedInterface
 {
 	public class NetworkInterface : INetworkInterface{
 
+		public event OnReceive onReceive;
+
 		private Socket socket;
 		private SocketAsyncEventArgs sendEA;
 		private SocketAsyncEventArgs receiveEA;
@@ -150,6 +152,9 @@ namespace Network.ImprovedInterface
 			{
 				UnityEngine.Debug.Log("receive complete success: transfered:" + e.BytesTransferred);
 				receiveBuffer.SetBytesProduced(e.BytesTransferred);
+
+				if (onReceive != null)
+					onReceive(receiveBuffer, receiveBuffer.ConsumePosition, receiveBuffer.AvailableDataLength);
 
 				if (receiveBuffer.AvailableSpace > 0)
 				{

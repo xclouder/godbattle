@@ -135,4 +135,21 @@ public class SocketBuffer {
 			ProducePosition -= BufferSize;
 	}
 
+	public void CopyData(byte[] copyTo, int targetOffset, int sourceOffset, int length)
+	{
+		var endPos = sourceOffset + length;
+		if (RawBuffer.Length >= endPos)
+		{
+			Array.Copy(RawBuffer, sourceOffset, copyTo, targetOffset, length);
+		}
+		else
+		{
+			//1.copy to end
+			//2.copy 0 to endPos
+			var copyed = RawBuffer.Length - sourceOffset;
+			Array.Copy(RawBuffer, sourceOffset, copyTo, targetOffset, copyed);
+			Array.Copy(RawBuffer, 0, copyTo, targetOffset+copyed, length - copyed); 
+		}
+	}	
+
 }
