@@ -11,6 +11,7 @@ networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, ni
 networkCallback = {}
 networkCallback.OnReceivePacket = function(self, packet)
 	print("receive packet in networkService(lua)");
+
 	dispatcher:dispatchEvent("OnReceivePacket", packet);
 end
 

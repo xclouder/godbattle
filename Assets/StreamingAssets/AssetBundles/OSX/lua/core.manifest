@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2609885114
+CRC: 3427874283
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 83c8bc105bb5e795f368d43ed10f5bc4
+    Hash: 7e09620f357e034ab6075847d8e29046
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -14,6 +14,7 @@ ClassTypes:
 Assets:
 - Assets/AssetBundles/lua/core/SimpleOO.txt
 - Assets/AssetBundles/lua/core/LuaUtil.txt
+- Assets/AssetBundles/lua/core/protobuf.txt
 - Assets/AssetBundles/lua/core/EventDispatcher.txt
 - Assets/AssetBundles/lua/core/CSharpOO.txt
 - Assets/AssetBundles/lua/core/Init.txt

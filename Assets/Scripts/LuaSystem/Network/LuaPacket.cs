@@ -36,7 +36,15 @@ public class LuaPacket : Packet {
 			throw new System.Exception("please ReadHead first");
 
 		var bodyLen = (int)buff.Length - headLength - 4;
-		var body = ReadBytes(bodyLen);
-		return new SLua.ByteArray(body);
+
+		if (bodyLen > 0)
+		{
+			var body = ReadBytes(bodyLen);
+			return new SLua.ByteArray(body);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

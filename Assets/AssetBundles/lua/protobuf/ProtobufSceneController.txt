@@ -1,53 +1,38 @@
 ﻿local oo = require "core/SimpleOO"
 require "core/protobuf"
+local PacketUnpacker = require "protobuf/PacketUnpacker"
 
 local ProtobufSceneController = oo.Class.Create()
 local Entity = oo.Class.Create()
 
+local unpacker = PacketUnpacker.New()
+unpacker:Init()
+
 function ProtobufSceneController:KernelLoaded(monoComonent)
 	self.monoComponent = monoComponent
 
-	self:Register("AssetBundles/protocol/MsgHead")
-	self:Register("AssetBundles/protocol/GameMsg")
-
 	--prefab cache
-	--self.entityPrefab = 
+	self.entityPrefab = ResourceMgr.Get("AssetBundles/demo/Entity")
 
 	--init entities dict
 	self.entities = {}
 
+	unpacker:AddListener(self, function (msg)
+		if (msg.head.cmd == 3) then
+			--EnterWorldMsg
+			print("create entity:" .. msg.body.entityId)
+			self:CreateEntity(msg.body.entityId)
+		end
+	end)
+
+	--player enter
 	self:PlayerEnter(function(entityId)
-
-		local entity = Entity.New()
-		entity.entityId = entityId
-
-		self.entities[entityId] = entity
-
+		local entity = self:CreateEntity(entityId)
+		self.player = entity
 	end)
 
 
-end
-
-function ProtobufSceneController:CreateEntity(pos)
-	
-end
-
-function ProtobufSceneController:PlayerEnter(callback)
-
-	print("Player Enter")
-
-	local head = {
-		cmd = 5,
-		sequence = 1
-	}
-
-	local headCode = protobuf.encode("MsgHead", head)
-	local packet = LuaPacket()
-	packet:WriteHead(headCode)
-	networkService:Send(packet)
-
-	--wait packet from server
-	dispatcher:addEventListener("OnReceivePacket", function (evt, packet)
+	dispatcher:once("OnReceivePacket", function (evt, packet)
 		print("Protobuf SceneController handle OnReceivePacket")
 
 		--read head
@@ -59,11 +44,85 @@ function ProtobufSceneController:PlayerEnter(callback)
 		--read body
 		local byte_body = packet:ReadBody()
 		if (responseHead.cmd == 6) then
-			local entityCreatedMsg = protobuf.decode("EntityCreatedMsg", byte_body)
+			local entityCreatedMsg = protobuf.decode("game.EntityCreatedMsg", byte_body)
 			local myEntityId = entityCreatedMsg.entityId;
 
-			print("get myentityId:" .. myEntityId)
-			--callback(myEntityId)
+			callback(myEntityId)
+		end
+
+
+	end)
+
+
+	--ui event
+	local logOutBtn = GameObject.Find("Button"):GetComponent("Button")
+	logOutBtn.onClick:AddListener(function()
+		print("log out clicked")
+		self:LogOut()
+	end)
+
+
+end
+
+function ProtobufSceneController:LogOut()
+	for id,entity in pairs(self.entities) do
+		if (not Slua.IsNull(entity.gameObject)) then
+			GameObject.Destroy(entity.gameObject)
+		end
+	end
+
+	self.entities = nil
+
+	if (self.player ~= nil) then
+		self:SendLogOutMsg()
+	end
+end
+
+function ProtobufSceneController:SendLogOutMsg()
+	local head = {
+		cmd = 7
+	}
+
+	self:SendPacket(head, null)
+end
+
+function ProtobufSceneController:CreateEntity(entityId, pos)
+	local e = Entity.New()
+	e.entityId = entityId
+
+	self.entities[entityId] = e
+	e.gameObject = GameObject.Instantiate(self.entityPrefab)
+
+	return e
+end
+
+function ProtobufSceneController:PlayerEnter(callback)
+
+	print("Player Enter")
+
+	local head = {
+		cmd = 5,
+		sequence = 1
+	}
+	self:SendPacket(head, null)
+
+	--wait packet from server
+	dispatcher:once("OnReceivePacket", function (evt, packet)
+		print("Protobuf SceneController handle OnReceivePacket")
+
+		--read head
+		local byte_head = packet:ReadHead()
+		local responseHead = protobuf.decode("MsgHead", byte_head)
+		print("response cmd:"..responseHead.cmd)
+		print("response seq:"..responseHead.sequence)
+
+		--read body
+		local byte_body = packet:ReadBody()
+		if (responseHead.cmd == 6) then
+			local entityCreatedMsg = protobuf.decode("game.EntityCreatedMsg", byte_body)
+			local myEntityId = entityCreatedMsg.entityId;
+
+			callback(myEntityId)
 		end
 
 
@@ -71,12 +130,20 @@ function ProtobufSceneController:PlayerEnter(callback)
 
 end
 
-function ProtobufSceneController:Register(proto)
-	local asset = ResourceMgr.Get(proto)
-	local data = asset.bytes
-	local buffer = SLua.ByteArray(data)
 
-	protobuf.register(buffer)
+
+function ProtobufSceneController:SendPacket(head, body)
+	local headCode = protobuf.encode("MsgHead", head)
+	local packet = LuaPacket()
+	packet:WriteHead(headCode)
+
+	if (body ~= nil) then
+		local bodyMsgName = protocol_map[head.cmd]
+		local bodyCode = protobuf.encode(bodyMsgName, body)
+		packet:WriteBody(bodyCode)
+	end
+
+	networkService:Send(packet)
 end
 
 function print_r ( t )  

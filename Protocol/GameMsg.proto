@@ -39,4 +39,11 @@ message CreateEntityMsg
 message EntityCreatedMsg
 {
     required int32 entityId = 1;
+    optional string name = 2;
+}
+
+//cmd:7
+message LogOutMsg
+{
+    
 }

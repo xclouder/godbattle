@@ -17,7 +17,6 @@ Assets:
 - Assets/AssetBundles/lua/default/LoginSceneController.txt
 - Assets/AssetBundles/lua/default/InitSceneCtrl.txt
 - Assets/AssetBundles/lua/default/thanks.txt
-- Assets/AssetBundles/lua/default/class.lua
 - Assets/AssetBundles/lua/default/MainSceneController.txt
 - Assets/AssetBundles/lua/default/hello.txt
 - Assets/AssetBundles/lua/default/PlatformGame.txt

@@ -1,0 +1,56 @@
+﻿local oo = require "core/SimpleOO"
+require "core/protobuf"
+
+local protocol_map = {
+	[1] = "game.MoveMsg",
+	[2] = "game.UpdatePosMsg",
+	[3] = "game.EnterWorldMsg",
+	[4] = "game.ExitWorldMsg",
+	[5] = "game.CreateEntityMsg",
+	[6] = "game.EntityCreatedMsg",
+	[7] = "game.LogOutMsg"
+}
+
+local PacketUnpacker = oo.Class.Create()
+
+
+function PacketUnpacker:Init()
+	
+	self:RegisterProtocol("AssetBundles/protocol/MsgHead")
+	self:RegisterProtocol("AssetBundles/protocol/GameMsg")
+
+	dispatcher:on("OnReceivePacket", function(evt, packet)
+
+		local msg = {}
+		local hc = packet:ReadHead()
+		local head = protobuf.decode("MsgHead", hc)
+		msg.head = head
+
+		local bc = packet:ReadBody()
+		if (bc ~= nil) then
+			local name = protocol_map[head.cmd]
+			msg.body = protobuf.decode(name, bc)
+		end
+
+		self.listener.callback(msg)
+	end)
+end
+
+function PacketUnpacker:RegisterProtocol(proto)
+
+	local asset = ResourceMgr.Get(proto)
+	local data = asset.bytes
+	local buffer = SLua.ByteArray(data)
+
+	protobuf.register(buffer)
+
+end
+
+function PacketUnpacker:AddListener(listener, callback)
+	self.listener = {
+		target = listener,
+		callback = callback
+	}
+end
+
+return PacketUnpacker

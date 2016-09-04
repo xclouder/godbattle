@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3798192248
+CRC: 1049702465
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 17d1aa139b0491b72ad10dafce920b5c
+    Hash: 6fbc3ce5ba8d66d5b3f940069174a2fa
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,8 +12,7 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/lua/demo/Player.txt
-- Assets/AssetBundles/lua/demo/Enemy.txt
-- Assets/AssetBundles/lua/demo/DemoSceneController.txt
-- Assets/AssetBundles/lua/demo/Bullet.txt
+- Assets/AssetBundles/lua/protobuf/ProtobufSceneController.txt
+- Assets/AssetBundles/lua/protobuf/ProtobufTest.txt
+- Assets/AssetBundles/lua/protobuf/ProtobufTest2.txt
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2833951159
+CRC: 1844674697
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2f5f8c608d9e8bc069890fbe84af6e25
+    Hash: 588179b5353b8bf40a34421a7c41550d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1b5013359a3d77c65e2295f313c40f6a
@@ -33,4 +33,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetBundles/demo/Bullet.prefab
+- Assets/AssetBundles/demo/Entity.prefab
 Dependencies: []

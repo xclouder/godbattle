@@ -30,13 +30,44 @@ net.createServer(function (sock) {
                 entity.entityId = ENTITY_ID++;
                 entity.sock = sock;
 
-                entities[entity.entityId] = entity;
-
                 //write back packet EntityCreatedMsg
                 sendEntityCreatedMsg(sock, entity.entityId, head.sequence);
 
                 //notify entity EnterWorldMsg
+                for (var eid in entities)
+                {
+                    var e = entities[eid];
+                    sendEnterWorldMsg(e.sock, entity);
+                }
+
+                entities[entity.entityId] = entity;
                             
+            }
+
+            if (head.cmd == 7)
+            {
+                //log out
+                var theEntity = null;
+                for (var eid in entities)
+                {
+                    if (entities[eid].sock == sock)
+                    {
+                        theEntity = e;
+                    }
+                }
+
+                for (var eid in entities)
+                {
+                    var e = entities[eid];
+                    if (e != theEntity)
+                    {
+                        //TODO:notify the entity exited
+                        
+                    }
+                }
+
+                //entities.del(e)
+                delete entities[e.entityId];
             }
 
         });
@@ -94,7 +125,8 @@ function sendEntityCreatedMsg(sock, entityId, seq)
 {
 
     var bodyCode = gameMessages.EntityCreatedMsg.encode({
-        entityId : entityId
+        entityId : entityId,
+        name : "abc123"
     });
 
     var headCode = messages.MsgHead.encode({
@@ -103,6 +135,18 @@ function sendEntityCreatedMsg(sock, entityId, seq)
     });
 
     sendPacket(sock, headCode, bodyCode);
+}
+
+function sendEnterWorldMsg(sock, entity)
+{
+    var h = {
+        cmd : 3
+    }
+
+    var b = {
+        entityId : entity.entityId
+    }
+    sendPacket(sock, h, b);
 }
 
 function sendPacket(sock, headCode, bodyCode)

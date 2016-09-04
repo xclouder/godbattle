@@ -1,5 +1,5 @@
 
-¼
+Ð
 GameMsg.protogame"A
 MoveMsg
 entityId (RentityId
@@ -13,6 +13,7 @@
 entityId (RentityId"*
 ExitWorldMsg
 entityId (RentityId"
-CreateEntityMsg".
+CreateEntityMsg"B
 EntityCreatedMsg
-entityId (RentityId
+entityId (RentityId
+name (	Rname
