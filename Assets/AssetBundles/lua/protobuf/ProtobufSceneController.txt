@@ -57,7 +57,14 @@ function ProtobufSceneController:PlayerEnter(callback)
 		print("response seq:"..responseHead.sequence)
 
 		--read body
-		--local byte_body = packet:ReadBody()
+		local byte_body = packet:ReadBody()
+		if (responseHead.cmd == 6) then
+			local entityCreatedMsg = protobuf.decode("EntityCreatedMsg", byte_body)
+			local myEntityId = entityCreatedMsg.entityId;
+
+			print("get myentityId:" .. myEntityId)
+			--callback(myEntityId)
+		end
 
 
 	end)

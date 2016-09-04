@@ -9,7 +9,7 @@ public enum ConnectionState
 }
 
 public delegate void OnReceive(SocketBuffer buffer, int offset, int length);
-public interface INetworkInterface {
+public interface INetworkInterface : System.IDisposable {
 	event OnReceive onReceive;
 
 	ConnectionState State {get;}

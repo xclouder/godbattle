@@ -51,4 +51,12 @@ public class NetworkService : SystemServiceMonoBehavior {
 		//for test
 		Publish(packet);
 	}
+
+	void OnDestroy()
+	{
+		if (netInterface != null)
+		{
+			netInterface.Dispose();
+		}
+	}
 }

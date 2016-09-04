@@ -176,9 +176,13 @@ namespace Network.ImprovedInterface
 		{
 
 		}
-
-		~NetworkInterface()
+			
+		public void Dispose()
 		{
+			if (receiveEA != null) receiveEA.Dispose();
+			if (sendEA != null) sendEA.Dispose();
+
+			UnityEngine.Debug.LogError("Close Socket");
 			socket.Close();
 		}
 
