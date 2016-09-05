@@ -70,6 +70,27 @@ net.createServer(function (sock) {
                 delete entities[e.entityId];
             }
 
+            if (head.cmd ==1)
+            {
+                //moveMsg
+                var moveMsg = gameMessages.MoveMsg.decode(bodyCode);
+                var theEntity = entities[moveMsg.entityId];
+
+                for (var eid in entities)
+                {
+                    var e = entities[eid];
+                    if (e != theEntity)
+                    {
+                        //notify the move
+                        sendUpdatePosMsg({
+                            entityId: theEntity.entityId,
+                            x: moveMsg.x,
+                            y: moveMsg.y
+                        });
+                    }
+                }
+            }
+
         });
         /*
         var packageLen = data.readInt32BE(0);
@@ -139,14 +160,23 @@ function sendEntityCreatedMsg(sock, entityId, seq)
 
 function sendEnterWorldMsg(sock, entity)
 {
-    var h = {
+    var headCode = messages.MsgHead.encode({
         cmd : 3
-    }
-
-    var b = {
+    });
+    
+    var bodyCode = gameMessages.EnterWorldMsg.encode({
         entityId : entity.entityId
-    }
-    sendPacket(sock, h, b);
+    });
+
+    sendPacket(sock, headCode, bodyCode);
+}
+
+function sendUpdatePosMsg(sock, info)
+{
+    var headCode = messages.MsgHead.encode({cmd : 2});
+    var bodyCode = gameMessages.UpdatePosMsg.encode(info);
+
+    sendPacket(sock, headCode, bodyCode);
 }
 
 function sendPacket(sock, headCode, bodyCode)

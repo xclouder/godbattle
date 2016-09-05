@@ -38,6 +38,8 @@ client.on('data', function(data) {
 
             var eid = createdInfo.entityId;
             console.log("entityId:" + eid);
+
+            sendMoveMsg(client, eid, 1, 2);
         }
 
     });
@@ -63,6 +65,18 @@ function sendCreateEntityMsg(sock)
     });
 
     sendPacket(sock, headCode, null);
+}
+
+function sendMoveMsg(sock, eid, x, y)
+{
+    var headCode = messages.MsgHead.encode({cmd:1});
+    var bodyCode = gameMessages.MoveMsg.encode({
+        entityId:eid,
+        x:x,
+        y:y
+    });
+
+    sendPacket(sock, headCode, bodyCode);
 }
 
 function sendPacket(sock, headCode, bodyCode)

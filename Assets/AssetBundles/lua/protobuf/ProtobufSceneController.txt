@@ -23,36 +23,46 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 			print("create entity:" .. msg.body.entityId)
 			self:CreateEntity(msg.body.entityId)
 		end
+
+		if (msg.head.cmd == 6) then
+			--EntityCreatedMsg
+			local myEntityId = msg.body.entityId;
+			local entity = self:CreateEntity(myEntityId)
+			self.player = entity
+
+
+			LuaTimer.Add(0,20,function(id)
+			    local pos = self.player.gameObject.transform.position;
+			    local h = {
+			    	cmd = 1
+			    }
+			    local b = {
+			    	entityId = 1,--self.player.entityId,
+			    	x = 0,--pos.x,
+			    	y = 0,--pos.y
+			    }
+
+			    self:SendPacket(h,b)
+			    return true
+			end)
+		end
+
+		if (msg.head.cmd == 2) then
+			--UpdatePosMsg
+			local eid = msg.body.entityId
+			local e = entities[eid]
+			if (e ~= nil) then
+				e.gameObject.transform.position = new Vector3(msg.body.x, msg.body.y, 0)
+			else
+				pritn("entity id:" .. eid .. "not exist")
+			end
+
+		end
+
 	end)
 
 	--player enter
-	self:PlayerEnter(function(entityId)
-		local entity = self:CreateEntity(entityId)
-		self.player = entity
-	end)
-
-
-	dispatcher:once("OnReceivePacket", function (evt, packet)
-		print("Protobuf SceneController handle OnReceivePacket")
-
-		--read head
-		local byte_head = packet:ReadHead()
-		local responseHead = protobuf.decode("MsgHead", byte_head)
-		print("response cmd:"..responseHead.cmd)
-		print("response seq:"..responseHead.sequence)
-
-		--read body
-		local byte_body = packet:ReadBody()
-		if (responseHead.cmd == 6) then
-			local entityCreatedMsg = protobuf.decode("game.EntityCreatedMsg", byte_body)
-			local myEntityId = entityCreatedMsg.entityId;
-
-			callback(myEntityId)
-		end
-
-
-	end)
-
+	self:PlayerEnter()
 
 	--ui event
 	local logOutBtn = GameObject.Find("Button"):GetComponent("Button")
@@ -106,28 +116,6 @@ function ProtobufSceneController:PlayerEnter(callback)
 	}
 	self:SendPacket(head, null)
 
-	--wait packet from server
-	dispatcher:once("OnReceivePacket", function (evt, packet)
-		print("Protobuf SceneController handle OnReceivePacket")
-
-		--read head
-		local byte_head = packet:ReadHead()
-		local responseHead = protobuf.decode("MsgHead", byte_head)
-		print("response cmd:"..responseHead.cmd)
-		print("response seq:"..responseHead.sequence)
-
-		--read body
-		local byte_body = packet:ReadBody()
-		if (responseHead.cmd == 6) then
-			local entityCreatedMsg = protobuf.decode("game.EntityCreatedMsg", byte_body)
-			local myEntityId = entityCreatedMsg.entityId;
-
-			callback(myEntityId)
-		end
-
-
-	end)
-
 end
 
 
@@ -139,6 +127,7 @@ function ProtobufSceneController:SendPacket(head, body)
 
 	if (body ~= nil) then
 		local bodyMsgName = protocol_map[head.cmd]
+		print("bodyMsgName:"..bodyMsgName)
 		local bodyCode = protobuf.encode(bodyMsgName, body)
 		packet:WriteBody(bodyCode)
 	end
@@ -146,38 +135,6 @@ function ProtobufSceneController:SendPacket(head, body)
 	networkService:Send(packet)
 end
 
-function print_r ( t )  
-    local print_r_cache={}
-    local function sub_print_r(t,indent)
-        if (print_r_cache[tostring(t)]) then
-            print(indent.."*"..tostring(t))
-        else
-            print_r_cache[tostring(t)]=true
-            if (type(t)=="table") then
-                for pos,val in pairs(t) do
-                    if (type(val)=="table") then
-                        print(indent.."["..pos.."] => "..tostring(t).." {")
-                        sub_print_r(val,indent..string.rep(" ",string.len(pos)+8))
-                        print(indent..string.rep(" ",string.len(pos)+6).."}")
-                    elseif (type(val)=="string") then
-                        print(indent.."["..pos..'] => "'..val..'"')
-                    else
-                        print(indent.."["..pos.."] => "..tostring(val))
-                    end
-                end
-            else
-                print(indent..tostring(t))
-            end
-        end
-    end
-    if (type(t)=="table") then
-        print(tostring(t).." {")
-        sub_print_r(t,"  ")
-        print("}")
-    else
-        sub_print_r(t,"  ")
-    end
-    print()
-end
+
 
 return ProtobufSceneController
