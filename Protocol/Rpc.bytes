@@ -1,10 +1,12 @@
 
-à
-	Rpc.protorpc"d
-MsgHead
-cmd (2.rpc.MsgCmdRcmd 
-type (2.rpc.MsgTypeRtype
-session (Rsession*6
+ä
+	Rpc.protorpc"I
+MsgHead
+cmd (Rcmd
+type (Rtype
+session (Rsession"
+MsgBody
+data (	Rdata*6
 MsgCmd
 Server2Client_RPC
 Client2Server_RPC*0

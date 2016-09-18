@@ -1,14 +1,19 @@
 var net = require('net');
 var fs = require('fs');
 var protobuf = require('protocol-buffers')
-var messages = protobuf(fs.readFileSync('../Protocol/MsgHead.proto'))
-var gameMessages = protobuf(fs.readFileSync('../Protocol/GameMsg.proto'))
+var messages = protobuf(fs.readFileSync('../Protocol/Rpc.proto'))
 
 var HOST = '127.0.0.1';
 var PORT = 50001;
 
 var ENTITY_ID = 1;
 var entities = {}
+
+entities[-1] = {
+    sayHello:function(msg){
+        console.log("Server say hello!");
+    }
+}
 
 net.createServer(function (sock) {
 
@@ -19,114 +24,17 @@ net.createServer(function (sock) {
         if (data.length < 7)
             return;
 
-        receivePacket(data, function(head, bodyCode){
+        receivePacket(data, function(head, body){
 
             console.log('msg cmd:' + head.cmd);
-            console.log('msg seq:' + head.sequence);
-
-            if (head.cmd == 5)
-            {
-                var entity = {};
-                entity.entityId = ENTITY_ID++;
-                entity.sock = sock;
-
-                //write back packet EntityCreatedMsg
-                sendEntityCreatedMsg(sock, entity.entityId, head.sequence);
-
-                //notify entity EnterWorldMsg
-                for (var eid in entities)
-                {
-                    var e = entities[eid];
-                    sendEnterWorldMsg(e.sock, entity);
-                }
-
-                entities[entity.entityId] = entity;
-                            
-            }
-
-            if (head.cmd == 7)
-            {
-                //log out
-                var theEntity = null;
-                for (var eid in entities)
-                {
-                    if (entities[eid].sock == sock)
-                    {
-                        theEntity = e;
-                    }
-                }
-
-                for (var eid in entities)
-                {
-                    var e = entities[eid];
-                    if (e != theEntity)
-                    {
-                        //TODO:notify the entity exited
-                        
-                    }
-                }
-
-                //entities.del(e)
-                delete entities[e.entityId];
-            }
-
-            if (head.cmd ==1)
-            {
-                //moveMsg
-                var moveMsg = gameMessages.MoveMsg.decode(bodyCode);
-                var theEntity = entities[moveMsg.entityId];
-
-                for (var eid in entities)
-                {
-                    var e = entities[eid];
-                    if (e != theEntity)
-                    {
-                        //notify the move
-                        sendUpdatePosMsg({
-                            entityId: theEntity.entityId,
-                            x: moveMsg.x,
-                            y: moveMsg.y
-                        });
-                    }
-                }
-            }
-
-        });
-        /*
-        var packageLen = data.readInt32BE(0);
-        var headLen = data.readInt32BE(4);
-
-        var headContent = new Buffer(headLen);
-        data.copy(headContent, 0, 8, 8 + headLen);
-        
-        var head = messages.MsgHead.decode(headContent);
-        console.log('msg cmd:' + head.cmd);
-        console.log('msg seq:' + head.sequence);
-
-        //READ BODY
-        if(packageLen > headLen + 4)
-        {
-            //HAS BODY
+            console.log('msg session:' + head.session);
             
-        }
-
-        if (head.cmd == 5)
-        {
-            var entity = {};
-            entity.entityId = ENTITY_ID++;
-            entity.sock = sock;
-
-            entities[entity.entityId] = entity;
-
-            //write back packet EntityCreatedMsg
-            sendEntityCreatedMsg(sock, entityId.entityId, head.sequence);
-
-            //notify entity EnterWorldMsg
-                        
-        }
-
-        sock.write("You said:" + head.cmd);
-        */
+            if (head.cmd == 2)
+            {
+                handleRpc(body);
+            }
+        });
+        
     });
 
     sock.on('close', function(data){
@@ -140,43 +48,6 @@ function printBuffer(buffer)
 {
     console.log("BUFFER:");
     console.log(buffer);
-}
-
-function sendEntityCreatedMsg(sock, entityId, seq)
-{
-
-    var bodyCode = gameMessages.EntityCreatedMsg.encode({
-        entityId : entityId,
-        name : "无极限"
-    });
-
-    var headCode = messages.MsgHead.encode({
-        cmd : 6,
-        sequence : seq
-    });
-
-    sendPacket(sock, headCode, bodyCode);
-}
-
-function sendEnterWorldMsg(sock, entity)
-{
-    var headCode = messages.MsgHead.encode({
-        cmd : 3
-    });
-    
-    var bodyCode = gameMessages.EnterWorldMsg.encode({
-        entityId : entity.entityId
-    });
-
-    sendPacket(sock, headCode, bodyCode);
-}
-
-function sendUpdatePosMsg(sock, info)
-{
-    var headCode = messages.MsgHead.encode({cmd : 2});
-    var bodyCode = gameMessages.UpdatePosMsg.encode(info);
-
-    sendPacket(sock, headCode, bodyCode);
 }
 
 function sendPacket(sock, headCode, bodyCode)
@@ -224,14 +95,26 @@ function receivePacket(data, unpacked)
     var head = messages.MsgHead.decode(headContent);
 
     var bodyLen = packageLen - 4 - headLen;
-    var bodyCode = null;
+    var body = null;
 
     if(bodyLen > 0)
     {
-        bodyCode = new Buffer(bodyLen);
+        var bodyCode = new Buffer(bodyLen);
         data.copy(bodyCode, 0, 8 + headLen, data.length);
+        body = messages.MsgBody.decode(bodyCode);
+        var bodyJson = body.data;
+        body = JSON.parse(bodyJson);
     }
     
-    unpacked(head, bodyCode);
+    unpacked(head, body);
+}
+
+function handleRpc(body)
+{
+    console.log("entityId:"+body.entityId);
+    var entity = entities[body.entityId];
+    console.log("method:"+ body.method);
+    console.log("params:" + body.args);
+    entity[body.method](body.args);
 }
 

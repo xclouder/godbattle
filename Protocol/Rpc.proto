@@ -17,8 +17,8 @@ enum MsgType
 
 message MsgHead
 {
-    required MsgCmd cmd     = 1;
-    required MsgType type   = 2;
+    required int32 cmd     = 1;
+    required int32 type   = 2;
     optional int32 session  = 3;
 }
 

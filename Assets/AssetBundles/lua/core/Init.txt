@@ -35,3 +35,12 @@ dispatcher = EvtD()
 local NetworkManager = require("core/NetworkManager")
 NetMgr = NetworkManager.Instance()
 NetMgr:Init()
+
+-- Rpc
+local Rpc = require "core/Rpc"
+local World = require "entity/World"
+RPC = Rpc()
+RPC:Init()
+local world = World()
+world.entityId = -1
+RPC:RegisterEntity(-1, world)

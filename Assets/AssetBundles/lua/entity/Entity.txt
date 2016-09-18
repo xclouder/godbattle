@@ -1,0 +1,13 @@
+﻿require "core/protobuf"
+
+local Entity = Class()
+
+function Entity:Init()
+	
+end
+
+function Entity:RemoteCall(method, ...)
+	RPC:RemoteCall(self.entityId, method, ...)
+end
+
+return Entity

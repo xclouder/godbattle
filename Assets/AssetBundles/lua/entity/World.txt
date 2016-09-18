@@ -1,0 +1,13 @@
+﻿require "core/protobuf"
+local Entity = require "entity/Entity"
+local World = Class(Entity)
+
+function World:SayHello(msg)
+	Log("client:hello~")
+end
+
+function World:ServerSayHello(msg)
+	self:RemoteCall("SayHello", msg)
+end
+
+return World

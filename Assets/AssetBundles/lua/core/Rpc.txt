@@ -17,10 +17,9 @@ function Rpc:Init()
 
 			local entity = self.entities[eid]
 			if(entity == nil) then
-				Log.Warn("entity not exist, create one and register it")
+				Log.Warn("entity not exist, use root")
 
-				entity = {}
-				self:RegisterEntity(eid, entity)
+				entity = self.entities[-1]
 			end
 
 			local method = msg.body.method
@@ -35,6 +34,10 @@ function Rpc:Init()
 
 end
 
+function Rpc:GetRoot()
+	return self.entities[-1]
+end
+
 function Rpc:RegisterEntity(id, entity)
 	if (self.entities[id] ~= nil) then
 		Log.Error("entity with id "..id.." existed, cannot regiter again")
@@ -45,17 +48,17 @@ function Rpc:RegisterEntity(id, entity)
 	self.entities[id] = entity
 end
 
-function Rpc:RemoteCall(entityId, method, args)
+function Rpc:RemoteCall(eid, method, ...)
 	local msg = {}
 	msg.head = {
-		MsgCmd = 2;
-		MsgType = 1;
+		cmd = 2;
+		type = 1;
 	}
 
 	msg.body = {
-		entityId = entityId;
+		entityId = eid;
 		method = method;
-		args = args;
+		args = ...;
 	}
 
 	dispatcher:emit("SendMessage", msg)

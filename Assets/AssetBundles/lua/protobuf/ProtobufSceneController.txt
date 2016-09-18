@@ -13,10 +13,6 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	--init entities dict
 	self.entities = {}
 
-	dispatcher:on("OnReceiveMessage", function (evt, msg)
-		self:HandleMsg(msg)
-	end)
-
 	--player enter
 	self:PlayerEnter()
 
@@ -30,34 +26,7 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 end
 
 function ProtobufSceneController:HandleMsg(msg)
-	if (msg.head.cmd == 3) then
-			--EnterWorldMsg
-			print("create entity:" .. msg.body.entityId)
-			self:CreateEntity(msg.body.entityId)
-		end
-
-	if (msg.head.cmd == 6) then
-		--EntityCreatedMsg
-		local myEntityId = msg.body.entityId;
-		local name = msg.body.name;
-		local entity = self:CreateEntity(myEntityId)
-
-		self.player = entity
-		print(name)
-		entity.gameObject.name = name
-	end
-
-	if (msg.head.cmd == 2) then
-		--UpdatePosMsg
-		local eid = msg.body.entityId
-		local e = entities[eid]
-		if (e ~= nil) then
-			e.gameObject.transform.position = new Vector3(msg.body.x, msg.body.y, 0)
-		else
-			pritn("entity id:" .. eid .. "not exist")
-		end
-
-	end
+	
 end
 
 function ProtobufSceneController:LogOut()
@@ -95,24 +64,12 @@ end
 function ProtobufSceneController:PlayerEnter(callback)
 
 	print("Player Enter")
+	local root = RPC:GetRoot()
+	print(type(root))
 
-	local head = {
-		cmd = 5,
-		sequence = 1
-	}
-	self:SendPacket(head, null)
+	root:RemoteCall("sayHello", "from client, 12345")
 
 end
-
-
-
-function ProtobufSceneController:SendPacket(head, body)
-	local msg = {}
-	msg.head = head
-	msg.body = body
-	NetMgr:Send(msg)
-end
-
 
 
 return ProtobufSceneController

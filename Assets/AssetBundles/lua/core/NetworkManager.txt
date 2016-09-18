@@ -29,7 +29,7 @@ function NetworkManager:Init()
 			return json.decode(body.data)
 		end;
 
-		decode = function (head, body)
+		encode = function (head, body)
 			local str = json.encode(body)
 			local body = {data = str;}
 			local bodyCodes = protobuf.encode("rpc.MsgBody", body)
@@ -37,9 +37,10 @@ function NetworkManager:Init()
 		end;
 	}
 
-	dispatcher:on("OnReceiveMessage", function(evt, msg)
+	dispatcher:on("SendMessage", function(evt, msg)
 		self:Send(msg)
 	end)
+
 end
 
 --------Message Send & Receive
