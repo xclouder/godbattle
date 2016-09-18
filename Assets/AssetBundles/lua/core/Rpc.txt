@@ -23,9 +23,10 @@ function Rpc:Init()
 			end
 
 			local method = msg.body.method
-			local ret = pcall(entity[method],msg.body.args)
-			if (ret == false) then
-				Log.Error("failed to call method:".. method)
+
+			local callResult = { pcall(entity[method], entity, unpack(msg.body.args)) }
+			if (callResult[1] == false) then
+				Log.Error("failed to call method:".. method .." >> " .. callResult[2])
 			end
 
 		end
@@ -55,10 +56,13 @@ function Rpc:RemoteCall(eid, method, ...)
 		type = 1;
 	}
 
+	--here, we need json encode as a array,not table. so remove "n".
+	arg.n = nil
+
 	msg.body = {
 		entityId = eid;
 		method = method;
-		args = ...;
+		args = arg;
 	}
 
 	dispatcher:emit("SendMessage", msg)

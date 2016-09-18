@@ -9,21 +9,39 @@ var PORT = 50001;
 var ENTITY_ID = 1;
 var entities = {}
 
-entities[-1] = {
+var root = {
     entityId: -1,
-    sayHello:function(msg){
+    sayHello:function(msg, name){
         console.log("Server say hello!");
+        console.log("msg:"+msg);
+        console.log("name:"+name);
 
-        this.callClient(this.entityId, "SayHello", msg);
+        this.callClient(this.entityId, "SayHello", msg, name);
     },
 
-    callClient:function(eid, method, params)
+    callClient:function(eid, method)
     {
         var msg = {}
         msg.head = {
             cmd : 1,
             type : 2
         }
+
+        var paramsLen = arguments.length - 2;
+        var params = null;
+        if (paramsLen > 0)
+        {
+            params = new Array(paramsLen);
+            for (var i = 0; i < paramsLen; i++)
+            {
+                params[i] = arguments[i + 2];
+            }
+        }
+        else
+        {
+            params = [];
+        }
+
         msg.body = {
             entityId:eid,
             method:method,
@@ -33,6 +51,8 @@ entities[-1] = {
         sendPacket(this.sock, msg);
     }
 }
+
+entities[-1] = root;
 
 net.createServer(function (sock) {
 
@@ -59,6 +79,7 @@ net.createServer(function (sock) {
     sock.on('close', function(data){
         console.log("CLOSED: " + sock.remoteAddress + ", PORT:" + sock.remotePort);
     });
+
 }).listen(PORT, function(){
     console.log("server started");
 });
@@ -72,7 +93,9 @@ function printBuffer(buffer)
 function sendPacket(sock, msg)
 {
     var headCode = messages.MsgHead.encode(msg.head);
-    var body = {data:JSON.stringify(msg.body)};
+    var bodyJson = JSON.stringify(msg.body);
+    console.log("body:"+bodyJson);
+    var body = {data:bodyJson};
     var bodyCode = messages.MsgBody.encode(body);
     var headLen = headCode.length;
 
@@ -139,6 +162,9 @@ function handleRpc(body, sock)
 
     console.log("method:"+ body.method);
     console.log("params:" + body.args);
-    entity[body.method](body.args);
+
+    var method = entity[body.method];
+    method.apply(entity, body.args);
+    
 }
 

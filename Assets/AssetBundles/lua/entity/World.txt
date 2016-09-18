@@ -2,12 +2,12 @@
 local Entity = require "entity/Entity"
 local World = Class(Entity)
 
-function World:SayHello(msg)
-	Log("client:hello~")
+function World:SayHello(msg, name)
+	Log("client Say Hello,"..msg..","..name)
 end
 
-function World:ServerSayHello(msg)
-	self:RemoteCall("SayHello", msg)
+function World:ServerSayHello(msg, name)
+	self:RemoteCall("SayHello", msg, name)
 end
 
 return World

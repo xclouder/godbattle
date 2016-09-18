@@ -67,7 +67,7 @@ function ProtobufSceneController:PlayerEnter(callback)
 	local root = RPC:GetRoot()
 	print(type(root))
 
-	root:RemoteCall("sayHello", "from client, 12345")
+	root:RemoteCall("sayHello", "from client", "12345")
 
 end
 

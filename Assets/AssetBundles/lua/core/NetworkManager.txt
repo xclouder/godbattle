@@ -14,8 +14,6 @@ function NetworkManager:Init()
 	self.networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, nil, true)
 
 	--register protocols here
-	--self:RegisterProtocol("AssetBundles/protocol/MsgHead")
-	--self:RegisterProtocol("AssetBundles/protocol/GameMsg")
 	self:RegisterProtocol("AssetBundles/protocol/Rpc")
 
 	--修改这里，实现message body的映射
@@ -31,6 +29,7 @@ function NetworkManager:Init()
 
 		encode = function (head, body)
 			local str = json.encode(body)
+			Log.Warn("json:"..str);
 			local body = {data = str;}
 			local bodyCodes = protobuf.encode("rpc.MsgBody", body)
 			return bodyCodes
@@ -63,7 +62,6 @@ end
 function NetworkManager:OnReceiveMessage(packet)
 	print("receive msg in lua")
 
-	--use case:
 	local headCode = packet:ReadHead()
 	local bodyCode = packet:ReadBody()
 	local msg = {}
