@@ -1,0 +1,91 @@
+﻿require "core/protobuf"
+local json = require "cjson"
+
+local NetworkManager = Class()
+function NetworkManager.Instance()
+	if (NetworkManager.__ins == nil) then
+		NetworkManager.__ins = NetworkManager.New()
+	end
+
+	return NetworkManager.__ins
+end
+
+function NetworkManager:Init()
+	self.networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, nil, true)
+
+	--register protocols here
+	--self:RegisterProtocol("AssetBundles/protocol/MsgHead")
+	--self:RegisterProtocol("AssetBundles/protocol/GameMsg")
+	self:RegisterProtocol("AssetBundles/protocol/Rpc")
+
+	--修改这里，实现message body的映射
+	self.ProtocolMap = {
+		[1] = "rpc.MsgBody",
+	}
+
+	self.bodyEncoder = {
+		decode = function (head, bodyBytes)
+			local body = protobuf.decode("rpc.MsgBody", bodyBytes)
+			return json.decode(body.data)
+		end;
+
+		decode = function (head, body)
+			local str = json.encode(body)
+			local body = {data = str;}
+			local bodyCodes = protobuf.encode("rpc.MsgBody", body)
+			return bodyCodes
+		end;
+	}
+
+	dispatcher:on("OnReceiveMessage", function(evt, msg)
+		self:Send(msg)
+	end)
+end
+
+--------Message Send & Receive
+--这里msg协议根据项目需要自定义
+function NetworkManager:Send(msg)
+	
+	local headCode = protobuf.encode("rpc.MsgHead", msg.head)
+	local packet = LuaPacket()
+	packet:WriteHead(headCode)
+
+	if (msg.body ~= nil) then
+		local bodyCode = self.bodyEncoder.encode(msg.head, msg.body)
+
+		packet:WriteBody(bodyCode)
+	end
+
+	self.networkService:Send(packet)
+end
+
+function NetworkManager:OnReceiveMessage(packet)
+	print("receive msg in lua")
+
+	--use case:
+	local headCode = packet:ReadHead()
+	local bodyCode = packet:ReadBody()
+	local msg = {}
+	msg.head = protobuf.decode("MsgHead", headCode)
+
+	if (bodyCode ~= nil) then
+		msg.body = self.bodyEncoder.decode(msg.head, bodyCode)
+	end
+
+	--要用到消息的地方，监听这个通知
+	dispatcher:dispatchEvent("OnReceiveMessage", msg)
+end
+
+--------protobuf 协议注册
+function NetworkManager:RegisterProtocol(proto)
+
+	local asset = ResourceMgr.Get(proto)
+	local data = asset.bytes
+	local buffer = SLua.ByteArray(data)
+
+	protobuf.register(buffer)
+
+end
+
+
+return NetworkManager

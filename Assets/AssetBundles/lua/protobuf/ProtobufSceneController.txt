@@ -1,12 +1,8 @@
 ﻿local oo = require "core/SimpleOO"
 require "core/protobuf"
-local PacketUnpacker = require "protobuf/PacketUnpacker"
 
 local ProtobufSceneController = oo.Class.Create()
 local Entity = oo.Class.Create()
-
-local unpacker = PacketUnpacker.New()
-unpacker:Init()
 
 function ProtobufSceneController:KernelLoaded(monoComonent)
 	self.monoComponent = monoComponent
@@ -17,48 +13,8 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	--init entities dict
 	self.entities = {}
 
-	unpacker:AddListener(self, function (msg)
-		if (msg.head.cmd == 3) then
-			--EnterWorldMsg
-			print("create entity:" .. msg.body.entityId)
-			self:CreateEntity(msg.body.entityId)
-		end
-
-		if (msg.head.cmd == 6) then
-			--EntityCreatedMsg
-			local myEntityId = msg.body.entityId;
-			local entity = self:CreateEntity(myEntityId)
-			self.player = entity
-
-
-			LuaTimer.Add(0,20,function(id)
-			    local pos = self.player.gameObject.transform.position;
-			    local h = {
-			    	cmd = 1
-			    }
-			    local b = {
-			    	entityId = 1,--self.player.entityId,
-			    	x = 0,--pos.x,
-			    	y = 0,--pos.y
-			    }
-
-			    self:SendPacket(h,b)
-			    return true
-			end)
-		end
-
-		if (msg.head.cmd == 2) then
-			--UpdatePosMsg
-			local eid = msg.body.entityId
-			local e = entities[eid]
-			if (e ~= nil) then
-				e.gameObject.transform.position = new Vector3(msg.body.x, msg.body.y, 0)
-			else
-				pritn("entity id:" .. eid .. "not exist")
-			end
-
-		end
-
+	dispatcher:on("OnReceiveMessage", function (evt, msg)
+		self:HandleMsg(msg)
 	end)
 
 	--player enter
@@ -71,7 +27,37 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 		self:LogOut()
 	end)
 
+end
 
+function ProtobufSceneController:HandleMsg(msg)
+	if (msg.head.cmd == 3) then
+			--EnterWorldMsg
+			print("create entity:" .. msg.body.entityId)
+			self:CreateEntity(msg.body.entityId)
+		end
+
+	if (msg.head.cmd == 6) then
+		--EntityCreatedMsg
+		local myEntityId = msg.body.entityId;
+		local name = msg.body.name;
+		local entity = self:CreateEntity(myEntityId)
+
+		self.player = entity
+		print(name)
+		entity.gameObject.name = name
+	end
+
+	if (msg.head.cmd == 2) then
+		--UpdatePosMsg
+		local eid = msg.body.entityId
+		local e = entities[eid]
+		if (e ~= nil) then
+			e.gameObject.transform.position = new Vector3(msg.body.x, msg.body.y, 0)
+		else
+			pritn("entity id:" .. eid .. "not exist")
+		end
+
+	end
 end
 
 function ProtobufSceneController:LogOut()
@@ -121,18 +107,10 @@ end
 
 
 function ProtobufSceneController:SendPacket(head, body)
-	local headCode = protobuf.encode("MsgHead", head)
-	local packet = LuaPacket()
-	packet:WriteHead(headCode)
-
-	if (body ~= nil) then
-		local bodyMsgName = protocol_map[head.cmd]
-		print("bodyMsgName:"..bodyMsgName)
-		local bodyCode = protobuf.encode(bodyMsgName, body)
-		packet:WriteBody(bodyCode)
-	end
-
-	networkService:Send(packet)
+	local msg = {}
+	msg.head = head
+	msg.body = body
+	NetMgr:Send(msg)
 end
 
 

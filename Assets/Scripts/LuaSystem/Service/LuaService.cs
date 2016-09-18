@@ -36,16 +36,18 @@ public class LuaService : SystemServiceMonoBehavior
 
 		//TODO:在这里调用lua环境初始化脚本有一点问题，线上的版本assetbundle可能存在于两个地方:StreammingAssets or PersistentDataPath
 		//在UpdateService执行完更新逻辑之前，任何调用可热更资源都可能造成读脏数据
+
 		//Init lua libs
 		RunString("require \"core/Init\"");
 
-		var luaNetMgr = (LuaTable)RunString("return networkCallback");
-		var func = luaNetMgr["OnReceivePacket"] as LuaFunction;
-
+		//net msg callback
+		var luaNetMgr = (LuaTable)RunString("return NetMgr");
+		var func = luaNetMgr["OnReceiveMessage"] as LuaFunction;
 		OnEvent<Packet>().ObserveOnMainThread().Subscribe((packet) => {
-			Debug.Log("call lua networkService:OnReceivePacket");
+			//Debug.Log("call lua networkService:OnReceivePacket");
 			func.call(luaNetMgr, packet);
 		});
+
 
 		Debug.Log ("Lua Service setup completed.");
 

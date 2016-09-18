@@ -1,23 +1,37 @@
 ﻿import("UnityEngine")
 
-require "core/protobuf"
+-- log alias
+Log = setmetatable({}, {__call = function(msg2,msg)
+	UnityEngine.Debug.Log(msg)
+end})
 
+Log.Warn = function (msg)
+	UnityEngine.Debug.LogWarning(msg)
+end
+
+Log.Error = function(msg)
+	UnityEngine.Debug.LogError(msg)
+end
+
+-- 覆盖 type函数，以支持导出类型
+local old_type = type
+type = function ( obj )
+	local t = old_type(obj)
+	if t == 'userdata' then
+		t = obj:GetType():ToString()
+	end
+
+	return t
+end
+
+-- OO
+require "core/Class"
+
+-- Event Dispatcher
 local EvtD = require("core/EventDispatcher")
 dispatcher = EvtD()
 
---networkService
-networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, nil, true)
-
-networkCallback = {}
-networkCallback.OnReceivePacket = function(self, packet)
-	print("receive packet in networkService(lua)");
-
-	dispatcher:dispatchEvent("OnReceivePacket", packet);
-end
-
-local asset = ResourceMgr.Get("AssetBundles/config/addressbookBytes")
-
-local data = asset.bytes
-local buffer = SLua.ByteArray(data)
-
-protobuf.register(buffer)
+-- NetMgr
+local NetworkManager = require("core/NetworkManager")
+NetMgr = NetworkManager.Instance()
+NetMgr:Init()

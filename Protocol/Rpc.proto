@@ -1,0 +1,40 @@
+syntax = "proto2";
+
+package rpc;
+
+enum MsgCmd
+{
+    Server2Client_RPC = 1;
+    Client2Server_RPC = 2;
+}
+
+enum MsgType
+{
+    REQUEST     = 1;
+    RESPONSE    = 2;
+    NOTIFY      = 3;
+}
+
+message MsgHead
+{
+    required MsgCmd cmd     = 1;
+    required MsgType type   = 2;
+    optional int32 session  = 3;
+}
+
+message MsgBody
+{
+    required string data    = 1;
+}
+
+// message Server2ClientRPC
+// {
+//     required int32 receiverId   = 1;
+//     required string method      = 2;
+//     repeated bytes args         = 3;
+// }
+
+// message Client2ServerRPC
+// {
+    
+// }

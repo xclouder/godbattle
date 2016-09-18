@@ -1,0 +1,64 @@
+﻿require "core/protobuf"
+
+local Rpc = Class()
+
+function Rpc:Init()
+	self.entities = {}
+
+	--self:RegisterProtocol("AssetBundles/protocol/Rpc")
+
+	dispatcher:on("OnReceiveMessage", function (evt, msg)
+		--here should be server to client rpc cmd
+		local cmd = msg.head.MsgCmd
+		print("msg cmd:".. cmd)
+		if (cmd == 1) then
+			local eid = msg.body.entityId
+			print("entityId:"..eid)
+
+			local entity = self.entities[eid]
+			if(entity == nil) then
+				Log.Warn("entity not exist, create one and register it")
+
+				entity = {}
+				self:RegisterEntity(eid, entity)
+			end
+
+			local method = msg.body.method
+			local ret = pcall(entity[method],unpack(msg.body.args))
+			if (ret == false) then
+				Log.Error("failed to call method:".. method)
+			end
+
+		end
+
+	end)
+
+end
+
+function Rpc:RegisterEntity(id, entity)
+	if (self.entities[id] ~= nil) then
+		Log.Error("entity with id "..id.." existed, cannot regiter again")
+
+		return
+	end
+
+	self.entities[id] = entity
+end
+
+function Rpc:RemoteCall(entityId, method, args)
+	local msg = {}
+	msg.head = {
+		MsgCmd = 2;
+		MsgType = 1;
+	}
+
+	msg.body = {
+		entityId = entityId;
+		method = method;
+		args = args;
+	}
+
+	dispatcher:emit("SendMessage", msg)
+end
+
+return Rpc

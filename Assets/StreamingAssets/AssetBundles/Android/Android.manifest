@@ -1,0 +1,57 @@
+ManifestFileVersion: 0
+CRC: 926838906
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: materials
+      Dependencies:
+        Dependency_0: shader
+        Dependency_1: textures
+    Info_1:
+      Name: config
+      Dependencies: {}
+    Info_2:
+      Name: prefabs
+      Dependencies: {}
+    Info_3:
+      Name: characters
+      Dependencies:
+        Dependency_0: materials
+        Dependency_1: shader
+        Dependency_2: textures
+    Info_4:
+      Name: shader
+      Dependencies: {}
+    Info_5:
+      Name: textures
+      Dependencies: {}
+    Info_6:
+      Name: skills
+      Dependencies: {}
+    Info_7:
+      Name: demo
+      Dependencies: {}
+    Info_8:
+      Name: shop
+      Dependencies: {}
+    Info_9:
+      Name: lua/module1
+      Dependencies: {}
+    Info_10:
+      Name: lua/default
+      Dependencies: {}
+    Info_11:
+      Name: lua/core
+      Dependencies: {}
+    Info_12:
+      Name: lua/demo
+      Dependencies: {}
+    Info_13:
+      Name: lua/shop
+      Dependencies: {}
+    Info_14:
+      Name: lua/protobuf
+      Dependencies: {}
+    Info_15:
+      Name: protocol
+      Dependencies: {}

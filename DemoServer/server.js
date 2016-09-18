@@ -147,7 +147,7 @@ function sendEntityCreatedMsg(sock, entityId, seq)
 
     var bodyCode = gameMessages.EntityCreatedMsg.encode({
         entityId : entityId,
-        name : "abc123"
+        name : "无极限"
     });
 
     var headCode = messages.MsgHead.encode({

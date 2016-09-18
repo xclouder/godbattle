@@ -1,0 +1,15 @@
+
+à
+	Rpc.protorpc"d
+MsgHead
+cmd (2.rpc.MsgCmdRcmd 
+type (2.rpc.MsgTypeRtype
+session (Rsession*6
+MsgCmd
+Server2Client_RPC
+Client2Server_RPC*0
+MsgType
+REQUEST
+RESPONSE
+
+NOTIFY
