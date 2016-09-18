@@ -10,8 +10,27 @@ var ENTITY_ID = 1;
 var entities = {}
 
 entities[-1] = {
+    entityId: -1,
     sayHello:function(msg){
         console.log("Server say hello!");
+
+        this.callClient(this.entityId, "SayHello", msg);
+    },
+
+    callClient:function(eid, method, params)
+    {
+        var msg = {}
+        msg.head = {
+            cmd : 1,
+            type : 2
+        }
+        msg.body = {
+            entityId:eid,
+            method:method,
+            args:params
+        };
+
+        sendPacket(this.sock, msg);
     }
 }
 
@@ -31,7 +50,7 @@ net.createServer(function (sock) {
             
             if (head.cmd == 2)
             {
-                handleRpc(body);
+                handleRpc(body, sock);
             }
         });
         
@@ -50,8 +69,11 @@ function printBuffer(buffer)
     console.log(buffer);
 }
 
-function sendPacket(sock, headCode, bodyCode)
+function sendPacket(sock, msg)
 {
+    var headCode = messages.MsgHead.encode(msg.head);
+    var body = {data:JSON.stringify(msg.body)};
+    var bodyCode = messages.MsgBody.encode(body);
     var headLen = headCode.length;
 
     var bodyLen = 0;
@@ -109,10 +131,12 @@ function receivePacket(data, unpacked)
     unpacked(head, body);
 }
 
-function handleRpc(body)
+function handleRpc(body, sock)
 {
     console.log("entityId:"+body.entityId);
     var entity = entities[body.entityId];
+    entity.sock = sock;
+
     console.log("method:"+ body.method);
     console.log("params:" + body.args);
     entity[body.method](body.args);

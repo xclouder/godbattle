@@ -67,7 +67,7 @@ function NetworkManager:OnReceiveMessage(packet)
 	local headCode = packet:ReadHead()
 	local bodyCode = packet:ReadBody()
 	local msg = {}
-	msg.head = protobuf.decode("MsgHead", headCode)
+	msg.head = protobuf.decode("rpc.MsgHead", headCode)
 
 	if (bodyCode ~= nil) then
 		msg.body = self.bodyEncoder.decode(msg.head, bodyCode)

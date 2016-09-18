@@ -9,7 +9,7 @@ function Rpc:Init()
 
 	dispatcher:on("OnReceiveMessage", function (evt, msg)
 		--here should be server to client rpc cmd
-		local cmd = msg.head.MsgCmd
+		local cmd = msg.head.cmd
 		print("msg cmd:".. cmd)
 		if (cmd == 1) then
 			local eid = msg.body.entityId
@@ -23,7 +23,7 @@ function Rpc:Init()
 			end
 
 			local method = msg.body.method
-			local ret = pcall(entity[method],unpack(msg.body.args))
+			local ret = pcall(entity[method],msg.body.args)
 			if (ret == false) then
 				Log.Error("failed to call method:".. method)
 			end
