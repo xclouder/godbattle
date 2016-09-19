@@ -1,0 +1,9 @@
+﻿require "core/protobuf"
+local Entity = require "entity/Entity"
+local Player = Class(Entity)
+
+function Player:Init()
+	local o = GameObject()
+end
+
+return Player

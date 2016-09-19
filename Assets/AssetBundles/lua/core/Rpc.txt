@@ -3,27 +3,34 @@
 local Rpc = Class()
 
 function Rpc:Init()
+	self.entityTypes = {}
 	self.entities = {}
+	self.root = {}
 
 	--self:RegisterProtocol("AssetBundles/protocol/Rpc")
 
 	dispatcher:on("OnReceiveMessage", function (evt, msg)
 		--here should be server to client rpc cmd
 		local cmd = msg.head.cmd
-		print("msg cmd:".. cmd)
+		-- print("msg cmd:".. cmd)
 		if (cmd == 1) then
 			local eid = msg.body.entityId
-			print("entityId:"..eid)
+			-- print("entityId:"..eid)
 
-			local entity = self.entities[eid]
+			local entity = nil
+			--root object
+			if (eid == 0) then
+				entity = self.root
+			else
+				entity = self.entities[eid]
+			end
+
 			if(entity == nil) then
-				Log.Warn("entity not exist, use root")
-
-				entity = self.entities[-1]
+				Log.Error("entity not exist!")
+				return
 			end
 
 			local method = msg.body.method
-
 			local callResult = { pcall(entity[method], entity, unpack(msg.body.args)) }
 			if (callResult[1] == false) then
 				Log.Error("failed to call method:".. method .." >> " .. callResult[2])
@@ -36,7 +43,15 @@ function Rpc:Init()
 end
 
 function Rpc:GetRoot()
-	return self.entities[-1]
+	return self.root
+end
+
+function Rpc:RegisterEntityClass(typeName, class)
+	self.entityTypes[typeName] = class
+end
+
+function Rpc:GetEntityClass(typeName)
+	return self.entityTypes[typeName]
 end
 
 function Rpc:RegisterEntity(id, entity)
@@ -48,6 +63,8 @@ function Rpc:RegisterEntity(id, entity)
 
 	self.entities[id] = entity
 end
+
+
 
 function Rpc:RemoteCall(eid, method, ...)
 	local msg = {}
@@ -66,6 +83,10 @@ function Rpc:RemoteCall(eid, method, ...)
 	}
 
 	dispatcher:emit("SendMessage", msg)
+end
+
+function Rpc:RegisterRootHandler(funcName, func)
+	self.root[funcName] = func
 end
 
 return Rpc

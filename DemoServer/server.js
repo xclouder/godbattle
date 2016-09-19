@@ -9,54 +9,22 @@ var PORT = 50001;
 var ENTITY_ID = 1;
 var entities = {}
 
-var root = {
-    entityId: -1,
-    sayHello:function(msg, name){
-        console.log("Server say hello!");
-        console.log("msg:"+msg);
-        console.log("name:"+name);
-
-        this.callClient(this.entityId, "SayHello", msg, name);
-    },
-
-    callClient:function(eid, method)
-    {
-        var msg = {}
-        msg.head = {
-            cmd : 1,
-            type : 2
-        }
-
-        var paramsLen = arguments.length - 2;
-        var params = null;
-        if (paramsLen > 0)
-        {
-            params = new Array(paramsLen);
-            for (var i = 0; i < paramsLen; i++)
-            {
-                params[i] = arguments[i + 2];
-            }
-        }
-        else
-        {
-            params = [];
-        }
-
-        msg.body = {
-            entityId:eid,
-            method:method,
-            args:params
-        };
-
-        sendPacket(this.sock, msg);
-    }
-}
-
-entities[-1] = root;
-
 net.createServer(function (sock) {
 
     console.log("CONNECTED:" + sock.remoteAddress + ":" + sock.remotePort);
+
+    //new client connect, create one player for it, and send back env entities.
+    var player = createEntity(sock, "Player");
+    entities[player.entityId] = player;
+
+    for (var eid in entities)
+    {
+        console.log("eid:"+eid);
+        notifyClientCreateEntity(player, entities[eid]);
+    }
+
+    //set player -- need optmize. SetPlayer should call from client
+    player.callClientRoot("SetPlayer", player.entityId);
 
     sock.on('data', function(data)
     {
@@ -168,3 +136,77 @@ function handleRpc(body, sock)
     
 }
 
+function createEntity(sock, className)
+{
+    var eid = ENTITY_ID++;
+    
+    var entity = {
+        entityId : eid,
+        className: className,
+        sock : sock,
+
+        callClient : function(method)
+        {
+            var paramsLen = arguments.length - 1;
+            var params = null;
+            if (paramsLen > 0)
+            {
+                params = new Array(paramsLen);
+                for (var i = 0; i < paramsLen; i++)
+                {
+                    params[i] = arguments[i + 1];
+                }
+            }
+            else
+            {
+                params = [];
+            }
+
+            this._callClient(this.entityId, method, params);
+        },
+
+        callClientRoot: function(method)
+        {
+            var paramsLen = arguments.length - 1;
+            var params = null;
+            if (paramsLen > 0)
+            {
+                params = new Array(paramsLen);
+                for (var i = 0; i < paramsLen; i++)
+                {
+                    params[i] = arguments[i + 1];
+                }
+            }
+            else
+            {
+                params = [];
+            }
+
+            this._callClient(0, method, params);
+        },
+
+        _callClient:function(eid, method, params)
+        {
+            var msg = {}
+            msg.head = {
+                cmd : 1,
+                type : 2
+            }
+
+            msg.body = {
+                entityId:eid,
+                method:method,
+                args:params
+            };
+
+            sendPacket(this.sock, msg);
+        }
+    }
+
+    return entity;
+}
+
+function notifyClientCreateEntity(client, entity)
+{
+    client.callClientRoot("CreateEntity", entity.entityId, entity.className);
+}

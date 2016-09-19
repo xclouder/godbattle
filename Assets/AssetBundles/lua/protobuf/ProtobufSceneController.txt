@@ -1,8 +1,9 @@
-﻿local oo = require "core/SimpleOO"
-require "core/protobuf"
+﻿require "core/protobuf"
 
-local ProtobufSceneController = oo.Class.Create()
-local Entity = oo.Class.Create()
+local ProtobufSceneController = Class()
+local Player = require "entity/Player"
+-- import Entity classes && register them
+RPC:RegisterEntityClass("Player", Player)
 
 function ProtobufSceneController:KernelLoaded(monoComonent)
 	self.monoComponent = monoComponent
@@ -12,6 +13,34 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 
 	--init entities dict
 	self.entities = {}
+	local entities = self.entities
+	self.player = nil
+
+	-- set root handler for RPC
+	RPC:RegisterRootHandler("CreateEntity", function(root, eid, className, props)
+        Log("className:"..className)
+	    local class = RPC:GetEntityClass(className)
+	    if (class == nil) then
+	        Log.Error("class is nil")
+	        return
+	    end
+
+	    local entity = class()
+	    entity.entityId = eid
+	    entity.props = props
+	    RPC:RegisterEntity(eid, entity)
+	    entities[eid] = entity
+
+	    entity:Init()
+	end)
+
+	-- Log.Warn("Create Manually Now")
+	-- RPC.root["CreateEntity"](100, "Player")
+
+	RPC:RegisterRootHandler("SetPlayer", function(root, entityId)
+        Log("set player entityId:"..entityId)
+        self.player = self.entities[entityId]
+	end)
 
 	--player enter
 	self:PlayerEnter()
@@ -22,6 +51,8 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 		print("log out clicked")
 		self:LogOut()
 	end)
+
+
 
 end
 
@@ -63,11 +94,7 @@ end
 
 function ProtobufSceneController:PlayerEnter(callback)
 
-	print("Player Enter")
-	local root = RPC:GetRoot()
-	print(type(root))
-
-	root:RemoteCall("sayHello", "from client", "12345")
+	
 
 end
 
