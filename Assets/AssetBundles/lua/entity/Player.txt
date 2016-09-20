@@ -1,9 +1,13 @@
-﻿require "core/protobuf"
-local Entity = require "entity/Entity"
+﻿local Entity = require "entity/Entity"
 local Player = Class(Entity)
 
 function Player:Init()
-	local o = GameObject()
+	self.tankObj = ResourceMgr.CreateInstance("AssetBundles/prefabs/Tank")
+	self.Tank = tankObj:GetComponent(LuaComponent):GetLuaObj()
+end
+
+function Player:Shoot()
+	self.Tank:Shoot()
 end
 
 return Player

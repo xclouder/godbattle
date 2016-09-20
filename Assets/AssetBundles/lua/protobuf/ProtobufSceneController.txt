@@ -52,8 +52,6 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 		self:LogOut()
 	end)
 
-
-
 end
 
 function ProtobufSceneController:HandleMsg(msg)
@@ -94,8 +92,8 @@ end
 
 function ProtobufSceneController:PlayerEnter(callback)
 
-	
 
+	
 end
 
 

@@ -55,6 +55,7 @@ namespace SLua
             // add its name into list, slua will generate all exported interface automatically for you
 
             //list.Add("NGUI");
+			list.Add("DOTween");
         }
 
         public static HashSet<string> OnAddCustomNamespace()

@@ -1,0 +1,37 @@
+﻿local UserControl = Class()
+
+function UserControl:Init(monoComponent, gameObject)
+    self.gameObject = gameObject
+	self.monoComponent = monoComponent
+
+end
+
+function UserControl:Update()
+    if (Input.GetMouseButton(0)) then
+        local inputPos = Input.mousePosition
+        LogVector2("inputPos", inputPos)
+
+        local targetPos = self:GetWorldPos(inputPos)
+        LogVector2("worldPos", targetPos)
+
+        --move to targetPos
+        Log("move to:".. targetPos.x)
+        Log("move to:".. targetPos.y)
+
+    end
+end
+
+function UserControl:GetWorldPos(inputPos)
+    LogVector2("inner", inputPos)
+    local worldPos = Camera.main:ScreenToWorldPoint(inputPos)
+    LogVector2("inner2", worldPos)
+    worldPos.z = 0
+
+    return worldPos
+end
+
+function LogVector2(name, v)
+    Log(name..":("..v.x..","..v.y..")")
+end
+
+return UserControl

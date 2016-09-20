@@ -1,0 +1,26 @@
+﻿local Entity = require "entity/Entity"
+local Tank = Class(Entity)
+
+function Tank:Init(monoComponent, gameObject)
+    self.gameObject = gameObject
+	self.monoComponent = monoComponent
+    self.transform = gameObject.transform
+    self.tankBodyObj = self.transform:Find("Body")
+
+end
+
+function Tank:MoveTo(toPos)
+    local currPos = self.transform.position
+    local dir = toPos - currPos
+
+    local r = Quaternion.FromToRotation(Vector3.up, dir)
+    self.tankBodyObj.transform.localRotation = r
+
+    --do move
+end
+
+function Tank:Shoot()
+	Log("tank shoot!")
+end
+
+return Tank
