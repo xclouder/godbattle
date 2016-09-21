@@ -46,10 +46,14 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	self:PlayerEnter()
 
 	--ui event
-	local logOutBtn = GameObject.Find("Button"):GetComponent("Button")
-	logOutBtn.onClick:AddListener(function()
-		print("log out clicked")
-		self:LogOut()
+	local fireBtn = GameObject.Find("FireBtn"):GetComponent("Button")
+	fireBtn.onClick:AddListener(function()
+		if (self.player ~= nil) then
+			print("fire")
+
+			self.player:Shoot()
+		end
+
 	end)
 
 

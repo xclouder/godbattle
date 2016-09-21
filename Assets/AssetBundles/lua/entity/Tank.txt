@@ -8,23 +8,31 @@ function Tank:Init(monoComponent, gameObject)
     self.transform = gameObject.transform
     self.tankBodyObj = self.transform:Find("Body")
 
+    self.firePos = self.transform:Find("Body/Gun/FirePos").transform.position
+    self.dir = Vector3.up
+
 end
 
 function Tank:MoveTo(toPos)
     local currPos = self.transform.position
     local dir = (toPos - currPos).normalized
 
-    print("curr"..inspect(currPos))
-    print("dir"..inspect(dir))
-    print("up"..inspect(Vector3.up))
     local r = Quaternion.FromToRotation(Vector3(1,0,0), dir)
     self.tankBodyObj.transform.rotation = r
 
-    --do move
+    self.dir = dir
+
 end
 
 function Tank:Shoot()
-	Log("Tank shoot!")
+	
+    local go = ResourceMgr.CreateInstance("AssetBundles/prefabs/Bullet")
+    go.transform.position = self.firePos
+    go.transform.rotation = Quaternion.identity
+    go.transform.localScale = Vector3.one
+
+    local bullet = go:GetComponent(LuaComponent):GetLuaObject()
+    bullet.dir = self.dir
 end
 
 return Tank

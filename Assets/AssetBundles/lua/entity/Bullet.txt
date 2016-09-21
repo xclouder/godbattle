@@ -1,0 +1,16 @@
+﻿local Entity = require "entity/Entity"
+local Bullet = Class()
+local inspect = require("core/inspect")
+
+function Bullet:Init(monoComponent, gameObject)
+    self.gameObject = gameObject
+	self.monoComponent = monoComponent
+    self.transform = gameObject.transform
+    self.speed = 10
+end
+
+function Bullet:Update()
+	self.transform.position = self.transform.position + self.dir * Time.deltaTime * self.speed
+end
+
+return Bullet
