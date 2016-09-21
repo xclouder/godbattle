@@ -3,11 +3,16 @@ local Player = Class(Entity)
 
 function Player:Init()
 	self.tankObj = ResourceMgr.CreateInstance("AssetBundles/prefabs/Tank")
-	self.Tank = tankObj:GetComponent(LuaComponent):GetLuaObj()
+	self.Tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
 end
 
 function Player:Shoot()
 	self.Tank:Shoot()
+end
+
+function Player:MoveTo(targetPos)
+    Log.Warn("Player:MoveTo")
+    self.Tank:MoveTo(targetPos)
 end
 
 return Player

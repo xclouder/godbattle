@@ -1,5 +1,6 @@
 ﻿local Entity = require "entity/Entity"
 local Tank = Class(Entity)
+local inspect = require("core/inspect")
 
 function Tank:Init(monoComponent, gameObject)
     self.gameObject = gameObject
@@ -11,16 +12,19 @@ end
 
 function Tank:MoveTo(toPos)
     local currPos = self.transform.position
-    local dir = toPos - currPos
+    local dir = (toPos - currPos).normalized
 
-    local r = Quaternion.FromToRotation(Vector3.up, dir)
-    self.tankBodyObj.transform.localRotation = r
+    print("curr"..inspect(currPos))
+    print("dir"..inspect(dir))
+    print("up"..inspect(Vector3.up))
+    local r = Quaternion.FromToRotation(Vector3(1,0,0), dir)
+    self.tankBodyObj.transform.rotation = r
 
     --do move
 end
 
 function Tank:Shoot()
-	Log("tank shoot!")
+	Log("Tank shoot!")
 end
 
 return Tank

@@ -11,6 +11,7 @@ namespace SLua {
 				Lua_LuaComponentFull.reg,
 				Lua_LuaPacket.reg,
 				Lua_LuaSceneController.reg,
+				Lua_Utils.reg,
 				Lua_Custom.reg,
 				Lua_Deleg.reg,
 				Lua_foostruct.reg,

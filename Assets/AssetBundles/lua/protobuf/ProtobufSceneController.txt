@@ -52,6 +52,14 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 		self:LogOut()
 	end)
 
+
+	--move cmd handler
+	dispatcher:on("MoveCmd", function(evt, targetPos)
+        if (self.player ~= nil) then
+        	self.player:MoveTo(targetPos)
+        end
+	end)
+
 end
 
 function ProtobufSceneController:HandleMsg(msg)
@@ -85,7 +93,10 @@ function ProtobufSceneController:CreateEntity(entityId, pos)
 	e.entityId = entityId
 
 	self.entities[entityId] = e
-	e.gameObject = GameObject.Instantiate(self.entityPrefab)
+	local go = GameObject.Instantiate(self.entityPrefab)
+	e.gameObject = go
+	go.transform.rotation = Quaternion.identity
+	go.transform.localScale = Vector3.one
 
 	return e
 end

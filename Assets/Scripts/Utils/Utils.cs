@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[SLua.CustomLuaClass]
 public class Utils {
 	#region UI Related
 	public static void SetRectTransformSize(RectTransform trans, Vector2 newSize)
@@ -37,6 +38,15 @@ public class Utils {
 	{
 		var delta = p2 - p1;
 		return Mathf.Sqrt(delta.x * delta.x + delta.z * delta.z);
+	}
+
+	public static Vector3 GetWorldPosition(Vector3 screenPosition)
+	{
+		var pos = Camera.main.ScreenToWorldPoint(screenPosition);
+		pos.z = 10f;
+
+		return pos;
+
 	}
 
 	#endregion
