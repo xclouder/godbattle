@@ -27,6 +27,7 @@ namespace SLua {
 				Lua_SprotoTest.reg,
 				Lua_System_Collections_Generic_Dictionary_2_int_string.reg,
 				Lua_System_String.reg,
+				Lua_Camera2DFollow.reg,
 				Lua_ResourceMgr.reg,
 				Lua_uFrame_Kernel_uFrameKernel.reg,
 				Lua_uFrame_IOC_UFrameContainer.reg,

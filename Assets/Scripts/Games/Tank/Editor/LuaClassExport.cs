@@ -9,5 +9,7 @@ public class LuaClassExport : ICustomExportPost {
 		Debug.Log("OnAddCustomClass:Game:LuaClassExport");
 		add(typeof(SF.XInput), null);
 
+        add(typeof(Camera2DFollow), null);
+
 	}
 }

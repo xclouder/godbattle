@@ -40,6 +40,8 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	RPC:RegisterRootHandler("SetPlayer", function(root, entityId)
         Log("set player entityId:"..entityId)
         self.player = self.entities[entityId]
+
+        Camera.main:GetComponent(Camera2DFollow):SetTarget(self.player.tankObj.transform)
 	end)
 
 	--player enter
@@ -53,9 +55,9 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	end)
 
 	dispatcher:on("FireCmd", function(evt)
-	              if(self.player ~= nil)then
-	              	self.player:Fire()
-	              end
+	if(self.player ~= nil)then
+		self.player:Fire()
+	end
 	end)
 
 end
