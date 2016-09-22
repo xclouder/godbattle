@@ -7,10 +7,20 @@ function Bullet:Init(monoComponent, gameObject)
 	self.monoComponent = monoComponent
     self.transform = gameObject.transform
     self.speed = 10
+    self.maxDistance = 5
+    self.totalDistance = 0
 end
 
 function Bullet:Update()
-	self.transform.position = self.transform.position + self.dir * Time.deltaTime * self.speed
+	local distanceAdd = Time.deltaTime * self.speed
+	self.totalDistance = self.totalDistance + distanceAdd
+
+	if (self.totalDistance > self.maxDistance) then
+		GameObject.Destroy(self.gameObject)
+		return
+	end
+
+	self.transform.position = self.transform.position + self.dir * distanceAdd
 end
 
 return Bullet

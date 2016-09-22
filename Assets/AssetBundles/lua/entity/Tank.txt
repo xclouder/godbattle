@@ -8,7 +8,7 @@ function Tank:Init(monoComponent, gameObject)
     self.transform = gameObject.transform
     self.tankBodyObj = self.transform:Find("Body")
 
-    self.firePos = self.transform:Find("Body/Gun/FirePos").transform.position
+    self.firePosTr = self.transform:Find("Body/Gun/FirePos").transform
     self.dir = Vector3.up
 
 end
@@ -27,7 +27,7 @@ end
 function Tank:Shoot()
 	
     local go = ResourceMgr.CreateInstance("AssetBundles/prefabs/Bullet")
-    go.transform.position = self.firePos
+    go.transform.position = self.firePosTr.position
     go.transform.rotation = Quaternion.identity
     go.transform.localScale = Vector3.one
 
