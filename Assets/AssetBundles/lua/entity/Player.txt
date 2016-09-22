@@ -2,8 +2,12 @@
 local Player = Class(Entity)
 
 function Player:Init()
+    self.speed = 3
+    self.dir = Vector3.up
+
 	self.tankObj = ResourceMgr.CreateInstance("AssetBundles/prefabs/Tank")
 	self.Tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
+
 end
 
 function Player:Fire()
@@ -11,7 +15,7 @@ function Player:Fire()
 end
 
 function Player:Move(dir)
-    Log.Warn("Player:Move")
+    self.dir = dir
     self.Tank:Move(dir)
 end
 

@@ -21,7 +21,7 @@ function Bullet:Update()
 		return
 	end
 
-    print(inspect(self.dir))
+    -- print(inspect(self.dir))
 	self.transform.position = self.transform.position + self.dir * distanceAdd
 end
 

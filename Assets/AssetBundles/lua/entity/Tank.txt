@@ -45,4 +45,10 @@ function Tank:Fire()
     bullet.dir = self.dir
 end
 
+function Tank:Update()
+    if (self.isMoving) then
+        self.transform.position = self.transform.position + Time.deltaTime * self.speed * self.dir
+    end
+end
+
 return Tank
