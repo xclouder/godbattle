@@ -1,17 +1,58 @@
 ﻿local UserControl = Class()
+local inspect = require("core/inspect")
 
 function UserControl:Init(monoComponent, gameObject)
     self.gameObject = gameObject
 	self.monoComponent = monoComponent
+    self.transform = self.gameObject.transform
+    self.isDragging = false
+    self.dir = Vector2.zero
+
+    --fire event
+    local fireBtn = GameObject.Find("FireBtn"):GetComponent("Button")
+    fireBtn.onClick:AddListener(function(evt)
+        self:NotifyFire()
+    end)
+
+end
+
+function UserControl:NotifyFire()
+    dispatcher:emit("FireCmd")
+end
+
+function UserControl:NotifyChangeDir(newDir)
+
+    local dis = self.dir - newDir
+    -- print(inspect(dis))
+    if (dis.magnitude > 0.01) then
+        self.dir = newDir
+        dispatcher:emit("MoveCmd", newDir)
+    end
 
 end
 
 function UserControl:Update()
-    if (Input.GetMouseButton(0)) then
-        local inputPos = Input.mousePosition
-        local targetPos = self:GetWorldPos(inputPos)
+    local axisX = SF.XInput.GetAxis("Horizontal")
+    local axisY = SF.XInput.GetAxis("Vertical")
 
-        dispatcher:emit("MoveCmd", targetPos)
+    if (axisX * axisX + axisY * axisY > 0.3) then
+        self.isDragging = true
+
+        --move as dir:axis
+        local dir = Vector3(axisX, axisY, 0)
+        self:NotifyChangeDir(dir)
+
+    else
+        if (self.isDragging) then
+            self.isDragging = false
+            --stop move
+
+            self:NotifyChangeDir(Vector3.zero)
+        end
+    end
+
+    if (Input.GetKeyDown("space")) then
+        self:NotifyFire()
     end
 end
 

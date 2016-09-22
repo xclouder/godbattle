@@ -9,6 +9,7 @@ function Bullet:Init(monoComponent, gameObject)
     self.speed = 10
     self.maxDistance = 5
     self.totalDistance = 0
+    self.dir = Vector3.up
 end
 
 function Bullet:Update()
@@ -20,6 +21,7 @@ function Bullet:Update()
 		return
 	end
 
+    print(inspect(self.dir))
 	self.transform.position = self.transform.position + self.dir * distanceAdd
 end
 

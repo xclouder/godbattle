@@ -6,13 +6,13 @@ function Player:Init()
 	self.Tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
 end
 
-function Player:Shoot()
-	self.Tank:Shoot()
+function Player:Fire()
+	self.Tank:Fire()
 end
 
-function Player:MoveTo(targetPos)
-    Log.Warn("Player:MoveTo")
-    self.Tank:MoveTo(targetPos)
+function Player:Move(dir)
+    Log.Warn("Player:Move")
+    self.Tank:Move(dir)
 end
 
 return Player

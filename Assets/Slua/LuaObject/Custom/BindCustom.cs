@@ -6,6 +6,7 @@ namespace SLua {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
 				Lua_SLua_ByteArray.reg,
+				Lua_SF_XInput.reg,
 				Lua_SwitchSceneCommand.reg,
 				Lua_LuaComponent.reg,
 				Lua_LuaComponentFull.reg,

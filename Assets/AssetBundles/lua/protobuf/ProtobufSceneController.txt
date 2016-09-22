@@ -45,23 +45,17 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	--player enter
 	self:PlayerEnter()
 
-	--ui event
-	local fireBtn = GameObject.Find("FireBtn"):GetComponent("Button")
-	fireBtn.onClick:AddListener(function()
-		if (self.player ~= nil) then
-			print("fire")
-
-			self.player:Shoot()
-		end
-
+	--move cmd handler
+	dispatcher:on("MoveCmd", function(evt, dir)
+        if (self.player ~= nil) then
+        	self.player:Move(dir)
+        end
 	end)
 
-
-	--move cmd handler
-	dispatcher:on("MoveCmd", function(evt, targetPos)
-        if (self.player ~= nil) then
-        	self.player:MoveTo(targetPos)
-        end
+	dispatcher:on("FireCmd", function(evt)
+	              if(self.player ~= nil)then
+	              	self.player:Fire()
+	              end
 	end)
 
 end
