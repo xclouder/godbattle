@@ -2,6 +2,21 @@
 local Tank = Class(Entity)
 local inspect = require("core/inspect")
 
+-- TimeFence component
+local TimeFence = Class(function(self, freq)
+                       self.freq = freq
+                       self.lastPassTime = 0
+                       end)
+
+function TimeFence:IsPass(timeNow)
+    if (timeNow - self.lastPassTime > self.freq)then
+        self.lastPassTime = timeNow
+        return true
+    end
+
+    return false
+end
+
 function Tank:Init(monoComponent, gameObject)
     self.gameObject = gameObject
 	self.monoComponent = monoComponent
@@ -12,7 +27,7 @@ function Tank:Init(monoComponent, gameObject)
     self.speed = 3
     self.isMoving = false
     self.dir = Vector3.up
-
+    self.fireFreq = TimeFence(1)   -- sec / fire
 end
 
 function Tank:Move(newDir)
@@ -33,7 +48,11 @@ function Tank:Move(newDir)
 end
 
 function Tank:Fire()
-	
+	if (not self.fireFreq:IsPass(Time.time)) then
+        Log.Warn("FIRE IS CD")
+        return
+    end
+
     local go = ResourceMgr.CreateInstance("AssetBundles/prefabs/Bullet")
     go.transform.position = self.firePosTr.position
     go.transform.rotation = Quaternion.identity

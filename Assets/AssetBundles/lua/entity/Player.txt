@@ -2,9 +2,6 @@
 local Player = Class(Entity)
 
 function Player:Init()
-    self.speed = 3
-    self.dir = Vector3.up
-
 	self.tankObj = ResourceMgr.CreateInstance("AssetBundles/prefabs/Tank")
 	self.Tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
 
