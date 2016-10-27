@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 1844674697
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 588179b5353b8bf40a34421a7c41550d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1b5013359a3d77c65e2295f313c40f6a
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 530771d659af0446ab5a93c4f40de79b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/demo/Bullet.prefab
+- Assets/AssetBundles/demo/Entity.prefab
+Dependencies: []

@@ -16,6 +16,7 @@ public class InitSceneController : SceneController
 
 	public ProgressBar progressBar;
 	public UnityEngine.UI.Text tipLabel;
+	public string successToScene;
 
 	protected override void SceneLoaded()
 	{
@@ -73,7 +74,7 @@ public class InitSceneController : SceneController
 
 			Publish(new SwitchSceneCommand() {
 
-				ToSceneName = "LoginScene",
+				ToSceneName = successToScene,
 				FromSceneName = "InitScene"
 
 			});

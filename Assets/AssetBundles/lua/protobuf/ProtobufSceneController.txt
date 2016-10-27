@@ -60,6 +60,14 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	end
 	end)
 
+	-- timer.performWithDelay(1000, function, 0)
+	LuaTimer.Add(0, 33.3, function ()
+		for k,v in ipairs(self.entities) do 
+			v:LogicUpdate()
+		end
+
+	end)
+
 end
 
 function ProtobufSceneController:HandleMsg(msg)
@@ -103,7 +111,7 @@ end
 
 function ProtobufSceneController:PlayerEnter(callback)
 
-
+	RPC:RemoteCall(0, "login", "clientIP");
 	
 end
 

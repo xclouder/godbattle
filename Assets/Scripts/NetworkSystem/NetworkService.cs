@@ -19,6 +19,9 @@ public class NetworkService : SystemServiceMonoBehavior {
 	public delegate void PacketHandlerDelegate(Packet p);
 	public PacketHandlerDelegate PacketHandler;
 
+	public string ip = "127.0.0.1";
+	public int port = 8888;
+
 	public override IEnumerator SetupAsync ()
 	{
 		netInterface = new NetworkInterface();
@@ -26,7 +29,7 @@ public class NetworkService : SystemServiceMonoBehavior {
 		packetReceiver = new PacketReceiver(netInterface);
 		packetReceiver.AddPacketListener(OnReceivePacket);
 
-		netInterface.ConnectTo("127.0.0.1", 50001);
+		netInterface.ConnectTo(ip, port);
 
 		while (netInterface.State == ConnectionState.Connecting)
 		{
@@ -35,9 +38,9 @@ public class NetworkService : SystemServiceMonoBehavior {
 
 		Debug.Log("Connected!");
 
-		var data = System.Text.Encoding.ASCII.GetBytes("hello~");
-
-		netInterface.Send(data);
+//		var data = System.Text.Encoding.ASCII.GetBytes("hello~");
+//
+//		netInterface.Send(data);
 		netInterface.StartReceive();
 	}
 

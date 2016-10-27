@@ -21,15 +21,16 @@ public class ImprovedSceneManagementService : SceneManagementService {
 		//TODO:translateEffect
 
 		Debug.Assert (toScene != null, "toscene should not be none");
+		UnloadScene(fromScene);
 		LoadScene (toScene, settings, restrictToSingleScene);
 
-		OnEvent<SceneLoaderEvent>().Where(_ => 
-			_.State == SceneState.Loaded && _.SceneRoot.Name == toScene
-		).Subscribe((_)=>{
-			if (!string.IsNullOrEmpty (fromScene)) {
-				UnloadScene (fromScene);
-			}
-		});
+		// OnEvent<SceneLoaderEvent>().Where(_ => 
+		// 	_.State == SceneState.Loaded && _.SceneRoot.Name == toScene
+		// ).Subscribe((_)=>{
+		// 	if (!string.IsNullOrEmpty (fromScene)) {
+		// 		UnloadScene (fromScene);
+		// 	}
+		// });
 
 
 	}

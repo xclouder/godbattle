@@ -32,6 +32,7 @@ function NetworkManager:Init()
 			Log.Warn("json:"..str);
 			local body = {data = str;}
 			local bodyCodes = protobuf.encode("rpc.MsgBody", body)
+			Log.Warn("bodyCodes:".. bodyCodes)
 			return bodyCodes
 		end;
 	}

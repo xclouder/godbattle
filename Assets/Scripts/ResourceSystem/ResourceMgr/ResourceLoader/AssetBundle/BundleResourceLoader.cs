@@ -28,10 +28,15 @@ public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 		var platformName = BundleUtility.GetPlatformName();
 		BundleRootDirectory = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles/" + platformName + "/");
 
+		string bundlePath = null;
 		#if UNITY_ANDROID
-		string bundlePath = Application.streamingAssetsPath;
+		bundlePath = Application.dataPath + "!assets/";
 		#else
-		string bundlePath = Application.dataPath + "!assets/";
+		bundlePath = Application.streamingAssetsPath;
+		#endif
+
+		#if UNITY_EDITOR
+		bundlePath = Application.streamingAssetsPath;
 		#endif
 
 		SecondaryBundleRootDirectory = System.IO.Path.Combine(bundlePath, "AssetBundles/" + platformName + "/");

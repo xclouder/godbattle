@@ -1,0 +1,32 @@
+local schema = {}
+
+schema.c2s = [[
+.package {
+	type 0 : integer
+	session 1 : integer
+}
+
+.UserInfo
+{
+	uid 0 : string
+	nick 1 : string
+}
+
+getuserinfo 1 {
+	request {
+		uid 0 : string
+	}
+	response UserInfo
+}
+
+]]
+
+schema.s2c = [[
+.package {
+	type 0 : integer
+	session 1 : integer
+}
+
+]]
+
+return schema

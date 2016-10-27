@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PacketReader {
 
+	private const int HEAD_LEN = 2;
+
 	private enum ReceiveState
 	{
 		ReadHead,
@@ -17,12 +19,12 @@ public class PacketReader {
 	}
 
 	private int currentBodyLength;
-	private byte[] headBuffer = new byte[4];
+	private byte[] headBuffer = new byte[HEAD_LEN];
 
 	public bool IsDataEngoughToRead(int len)
 	{
 		if (state == ReceiveState.ReadHead)
-			return len >= 4;
+			return len >= HEAD_LEN;
 
 		return len >= currentBodyLength;
 	}
@@ -33,16 +35,16 @@ public class PacketReader {
 	{
 		if (state == ReceiveState.ReadHead)
 		{
-			if (len >= 4)
+			if (len >= HEAD_LEN)
 			{
-				buffer.CopyData(headBuffer, 0, offset, 4);
+				buffer.CopyData(headBuffer, 0, offset, HEAD_LEN);
 
 				//read packetLen
-				currentBodyLength = GetInt32InNetworkOrderBytes(headBuffer);//System.BitConverter.ToInt32(headBuffer, 0);
+				currentBodyLength = GetInt16InNetworkOrderBytes(headBuffer);//System.BitConverter.ToInt32(headBuffer, 0);
 
 				state = ReceiveState.ReadBody;
 
-				return 4;
+				return HEAD_LEN;
 			}
 
 			return 0;
@@ -74,6 +76,13 @@ public class PacketReader {
 	protected int GetInt32InNetworkOrderBytes(byte[] bytes)
 	{
 		var val = System.BitConverter.ToInt32(bytes, 0);
+
+		return System.Net.IPAddress.NetworkToHostOrder(val);
+	}
+
+	protected int GetInt16InNetworkOrderBytes(byte[] bytes)
+	{
+		var val = System.BitConverter.ToInt16(bytes, 0);
 
 		return System.Net.IPAddress.NetworkToHostOrder(val);
 	}

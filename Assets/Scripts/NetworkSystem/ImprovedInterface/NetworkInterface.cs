@@ -95,14 +95,20 @@ namespace Network.ImprovedInterface
 
 		private void OnSendComplete(object sender, SocketAsyncEventArgs e)
 		{
+			UnityEngine.Debug.Log("Send complete");
 			if (e.SocketError == SocketError.Success)
 			{
+				UnityEngine.Debug.Log("Send Complete");
 				sendBuffer.SetBytesUsed(e.BytesTransferred);
 
 				if (sendBuffer.HasAvailableData)
 				{
 					StartSend();
 				}
+			}
+			else
+			{
+				UnityEngine.Debug.LogError("error:"+e.SocketError);
 			}
 		}
 
@@ -113,6 +119,7 @@ namespace Network.ImprovedInterface
 
 			sendEA.SetBuffer(raw, sendBuffer.ConsumePosition, sendBuffer.CurrentPickingDataLength);
 			socket.SendAsync(sendEA);
+			UnityEngine.Debug.Log("Start Send");
 		}
 
 		public void Process()

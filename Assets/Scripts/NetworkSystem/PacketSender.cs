@@ -11,9 +11,9 @@ public class PacketSender {
 		var len = data.Length;
 
 		Debug.Log("send data with len:" + len);
-
-		buffer.WriteInt(len + 4);
-		buffer.WriteBytes(data);
+		Debug.Log("send data with data:" + data);
+		
+		buffer.Write(data);
 
 		i.Send(buffer.ToBytes());
 	}

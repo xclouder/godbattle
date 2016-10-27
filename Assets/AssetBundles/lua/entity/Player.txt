@@ -3,17 +3,33 @@ local Player = Class(Entity)
 
 function Player:Init()
 	self.tankObj = ResourceMgr.CreateInstance("AssetBundles/prefabs/Tank")
-	self.Tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
-
+	self.tank = self.tankObj:GetComponent(LuaComponent):GetLuaObject()
 end
 
 function Player:Fire()
-	self.Tank:Fire()
+	if (self.tank:Fire()) then
+        self:RemoteCall("fire", "test")
+    end
 end
 
 function Player:Move(dir)
     self.dir = dir
-    self.Tank:Move(dir)
+    self.tank:Move(dir)
+end
+
+function Player:LogicUpdate()
+    local pos = self.tank.position
+    local dir = self.tank.dir
+    self:RemoteCall("update", pos.x, pos.y, dir.x, dir.y)
+end
+
+function Player:SetMove(posX, posY, dirX, dirY)
+    self.dir = Vector3(dirX, dirY, 0)
+    local pos = Vector3(posX, posY, 0)
+    
+    self.tankObj.transform.position = pos
+    self.tank:Move(self.dir)
+
 end
 
 return Player

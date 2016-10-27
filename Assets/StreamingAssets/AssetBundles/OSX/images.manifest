@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 665559425
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 187abdc5eb53180d640932d314dd2098
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9dea23ffc7e96552740e12d1ee5309d8
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/images/Bullet.png
+- Assets/AssetBundles/images/flatDark06.png
+- Assets/AssetBundles/images/reincarnation_026.png
+- Assets/AssetBundles/images/hit.png
+- Assets/AssetBundles/images/flatDark00.png
+- Assets/AssetBundles/images/Explosion.png
+- Assets/AssetBundles/images/flatLight49.png
+- Assets/AssetBundles/images/flatLight46.png
+- Assets/AssetBundles/images/GunTurret.png
+- Assets/AssetBundles/images/bg.jpg
+- Assets/AssetBundles/images/Tank.png
+- Assets/AssetBundles/images/flatLight05.png
+- Assets/AssetBundles/images/flatLight22.png
+Dependencies: []

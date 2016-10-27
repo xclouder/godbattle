@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2312140107
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d54ea35a5c38adc6542833eb22fffa2d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/lua/entity/Bullet.txt
+- Assets/AssetBundles/lua/entity/Player.txt
+- Assets/AssetBundles/lua/entity/Tank.txt
+- Assets/AssetBundles/lua/entity/Entity.txt
+Dependencies: []

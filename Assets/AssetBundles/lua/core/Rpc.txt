@@ -1,5 +1,5 @@
 ﻿require "core/protobuf"
-
+local inspect = require("core/inspect")
 local Rpc = Class()
 
 function Rpc:Init()
@@ -10,9 +10,11 @@ function Rpc:Init()
 	--self:RegisterProtocol("AssetBundles/protocol/Rpc")
 
 	dispatcher:on("OnReceiveMessage", function (evt, msg)
+	    Log.Warn(inspect(msg))
+
 		--here should be server to client rpc cmd
 		local cmd = msg.head.cmd
-		-- print("msg cmd:".. cmd)
+
 		if (cmd == 1) then
 			local eid = msg.body.entityId
 			-- print("entityId:"..eid)
@@ -31,6 +33,11 @@ function Rpc:Init()
 			end
 
 			local method = msg.body.method
+
+			print(">>>start pcall")
+			print(inspect(entity[method]))
+			print(inspect(entity))
+			print(inspect(msg.body.args))
 			local callResult = { pcall(entity[method], entity, unpack(msg.body.args)) }
 			if (callResult[1] == false) then
 				Log.Error("failed to call method:".. method .." >> " .. callResult[2])
@@ -82,7 +89,7 @@ function Rpc:RemoteCall(eid, method, ...)
 		args = arg;
 	}
 
-	dispatcher:emit("SendMessage", msg)
+	--dispatcher:emit("SendMessage", msg)
 end
 
 function Rpc:RegisterRootHandler(funcName, func)

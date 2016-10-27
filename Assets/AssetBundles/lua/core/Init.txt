@@ -14,15 +14,15 @@ Log.Error = function(msg)
 end
 
 -- 覆盖 type函数，以支持导出类型
-local old_type = type
-type = function ( obj )
-	local t = old_type(obj)
-	if t == 'userdata' then
-		t = obj:GetType():ToString()
-	end
+-- local old_type = type
+-- type = function ( obj )
+-- 	local t = old_type(obj)
+-- 	if t == 'userdata' then
+-- 		t = obj:GetType():ToString()
+-- 	end
 
-	return t
-end
+-- 	return t
+-- end
 
 -- OO
 require "core/Class"

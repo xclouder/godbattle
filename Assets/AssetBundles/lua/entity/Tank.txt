@@ -26,6 +26,7 @@ function Tank:Init(monoComponent, gameObject)
     
     self.speed = 3
     self.isMoving = false
+    self.position = Vector3.zero
     self.dir = Vector3.up
     self.fireFreq = TimeFence(1)   -- sec / fire
 end
@@ -50,7 +51,7 @@ end
 function Tank:Fire()
 	if (not self.fireFreq:IsPass(Time.time)) then
         Log.Warn("FIRE IS CD")
-        return
+        return false
     end
 
     local go = ResourceMgr.CreateInstance("AssetBundles/prefabs/Bullet")
@@ -62,11 +63,15 @@ function Tank:Fire()
 
     -- print("tank shoot dir"..inspect(self.dir))
     bullet.dir = self.dir
+
+    return true
 end
 
 function Tank:Update()
     if (self.isMoving) then
-        self.transform.position = self.transform.position + Time.deltaTime * self.speed * self.dir
+        local pos = self.transform.position + Time.deltaTime * self.speed * self.dir
+        self.transform.position = pos
+        self.position = pos
     end
 end
 

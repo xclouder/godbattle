@@ -1,7 +1,12 @@
 var net = require('net');
 var fs = require('fs');
+
+var Victor = require('./victor');
+
 var protobuf = require('protocol-buffers')
-var messages = protobuf(fs.readFileSync('../Protocol/Rpc.proto'))
+var messages = protobuf(fs.readFileSync('../Protocol/Rpc.proto'));
+
+var Class = require('./jsclass/src/core').Class;
 
 var HOST = '127.0.0.1';
 var PORT = 50001;
@@ -9,38 +14,137 @@ var PORT = 50001;
 var ENTITY_ID = 1;
 var entities = {}
 
-net.createServer(function (sock) {
+var receiveBuffers = {}
 
-    console.log("CONNECTED:" + sock.remoteAddress + ":" + sock.remotePort);
+var PacketReceiver = new Class(
+{
+    initialize: function() {
+        this.onReceivePacket = null;
+        this.buffer = new Buffer(1024);
+        this.isHeadOk = false;
+        this.packageLen = 0;
+        this.offset = 0;
+    },
 
-    //new client connect, create one player for it, and send back env entities.
-    var player = createEntity(sock, "Player");
-    entities[player.entityId] = player;
-
-    for (var eid in entities)
+    needBytesLen: function ()
     {
-        console.log("eid:"+eid);
-        notifyClientCreateEntity(player, entities[eid]);
-    }
+        if (!this.isHeadOk)
+            return 4 - this.offset;
 
-    //set player -- need optmize. SetPlayer should call from client
-    player.callClientRoot("SetPlayer", player.entityId);
+        return this.packageLen + 4 - this.offset;
+    },
+    reset: function()
+    {
+        this.isHeadOk = false;
+        this.buffer = new Buffer(1024);
+        this.packageLen = 0;
+        this.offset = 0;
+    },
+    giveData:function(data){
+
+        console.log("----------------------- begin ---------------------");
+        this.readData(data, 0, data.length);
+        console.log("------------------------ end ----------------------");
+    },
+    readData:function(data, from, len)
+    {
+        console.log("data length:" + data.length);
+        console.log("read data from:" + from);
+        console.log("read data len:" + len);
+        console.log("buffer.offset:" + this.offset);
+        console.log("buffer.length:" + this.buffer.length);
+
+        var needBytes = this.needBytesLen();
+
+        console.log("needBytes:" + needBytes);
+
+        console.log("=======================");
+
+        if (len < needBytes)
+        {
+            console.log("!!!WARNING: occur this situation");
+
+            data.copy(this.buffer, this.offset, from, from + len);
+
+            this.offset += len;
+
+            //wait for more data
+        }
+        else
+        {
+
+            data.copy(this.buffer, this.offset, from, from + needBytes);
+
+            this.offset += needBytes;
+
+            // check if packet received.
+            if (!this.isHeadOk)
+            {
+                this.isHeadOk = true;
+                this.packageLen = this.buffer.readInt32BE(0);
+                console.log("head ok, len:" + this.packageLen);
+            }
+            else
+            {
+                //body is ok
+                if (this.onReceivePacket)
+                {
+                    var _len = this.packageLen + 4;
+                    var _data = new Buffer(_len);
+
+                    this.buffer.copy(_data, 0, 0, _len);
+                    this.onReceivePacket(_data);
+                }
+
+                this.reset();
+            }
+
+            if (len > needBytes)
+            {
+                this.readData(data, from + needBytes, len - needBytes);
+            }
+            else
+            {
+                //wait for more data
+            }
+        }
+    }
+});
+
+net.createServer(function (sock) {
+    
+    console.log("CONNECTED:" + sock.remoteAddress + ":" + sock.remotePort);
 
     sock.on('data', function(data)
     {
         if (data.length < 7)
             return;
 
-        receivePacket(data, function(head, body){
-
-            console.log('msg cmd:' + head.cmd);
-            console.log('msg session:' + head.session);
-            
-            if (head.cmd == 2)
+        var receiver = receiveBuffers[sock];
+        //这里要实现分包
+        if (receiver == null)
+        {
+            receiver = new PacketReceiver();
+            receiver.onReceivePacket = function (packet)
             {
-                handleRpc(body, sock);
+                console.log('[packet handler]receive packet,len:' + packet.length);
+                receivePacket(packet, function(head, body){
+                    console.log('packet unpacked');
+                    console.log('msg cmd:' + head.cmd);
+                    console.log('msg session:' + head.session);
+                    
+                    if (head.cmd == 2)
+                    {
+                        handleRpc(body, sock);
+                    }
+
+                });
             }
-        });
+
+            receiveBuffers[sock] = receiver;
+        }
+
+        receiver.giveData(data);
         
     });
 
@@ -49,7 +153,9 @@ net.createServer(function (sock) {
     });
 
 }).listen(PORT, function(){
-    console.log("server started");
+    
+    gameLoop();
+
 });
 
 function printBuffer(buffer)
@@ -89,50 +195,103 @@ function sendPacket(sock, msg)
         console.log(bodyCode);
     }
 
-    console.log("server send data:");
     console.log(data);
     sock.write(data);
 }
 
 function receivePacket(data, unpacked)
 {
-    console.log("server receive data:");
+    console.log("server receive data:" + data.length);
     console.log(data);
 
     var packageLen = data.readInt32BE(0);
     var headLen = data.readInt32BE(4);
+
+    console.log("receive pack len:" + packageLen);
+    console.log("receive head len:" + headLen);
 
     var headContent = new Buffer(headLen);
     data.copy(headContent, 0, 8, 8 + headLen);
     
     var head = messages.MsgHead.decode(headContent);
 
+    console.log("head unpack finished");
+    
     var bodyLen = packageLen - 4 - headLen;
+    console.log("body len:" + bodyLen);
+
     var body = null;
 
     if(bodyLen > 0)
     {
+        console.log("has body");
+
         var bodyCode = new Buffer(bodyLen);
         data.copy(bodyCode, 0, 8 + headLen, data.length);
+        
+        console.log("body buffer len:" + bodyCode.length);
+
+        console.log("receive body:");
+        console.log(bodyCode);
+
+
+
         body = messages.MsgBody.decode(bodyCode);
+
+        console.log("body unpack finished");
+
         var bodyJson = body.data;
+
+        console.log("body json:" + bodyJson);
+
         body = JSON.parse(bodyJson);
     }
     
+    console.log("unpacked..");
     unpacked(head, body);
+}
+
+var root = {
+    login: function(sock)
+    {
+        //new client connect, create one player for it, and send back env entities.
+        var player = createEntity(sock, "Player");
+        entities[player.entityId] = player;
+
+        for (var eid in entities)
+        {
+            console.log("eid:"+eid);
+            notifyClientCreateEntity(player, entities[eid]);
+        }
+
+        //set player -- need optmize. SetPlayer should call from client
+        player.callClientRoot("SetPlayer", player.entityId);
+    }
+
 }
 
 function handleRpc(body, sock)
 {
     console.log("entityId:"+body.entityId);
-    var entity = entities[body.entityId];
-    entity.sock = sock;
 
-    console.log("method:"+ body.method);
-    console.log("params:" + body.args);
+    if (body.entityId > 0)
+    {   
+        var entity = entities[body.entityId];
+        entity.sock = sock;
 
-    var method = entity[body.method];
-    method.apply(entity, body.args);
+        console.log("method:"+ body.method);
+        console.log("params:" + body.args);
+
+        var method = entity[body.method];
+        method.apply(entity, body.args);
+    }
+    else
+    {
+        var method = root[body.method];
+        body.args.unshift(sock);
+        var argList = body.args;
+        method.apply(root, argList);
+    }
     
 }
 
@@ -144,7 +303,8 @@ function createEntity(sock, className)
         entityId : eid,
         className: className,
         sock : sock,
-
+        position : Victor(0, 0),
+        dir : Victor(0, 1),
         callClient : function(method)
         {
             var paramsLen = arguments.length - 1;
@@ -200,6 +360,20 @@ function createEntity(sock, className)
             };
 
             sendPacket(this.sock, msg);
+        },
+
+        //call from client
+        fire:function()
+        {
+            console.log("fire")
+        },
+
+        //call from client
+        update:function(posX,posY,dirX,dirY)
+        {
+            console.log("entity update:(" + posX + "," + posY + ")");
+            this.position = Victor(posX, posY);
+            this.dir = Victor(dirX, dirY);
         }
     }
 
@@ -209,4 +383,37 @@ function createEntity(sock, className)
 function notifyClientCreateEntity(client, entity)
 {
     client.callClientRoot("CreateEntity", entity.entityId, entity.className);
+}
+
+function gameLoop()
+{
+    setInterval(tick, 33.3);
+    console.log("server started");
+}
+
+function tick()
+{
+    // console.log("tick");
+
+    // console.log("server tick.");
+    for (var eid in entities)
+    {
+
+
+        var entity = entities[eid];
+
+        //sync move
+        for (eid2 in entities){
+            // console.log("check eid2 move");
+
+            if (eid == eid2)
+                continue;
+
+            console.log("call client SetMove");
+            var otherEntity = entities[eid2];
+            var thePos = otherEntity.position;
+            var theDir = otherEntity.dir;
+            entity.callClient("SetMove", thePos.x, thePos.y, theDir.x, theDir.y);
+        }
+    }
 }

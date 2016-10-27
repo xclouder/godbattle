@@ -1,8 +1,8 @@
 var net = require('net');
 var fs = require('fs');
 var protobuf = require('protocol-buffers')
-var messages = protobuf(fs.readFileSync('../Protocol/MsgHead.proto'))
-var gameMessages = protobuf(fs.readFileSync('../Protocol/GameMsg.proto'))
+var messages = protobuf(fs.readFileSync('../Protocol/Rpc.proto'))
+
 
 var HOST = '127.0.0.1';
 var PORT = 50001;
@@ -13,8 +13,10 @@ client.connect(PORT, HOST , function() {
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
     // 建立连接后立即向服务器发送数据，服务器将收到这些数据 
     
-    sendCreateEntityMsg(client);
+    // sleep(1.0);
 
+    
+    callServer(client, 1, "update", [0]);
 });
 
 // 为客户端添加“data”事件处理函数
@@ -29,20 +31,9 @@ client.on('data', function(data) {
         console.log("head cmd:" + head.cmd);
         console.log("seq:" + head.sequence);
 
-        if(bodyCode != null)
-        {
-            console.log("body:");
-            console.log(bodyCode);
-
-            var createdInfo = gameMessages.EntityCreatedMsg.decode(bodyCode);
-
-            var eid = createdInfo.entityId;
-            console.log("entityId:" + eid);
-
-            sendMoveMsg(client, eid, 1, 2);
-        }
-
     });
+
+
 
 });
 
@@ -57,30 +48,31 @@ function printBuffer(buffer)
     console.log(buffer);
 }
 
-function sendCreateEntityMsg(sock)
+function callServer(sock, eid, method, params)
 {
-    var headCode = messages.MsgHead.encode({
-      cmd : 5,
-      sequence : 1
-    });
+    var msg = {}
+    msg.head = {
+        cmd : 2,
+        type : 2
+    }
 
-    sendPacket(sock, headCode, null);
-}
-
-function sendMoveMsg(sock, eid, x, y)
-{
-    var headCode = messages.MsgHead.encode({cmd:1});
-    var bodyCode = gameMessages.MoveMsg.encode({
+    msg.body = {
         entityId:eid,
-        x:x,
-        y:y
-    });
+        method:method,
+        args:params
+    };
 
-    sendPacket(sock, headCode, bodyCode);
+    sendPacket(sock, msg);
 }
 
-function sendPacket(sock, headCode, bodyCode)
+
+function sendPacket(sock, msg)
 {
+    var headCode = messages.MsgHead.encode(msg.head);
+    var bodyJson = JSON.stringify(msg.body);
+    console.log("body:"+bodyJson);
+    var body = {data:bodyJson};
+    var bodyCode = messages.MsgBody.encode(body);
     var headLen = headCode.length;
 
     var bodyLen = 0;
@@ -100,35 +92,59 @@ function sendPacket(sock, headCode, bodyCode)
     if (bodyCode != null)
     {
         bodyCode.copy(data, 8 + headLen, 0, bodyLen);
+
+        console.log("body:");
+        console.log(bodyCode);
     }
 
-    console.log("client send data:");
+    console.log("server send data:" + data.length);
     console.log(data);
-
     sock.write(data);
 }
 
 function receivePacket(data, unpacked)
 {
-    console.log("client receive data:");
+    console.log("server receive data:");
     console.log(data);
 
     var packageLen = data.readInt32BE(0);
     var headLen = data.readInt32BE(4);
+
+    console.log("receive pack len:" + packageLen);
+    console.log("receive head len:" + headLen);
 
     var headContent = new Buffer(headLen);
     data.copy(headContent, 0, 8, 8 + headLen);
     
     var head = messages.MsgHead.decode(headContent);
 
+    console.log("head unpack finished");
+    
     var bodyLen = packageLen - 4 - headLen;
-    var bodyCode = null;
+    console.log("body len:" + bodyLen);
+
+    var body = null;
 
     if(bodyLen > 0)
     {
-        bodyCode = new Buffer(bodyLen);
+        console.log("has body");
+
+        var bodyCode = new Buffer(bodyLen);
         data.copy(bodyCode, 0, 8 + headLen, data.length);
+        
+        console.log("body buffer len:" + bodyCode.length);
+
+        body = messages.MsgBody.decode(bodyCode);
+
+        console.log("body unpack finished");
+
+        var bodyJson = body.data;
+
+        console.log("body json:" + bodyJson);
+
+        body = JSON.parse(bodyJson);
     }
     
-    unpacked(head, bodyCode);
+    console.log("unpacked..");
+    unpacked(head, body);
 }
