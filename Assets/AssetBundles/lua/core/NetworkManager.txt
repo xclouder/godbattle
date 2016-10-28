@@ -14,36 +14,42 @@ function NetworkManager:Init()
 	self.networkService = uFrame.Kernel.uFrameKernel.Container:Resolve(NetworkService, nil, true)
 
 	--register protocols here
-	self:RegisterProtocol("AssetBundles/protocol/Rpc")
+	-- self:RegisterProtocol("AssetBundles/protocol/Rpc")
 
 	--修改这里，实现message body的映射
-	self.ProtocolMap = {
-		[1] = "rpc.MsgBody",
-	}
+	-- self.ProtocolMap = {
+	-- 	[1] = "rpc.MsgBody",
+	-- }
 
-	self.bodyEncoder = {
-		decode = function (head, bodyBytes)
-			local body = protobuf.decode("rpc.MsgBody", bodyBytes)
-			return json.decode(body.data)
-		end;
+	-- self.bodyEncoder = {
+	-- 	decode = function (head, bodyBytes)
+	-- 		local body = protobuf.decode("rpc.MsgBody", bodyBytes)
+	-- 		return json.decode(body.data)
+	-- 	end;
 
-		encode = function (head, body)
-			local str = json.encode(body)
-			Log.Warn("json:"..str);
-			local body = {data = str;}
-			local bodyCodes = protobuf.encode("rpc.MsgBody", body)
-			Log.Warn("bodyCodes:".. bodyCodes)
-			return bodyCodes
-		end;
-	}
+	-- 	encode = function (head, body)
+	-- 		local str = json.encode(body)
+	-- 		Log.Warn("json:"..str);
+	-- 		local body = {data = str;}
+	-- 		local bodyCodes = protobuf.encode("rpc.MsgBody", body)
+	-- 		Log.Warn("bodyCodes:".. bodyCodes)
+	-- 		return bodyCodes
+	-- 	end;
+	-- }
 
 	dispatcher:on("SendMessage", function(evt, msg)
-		self:Send(msg)
+		self:SendRaw(msg)
 	end)
 
 end
 
 --------Message Send & Receive
+function NetworkManager:SendRaw(msg)
+	local packet = LuaPacket()
+	packet:Write(msg)
+
+	self.networkService:Send(packet)
+end
 --这里msg协议根据项目需要自定义
 function NetworkManager:Send(msg)
 	
@@ -63,17 +69,17 @@ end
 function NetworkManager:OnReceiveMessage(packet)
 	print("receive msg in lua")
 
-	local headCode = packet:ReadHead()
-	local bodyCode = packet:ReadBody()
-	local msg = {}
-	msg.head = protobuf.decode("rpc.MsgHead", headCode)
+	-- local headCode = packet:ReadHead()
+	-- local bodyCode = packet:ReadBody()
+	-- local msg = {}
+	-- msg.head = protobuf.decode("rpc.MsgHead", headCode)
 
-	if (bodyCode ~= nil) then
-		msg.body = self.bodyEncoder.decode(msg.head, bodyCode)
-	end
+	-- if (bodyCode ~= nil) then
+	-- 	msg.body = self.bodyEncoder.decode(msg.head, bodyCode)
+	-- end
 
 	--要用到消息的地方，监听这个通知
-	dispatcher:dispatchEvent("OnReceiveMessage", msg)
+	dispatcher:dispatchEvent("OnReceiveMessage", packet)
 end
 
 --------protobuf 协议注册

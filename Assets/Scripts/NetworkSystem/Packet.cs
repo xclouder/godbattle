@@ -25,30 +25,52 @@ public class Packet {
 		}
 
 		short len_ = (short)len;
-		var data = GetNetworkOrderBytes(len_);
+		var headData = GetNetworkOrderBytes(len_);
 
-		buff.Write(data, 0, data.Length);
+		Debug.Log("c# get len:" + len);
+		Debug.Log("c# head len:" + headData.Length);
+		Debug.Log("c# get data present:" + GetDataPresent(bytes));
+
+		buff.Write(headData, 0, headData.Length);
 		buff.Write(bytes, 0, len);
+
+//		Debug.Log("c# packed data present(with head):" + GetDataPresent(bytes));
+
+		Debug.Log("c# buffer len now:" + buff.Length);
+		var arr = buff.ToArray();
+		Debug.Log("c# buffer now:" + GetDataPresent(arr));
+	}
+
+	private string GetDataPresent(byte[] d)
+	{
+		System.Text.StringBuilder sb = new System.Text.StringBuilder();
+		for (int i = 0; i < d.Length; i++)
+		{
+			sb.Append(d[i].ToString());
+			sb.Append(" ");
+		}
+
+		return sb.ToString();
 	}
 
 	//Obsolute
-	public void WriteInt(int val)
-	{
-		var data = GetNetworkOrderBytes(val);
-		buff.Write(data, 0, data.Length);
-	}
+	// public void WriteInt(int val)
+	// {
+	// 	var data = GetNetworkOrderBytes(val);
+	// 	buff.Write(data, 0, data.Length);
+	// }
 
-	//Obsolute
-	public void WriteBytes(byte[] bytes)
-	{
-		buff.Write(bytes, 0, bytes.Length);
-	}
+	// //Obsolute
+	// public void WriteBytes(byte[] bytes)
+	// {
+	// 	buff.Write(bytes, 0, bytes.Length);
+	// }
 
-	protected byte[] GetNetworkOrderBytes(int val)
-	{
-		var v = System.Net.IPAddress.HostToNetworkOrder(val);
-		return System.BitConverter.GetBytes(v);
-	}
+	// protected byte[] GetNetworkOrderBytes(int val)
+	// {
+	// 	var v = System.Net.IPAddress.HostToNetworkOrder(val);
+	// 	return System.BitConverter.GetBytes(v);
+	// }
 
 	protected byte[] GetNetworkOrderBytes(short val)
 	{
@@ -65,9 +87,9 @@ public class Packet {
 		reader = new BinaryReader(buff);
 	}
 
-	public int ReadInt()
+	protected int ReadBodyLen()
 	{
-		return (int)reader.ReadInt32();
+		return (int)reader.ReadInt16();
 	}
 
 	public byte[] ReadBytes(int len)

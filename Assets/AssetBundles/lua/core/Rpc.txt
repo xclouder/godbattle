@@ -8,8 +8,8 @@ function Rpc:Init()
 	self.root = {}
 
 	--self:RegisterProtocol("AssetBundles/protocol/Rpc")
-
-	dispatcher:on("OnReceiveMessage", function (evt, msg)
+	--TODO: FiX
+	dispatcher:on("OnReceiveMessage<<<", function (evt, msg)
 	    Log.Warn(inspect(msg))
 
 		--here should be server to client rpc cmd

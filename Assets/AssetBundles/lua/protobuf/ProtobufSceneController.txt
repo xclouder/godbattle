@@ -1,9 +1,75 @@
 ﻿require "core/protobuf"
 
+local proto = require "protobuf/proto"
+local sproto = require "core/sproto"
+
+local host = sproto.new(proto.s2c):host "package"
+local request = host:attach(sproto.new(proto.c2s))
+
 local ProtobufSceneController = Class()
 local Player = require "entity/Player"
 -- import Entity classes && register them
 RPC:RegisterEntityClass("Player", Player)
+
+function printbytes(str)
+	local s = ""
+	print("str len:" .. #str)
+	for i = 1, #str, 1 do
+		s = s..str.byte(str, i) .. " "
+	end
+
+	return s
+end 
+
+local function print_request(name, args)
+	print("REQUEST", name)
+	if args then
+		for k,v in pairs(args) do
+			print(k,v)
+		end
+	end
+end
+
+local function print_response(session, args)
+	print("RESPONSE", session)
+	if args then
+		for k,v in pairs(args) do
+			print(k,v)
+		end
+	end
+end
+
+local function print_package(t, ...)
+	if t == "REQUEST" then
+		print_request(...)
+	else
+		assert(t == "RESPONSE")
+		print_response(...)
+	end
+end
+
+
+
+local function send_package(pack)
+	-- local package = string.pack(">s2", pack)
+	
+	dispatcher:dispatchEvent("SendMessage", pack)
+end
+
+local session = 0
+local function send_request(name, args)
+	session = session + 1
+	local str = request(name, args, session)
+	-- str = "abcde"
+	print("send:"..printbytes(str))
+
+	send_package(str)
+	print("Request:", session)
+
+	-- print_package(host:dispatch(pack))
+end
+
+
 
 function ProtobufSceneController:KernelLoaded(monoComonent)
 	self.monoComponent = monoComponent
@@ -68,7 +134,21 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 
 	end)
 
+	dispatcher:on("OnReceiveMessage", function(evt, packet)
+        local data = packet:ReadBody()
+
+        print("recv data:"..printbytes(data))
+
+        print_package(host:dispatch(data))
+	end)
+
+
+	--send request
+	send_request("getuserinfo", { uid = "hello"})
+
 end
+
+
 
 function ProtobufSceneController:HandleMsg(msg)
 	

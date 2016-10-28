@@ -38,9 +38,9 @@ public class NetworkService : SystemServiceMonoBehavior {
 
 		Debug.Log("Connected!");
 
-//		var data = System.Text.Encoding.ASCII.GetBytes("hello~");
-//
-//		netInterface.Send(data);
+		// var data = System.Text.Encoding.ASCII.GetBytes("hello~");
+
+		// netInterface.Send(data);
 		netInterface.StartReceive();
 	}
 
@@ -55,8 +55,10 @@ public class NetworkService : SystemServiceMonoBehavior {
 		Publish(packet);
 	}
 
-	void OnDestroy()
+	protected override void OnDestroy()
 	{
+		base.OnDestroy();
+
 		if (netInterface != null)
 		{
 			netInterface.Dispose();

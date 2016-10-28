@@ -1,0 +1,8 @@
+local sprotoparser = require "core/sprotoparser"
+local schema = require "schema/schema"
+local proto = {}
+
+proto.c2s = sprotoparser.parse(schema.c2s)
+proto.s2c = sprotoparser.parse(schema.s2c)
+
+return proto
