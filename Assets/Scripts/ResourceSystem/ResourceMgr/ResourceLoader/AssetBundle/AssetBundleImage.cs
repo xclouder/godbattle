@@ -36,6 +36,9 @@ public class AssetBundleImage
 	private HashSet<AssetBundleImage> _dependencies;
 	public HashSet<AssetBundleImage> Dependencies { get { return _dependencies; }}
 
+
+	public bool IsInWhiteList = false;
+
 	public AssetBundleImage(string bundleName)
 	{
 		_name = bundleName;
@@ -43,7 +46,7 @@ public class AssetBundleImage
 		ReferenceCount = 0;
 		AssetBundle = null;
 
-		Debug.Log("==> create image: " + Name);
+		//Debug.Log("==> create image: " + Name);
 	}
 
 	public void AddDependency(AssetBundleImage image)
@@ -56,7 +59,7 @@ public class AssetBundleImage
 
 		_dependencies.Add(image);
 
-		Debug.Log("==> add Dependency: " + Name + " -> " + image.Name);
+		//Debug.Log("==> add Dependency: " + Name + " -> " + image.Name);
 	}
 
 	public void IncreaseReferenceCount()
@@ -89,7 +92,7 @@ public class AssetBundleImage
 		
 		ReferenceCount--;
 
-		if (ReferenceCount == 0)
+		if (ReferenceCount == 0 && !IsInWhiteList)
 			UnloadInternal();
 	}
 
@@ -137,7 +140,7 @@ public class AssetBundleImage
 			return;
 		}
 
-		Debug.Log("==> start load image:" + Name);
+		//Debug.Log("==> start load image:" + Name);
 
 		State = ImageState.Loading;
 
@@ -207,7 +210,7 @@ public class AssetBundleImage
     /// </summary>
 	private void UnloadInternal()
 	{
-		Debug.Log("==> unload image:" + Name);
+		//Debug.Log("==> unload image:" + Name);
 		Debug.Assert(State == ImageState.Loaded);
 		Debug.Assert(ReferenceCount == 0);
 		
@@ -231,14 +234,14 @@ public class AssetBundleImage
 			throw new System.Exception ("please load asset after image loaded");
 		}
 
-		Debug.Log("==> load asset:" + name);
+		//Debug.Log("==> load asset:" + name);
 		return AssetBundle.LoadAssetAsync(name);
 	}
 
 	#region Dependency Image Event Listener
 	private void OnDependencyImageLoaded(AssetBundleImage img)
 	{
-		Debug.Log("==> img loaded:" + img.Name);
+		//Debug.Log("==> img loaded:" + img.Name);
 		CheckAndNotifyIfAllCompleted();
 	}
 

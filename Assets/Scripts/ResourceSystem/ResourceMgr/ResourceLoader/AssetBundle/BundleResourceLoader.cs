@@ -28,15 +28,10 @@ public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 		var platformName = BundleUtility.GetPlatformName();
 		BundleRootDirectory = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles/" + platformName + "/");
 
-		string bundlePath = null;
-		#if UNITY_ANDROID
-		bundlePath = Application.dataPath + "!assets/";
+		#if !UNITY_ANDROID
+		string bundlePath = Application.streamingAssetsPath;
 		#else
-		bundlePath = Application.streamingAssetsPath;
-		#endif
-
-		#if UNITY_EDITOR
-		bundlePath = Application.streamingAssetsPath;
+		string bundlePath = Application.dataPath + "!assets/";
 		#endif
 
 		SecondaryBundleRootDirectory = System.IO.Path.Combine(bundlePath, "AssetBundles/" + platformName + "/");
@@ -58,6 +53,15 @@ public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 
 		isInitialized = true;
 		req.assetBundle.Unload(false);
+
+		//TODO: 在这里添加白名单
+		//AddBundleWhiteList("your-bundle-name");
+	}
+
+	private HashSet<string> m_staticAssetBundles = new HashSet<string>();
+	public void AddBundleWhiteList(string bundleName)
+	{
+		m_staticAssetBundles.Add(bundleName);
 	}
 
 	private string GetBundlePath(string bundleName)
@@ -129,6 +133,11 @@ public class BundleResourceLoader : IBundleResourceLoader, System.IDisposable
 	private AssetBundleImage CreateAssetBundleImage(string bundleName)
 	{
 		var image = new AssetBundleImage(bundleName);
+
+		if (m_assetBundleImages.ContainsKey(bundleName))
+		{
+			image.IsInWhiteList = true;
+		}
 
 		image.BundlePath = GetBundlePath(bundleName);
 		var dep_list = Manifest.GetAllDependencies(bundleName);
