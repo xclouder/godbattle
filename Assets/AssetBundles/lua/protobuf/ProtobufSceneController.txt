@@ -11,6 +11,10 @@ local Player = require "entity/Player"
 -- import Entity classes && register them
 RPC:RegisterEntityClass("Player", Player)
 
+local entities = nil
+local player = nil
+
+
 function printbytes(str)
 	local s = ""
 	print("str len:" .. #str)
@@ -48,8 +52,6 @@ local function print_package(t, ...)
 	end
 end
 
-
-
 local function send_package(pack)
 	-- local package = string.pack(">s2", pack)
 	
@@ -66,12 +68,47 @@ local function send_request(name, args)
 	send_package(str)
 	print("Request:", session)
 
-	-- print_package(host:dispatch(pack))
 end
 
+local function create_entity()
+	local e = Player.New()
 
+	return e;
+
+end
+
+local function handle_response(session, args)
+	if session == 1 then
+		send_request("enter_world", { uid = args.uid})
+	end
+
+	if session == 2 then
+		print("myeid:".. args.myeid)
+		print("entities type:"..type(args.entities))
+
+		entities = args.entities
+
+		local entity = create_entity()
+		entity.data = entities[args.myeid]
+
+		entity:Init()
+	end
+end
+
+local function handle_package(t, ...)
+	if t == "REQUEST" then
+		print_request(...)
+	else
+		assert(t == "RESPONSE")
+		print_response(...)
+
+		handle_response(...)
+	end
+end
 
 function ProtobufSceneController:KernelLoaded(monoComonent)
+	local controller = self
+
 	self.monoComponent = monoComponent
 
 	--prefab cache
@@ -111,7 +148,7 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 	end)
 
 	--player enter
-	self:PlayerEnter()
+	-- self:PlayerEnter()
 
 	--move cmd handler
 	dispatcher:on("MoveCmd", function(evt, dir)
@@ -139,7 +176,7 @@ function ProtobufSceneController:KernelLoaded(monoComonent)
 
         print("recv data:"..printbytes(data))
 
-        print_package(host:dispatch(data))
+        handle_package(host:dispatch(data))
 	end)
 
 

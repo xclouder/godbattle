@@ -12,11 +12,47 @@ schema.c2s = [[
 	nick 1 : string
 }
 
+.Position
+{
+	x 0 : integer
+	y 1 : integer
+}
+
+.Rotation
+{
+	z 0 : integer
+}
+
+.Entity
+{
+	eid 0 : integer
+	name 1 : string
+	pos 2 : Position
+	rot 3 : Rotation
+}
+
 getuserinfo 1 {
 	request {
 		uid 0 : string
 	}
 	response UserInfo
+}
+
+enter_world 2 {
+	request {
+		uid 0 : string
+	}
+	response {
+		entities 0 : *Entity
+		myeid 1 : integer
+	}
+}
+
+update_entity 3 {
+	request {
+		pos 0 : Position
+		rot 1 : Rotation
+	}
 }
 
 ]]
@@ -25,6 +61,37 @@ schema.s2c = [[
 .package {
 	type 0 : integer
 	session 1 : integer
+}
+
+.Position
+{
+	x 0 : integer
+	y 1 : integer
+}
+
+.Rotation
+{
+	z 0 : integer
+}
+
+.Entity
+{
+	eid 0 : integer
+	name 1 : string
+	pos 2 : Position
+	rot 3 : Rotation
+}
+
+entity_updated 1 {
+	request {
+		pos 0 : Position
+		rot 1 : Rotation
+		eid 2 : integer
+	}
+}
+
+create_entity 2 {
+	request Entity
 }
 
 ]]
