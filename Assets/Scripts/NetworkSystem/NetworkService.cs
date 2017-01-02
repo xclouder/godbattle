@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using uFrame.Kernel;
 using Network.ImprovedInterface;
 

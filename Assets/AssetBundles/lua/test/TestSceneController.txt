@@ -1,0 +1,25 @@
+local oo = require "core/SimpleOO"
+
+local TestSceneController = oo.Class.Create()
+
+function TestSceneController:KernelLoaded(luaComponent)
+
+	self.luaComponent = luaComponent
+
+	local connectBtnObj = GameObject.Find("ConnectButton")
+	local btn = connectBtnObj:GetComponent("Button")
+
+	btn.onClick:AddListener(function()
+
+		
+
+	end)
+end
+
+function GetLuaObj(gameObject)
+	local luaComp = gameObject:GetComponent(LuaComponent)
+	local luaObj = luaComp:GetLuaObject()
+	return luaObj
+end
+
+return TestSceneController

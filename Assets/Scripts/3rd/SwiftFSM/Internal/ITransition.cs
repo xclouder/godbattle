@@ -10,4 +10,6 @@ internal interface ITransition <TState, TEvent>
 	IInnerState<TState, TEvent> Target {get;set;}
 	TEvent EventToTrigger {get;set;}
 
+	bool CanTranslate(TEvent firedEvent);
+
 }

@@ -55,7 +55,7 @@ internal class InnerState<TState, TEvent> : IInnerState<TState, TEvent>
 		{
 			foreach (var t in transitions)
 			{
-				if (t.EventToTrigger.Equals(eventId))
+				if (t.CanTranslate(eventId))
 				{
 					fired = true;
 					toState = t.Target;

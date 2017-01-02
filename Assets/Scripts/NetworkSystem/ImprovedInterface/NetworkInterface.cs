@@ -68,8 +68,6 @@ namespace Network.ImprovedInterface
 			socket.ConnectAsync(connectEA);
 		}
 
-
-		//TODO 断线重连的情况
 		public void Send(byte[] data)
 		{
 

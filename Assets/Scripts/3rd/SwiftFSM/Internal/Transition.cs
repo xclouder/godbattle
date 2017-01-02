@@ -9,6 +9,9 @@ internal class Transition<TState, TEvent> : ITransition <TState, TEvent>
 	public IInnerState<TState, TEvent> Target {get;set;}
 	public TEvent EventToTrigger {get;set;}
 
-//	private IStateMachine machine;
 
+	public bool CanTranslate(TEvent firedEvent)
+	{
+		return EventToTrigger.Equals(firedEvent);
+	}
 }
