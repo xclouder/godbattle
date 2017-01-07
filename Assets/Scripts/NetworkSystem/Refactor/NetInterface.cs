@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 
+/// <summary>
+/// 对Socket的封装，内部维护收／发队列，同步调用Send数据入队，异步发送并回调
+/// 收到数据后由PacketScanner切分为数据包，进入收包队列
+/// </summary>
 public class NetInterface {
 
-	public static int TcpClientReceiveBufferSize = 256 * 1024;
-	public static int TcpClientReceiveTimeout = 10000;
+	public static int ReceiveBufferSize = 256 * 1024;
+	public static int ReceiveTimeout = 10000;
 
-	public static int TcpClientSendBufferSize = 256 * 1024;
-	public static int TcpClientSendTimeout = 10000;
+	public static int SendBufferSize = 256 * 1024;
+	public static int SendTimeout = 10000;
 
 	public delegate void NetInterfaceErrorEventHandler(NetInterface net, string errmsg);
 	public delegate void NetInterfaceEventHandler(NetInterface net);
+	public delegate void NetInterfaceOnReceivePacketHandler(NetInterface net, byte[] data);
 
 	public event NetInterfaceEventHandler onConnectedHandler;
 	public event NetInterfaceErrorEventHandler onConnectErrorHandler;
@@ -159,5 +164,38 @@ public class NetInterface {
 
 	private Queue<byte[]> m_sendQueue = new Queue<byte[]>();
 
+	//receive:
+	//负责将收到的数据流按照协议切分为包
+	private bool m_isReceiving = false;
+	public void Process()
+	{
+		if (!m_isReceiving)
+		{
+			StartReceive();
+		}
+	}
+
+	private SocketAsyncEventArgs m_receiveEA;
+	public void StartReceive()
+	{
+		m_receiveEA = m_receiveEA ?? CreateSAEA(new EventHandler<SocketAsyncEventArgs>(OnReceiveComplete));
+
+//		var raw = receiveBuffer.RawBuffer;
+//
+//		receiveEA.SetBuffer(raw, receiveBuffer.ProducePosition, receiveBuffer.RawAvailableSpace);
+
+		var isSucc = m_socket.ReceiveAsync(m_receiveEA);
+		if (!isSucc)
+		{
+			UnityEngine.Debug.LogError(m_receiveEA.SocketError.ToString());
+		}
+	}
+
+	private void OnReceiveComplete(object sender, SocketAsyncEventArgs e)
+	{
+		
+
+		StartReceive();
+	}
 
 }

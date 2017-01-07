@@ -2,6 +2,12 @@ using UnityEngine;
 using System.Collections;
 using uFrame.Kernel;
 
+public enum ConnType
+{
+	LoginServer,
+	GameServer
+}
+
 public class TestSceneController : SceneController {
 
 
