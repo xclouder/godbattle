@@ -43,10 +43,10 @@ public class LuaService : SystemServiceMonoBehavior
 		//net msg callback
 		var luaNetMgr = (LuaTable)RunString("return NetMgr");
 		var func = luaNetMgr["OnReceiveMessage"] as LuaFunction;
-		OnEvent<Packet>().ObserveOnMainThread().Subscribe((packet) => {
-			//Debug.Log("call lua networkService:OnReceivePacket");
-			func.call(luaNetMgr, packet);
-		});
+//		OnEvent<Packet>().ObserveOnMainThread().Subscribe((packet) => {
+//			//Debug.Log("call lua networkService:OnReceivePacket");
+//			func.call(luaNetMgr, packet);
+//		});
 
 
 		Debug.Log ("Lua Service setup completed.");

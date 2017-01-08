@@ -10,7 +10,6 @@ namespace SLua {
 				Lua_SwitchSceneCommand.reg,
 				Lua_LuaComponent.reg,
 				Lua_LuaComponentFull.reg,
-				Lua_LuaPacket.reg,
 				Lua_LuaSceneController.reg,
 				Lua_Utils.reg,
 				Lua_Custom.reg,
@@ -28,10 +27,6 @@ namespace SLua {
 				Lua_System_Collections_Generic_Dictionary_2_int_string.reg,
 				Lua_System_String.reg,
 				Lua_Camera2DFollow.reg,
-				Lua_ResourceMgr.reg,
-				Lua_uFrame_Kernel_uFrameKernel.reg,
-				Lua_uFrame_IOC_UFrameContainer.reg,
-				Lua_NetworkService.reg,
 			};
 			return list;
 		}
